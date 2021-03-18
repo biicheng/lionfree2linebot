@@ -61,7 +61,7 @@ class LineBotT extends Controller
         // \Log::info('response:'.$response.', err:'.$err);
 
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
-        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '<4b91553e4c688509a050ba0f29208a90>']);
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
         $response = $bot->getProfile($source_userId);
         if ($response->isSucceeded()) {
             $profile = $response->getJSONDecodedBody();
