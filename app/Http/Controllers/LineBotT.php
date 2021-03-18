@@ -43,9 +43,9 @@ class LineBotT extends Controller
         // $text = $cc->input('events')[0]['message']['text'];
         // $text = $cc->input('events')[0]['message']['text'];
 
-        if($source_userId!='U7b6cf61ae9975bc4b800b1146a840ed2'){
-            DB::insert('insert into lined (datT, dataTime) values (?, ?)', [$obj, $dates]);
-        }
+        // if($source_userId!='U7b6cf61ae9975bc4b800b1146a840ed2'){
+        //     DB::insert('insert into lined (datT, dataTime) values (?, ?)', [$obj, $dates]);
+        // }
         
     
 
