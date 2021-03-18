@@ -87,12 +87,6 @@ class LineBotT extends Controller
         if ($response->isSucceeded()) {
             return '--';
         }
-        $to ="fish970628@gmail.com "; //收件者
-        $subject = "Line Bot Message"; //信件標題
-        $msg = "text: ".$message_text;//信件內容
-        $headers = "from: tpl6系統通知"; //寄件者
-        
-        mail((string)$to, (string)$subject, (string)$msg, (string)$headers);
         
         // \Log::info($response->getHTTPStatus() . ' ' . $response->getRawBody());
         // \Log::info('1message_text: '.$message_text);
