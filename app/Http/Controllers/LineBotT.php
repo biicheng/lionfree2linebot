@@ -87,10 +87,10 @@ class LineBotT extends Controller
         if ($response->isSucceeded()) {
             return '--';
         }
-        $to =" fish970628@gmail.com "; //收件者
+        $to ="fish970628@gmail.com "; //收件者
         $subject = "Line Bot Message"; //信件標題
         $msg = "text: ".$message_text;//信件內容
-        $headers = "From: k1031616@yahoo.com.tw"; //寄件者
+        $headers = "k1031616@yahoo.com.tw"; //寄件者
         
         if(mail("$to", "$subject", "$msg", "$headers")){
             echo "信件已經發送成功。";//寄信成功就會顯示的提示訊息
