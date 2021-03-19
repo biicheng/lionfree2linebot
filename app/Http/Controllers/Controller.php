@@ -10,4 +10,10 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function infoD(){
+        // $ret = $cc->name;//$cc->all();//
+        //dd(json_decode($request->getContent(), true));
+        return phpinfo();
+    }
 }
