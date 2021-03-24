@@ -40,25 +40,21 @@ class LineBotT extends Controller
                 ', mode:'.$mode.', message_Id:'.$message_Id.
                 ', message_type:'.$message_type.', message_text:'.$message_text.
                 ', source_userId:'.$source_userId.', source_type:'.$source_type;
-        // $text = $cc->input('events')[0]['message']['text'];
-        // $text = $cc->input('events')[0]['message']['text'];
-
         // if($source_userId!='U7b6cf61ae9975bc4b800b1146a840ed2'){
         //     DB::insert('insert into lined (datT, dataTime) values (?, ?)', [$obj, $dates]);
         // }
         
     
 
-        // $ch = curl_init();
-        // $url = "https://api.line.me/v2/bot/profile/".$source_userId;
-        // $ch = curl_init();
-        // curl_setopt($ch, CURLOPT_URL, $url);
-        // curl_setopt($ch, CURLOPT_POST, 0);
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // $response = curl_exec ($ch);
-        // $err = curl_error($ch);  //if you need
-        // curl_close ($ch);
-        // \Log::info('response:'.$response.', err:'.$err);
+        $ch = curl_init();
+        $url = "https://api.line.me/v2/bot/profile/".$source_userId;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec ($ch);
+        $err = curl_error($ch);  //if you need
+        curl_close ($ch);
 
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
@@ -68,7 +64,25 @@ class LineBotT extends Controller
             // $displayName = $profile['displayName'];
             // $pictureUrl = $profile['pictureUrl'];
             // $statusMessage = $profile['statusMessage'];
-            \Log::info('displayName:'.$profile['displayName'].', Uid:'.$source_userId);
+            if(!empty($profile['displayName'])){
+                \Log::info('displayName: '.$profile['displayName']);
+            }
+            else{
+                \Log::info('displayName: 無'.', err:'.$err);
+            }
+            if(!empty($profile['pictureUrl'])){
+                \Log::info('pictureUrl: '.$profile['pictureUrl']);
+            }
+            else{
+                \Log::info('pictureUrl: 無'.', err:'.$err);
+            }
+            if(!empty($profile['statusMessage'])){
+                \Log::info('statusMessage: '.$profile['statusMessage']);
+            }
+            else{
+                \Log::info('statusMessage: 無'.', err:'.$err);
+            }
+            // \Log::info('displayName:'.$profile['displayName'].', Uid:'.$source_userId);
             // \Log::info('pictureUrl:'.$profile['pictureUrl']);
             // \Log::info('statusMessage:'.$profile['statusMessage']);
         }
@@ -85,7 +99,11 @@ class LineBotT extends Controller
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         if ($response->isSucceeded()) {
-            return '--';
+            // return '--';
+            \Log::info($source_userId.' --bot: yes.');
+        }
+        else{
+            \Log::info($source_userId.' --bot: no.');
         }
         
         // \Log::info($response->getHTTPStatus() . ' ' . $response->getRawBody());
@@ -93,12 +111,5 @@ class LineBotT extends Controller
         // \Log::info($replyToken);
 
         return 'hello.';
-        // return "{destination: ".$destination.",[0]{events_type:".
-        //         $events_type.", replyToken:".$replyToken.", timestamp:".
-        //         $timestamp.", mode:".$mode.", message:{ message_Id".
-        //         $message_Id.", message_type:".$message_type.", message_text:".
-        //         $message_text."}, source:{ source_userId:".
-        //         $source_userId.", source_type:".$source_type.",}}}";
-
     }
 }
