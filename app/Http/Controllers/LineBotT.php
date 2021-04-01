@@ -90,13 +90,14 @@ class LineBotT extends Controller
         // DB::insert('insert into lined (datT, dataTime) values (?, ?)', [$output->exception, $dates]);
         // $this - > response['response'] = json_decode($output);
 
+        $testImg = 'https://tkolifego.000webhostapp.com/img/klog1-3.png';
         
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
 
         // $text = request()->input('events')[0]['message']['text'];
         // $replyToken = request()->input('events')[0]['replyToken'];
-        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($testImg);
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         if ($response->isSucceeded()) {
             // return '--';
