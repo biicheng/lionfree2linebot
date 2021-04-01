@@ -20,4 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/linebot', 'LineBotT@postTest');
 
-
+Route::get('/dbt', 'LineBotT@dbtest');

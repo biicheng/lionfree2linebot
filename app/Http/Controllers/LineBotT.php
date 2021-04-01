@@ -99,41 +99,53 @@ class LineBotT extends Controller
         // $replyToken = request()->input('events')[0]['replyToken'];
 
         $i = 0;
-        $messages = DB::select('select * from message where 1');
+        $messages = DB::select('select * from message where u_text=?', [$message_text]);
         // \Log::info(count($messages));
-        foreach ($messages as $mm) {
-            // echo $user->name;
-            // \Log::info($mm->reType);
-            if(count($messages)==$i+1){
-                if($mm->u_text==$message_text){
-                    $i=0;
-                    if($mm->reType=='text'){
-                        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
-                        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-                    }
-                    else{
-                        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
-                        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-                    }
-                }
-                else{
-                    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
-                    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-                }
+        if(count($messages)==1){
+            if($mm->reType=='text'){
+                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages->re_text);
+                $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
-            else if($mm->u_text==$message_text){
-                $i=0;
-                if($mm->reType=='text'){
-                    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
-                    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-                }
-                else{
-                    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
-                    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-                }
+            else{
+                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
+                $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
-            $i++;
         }
+        else{
+            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
+            $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        }
+        // foreach ($messages as $mm) {
+        //     if(count($messages)==$i+1){
+        //         if($mm->u_text==$message_text){
+        //             $i=0;
+        //             if($mm->reType=='text'){
+        //                 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
+        //                 $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        //             }
+        //             else{
+        //                 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
+        //                 $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        //             }
+        //         }
+        //         else{
+        //             $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
+        //             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        //         }
+        //     }
+        //     else if($mm->u_text==$message_text){
+        //         $i=0;
+        //         if($mm->reType=='text'){
+        //             $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
+        //             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        //         }
+        //         else{
+        //             $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
+        //             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        //         }
+        //     }
+        //     $i++;
+        // }
         // if($message_text=='嗨'){
         //     $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('Hi！');
         //     $response = $bot->replyMessage($replyToken, $textMessageBuilder);
@@ -156,6 +168,11 @@ class LineBotT extends Controller
         // \Log::info($replyToken);
 
         return 'hello.';
+    }
+
+    public function dbtest(){
+        $messages = DB::select('select * from message where u_text=?', ['000']);
+        return count($messages);
     }
 
     public function buildTemplateMessageBuilderDeprecated(
