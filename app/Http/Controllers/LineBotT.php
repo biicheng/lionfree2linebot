@@ -115,37 +115,6 @@ class LineBotT extends Controller
             $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         }
-        // foreach ($messages as $mm) {
-        //     if(count($messages)==$i+1){
-        //         if($mm->u_text==$message_text){
-        //             $i=0;
-        //             if($mm->reType=='text'){
-        //                 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
-        //                 $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-        //             }
-        //             else{
-        //                 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
-        //                 $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-        //             }
-        //         }
-        //         else{
-        //             $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
-        //             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-        //         }
-        //     }
-        //     else if($mm->u_text==$message_text){
-        //         $i=0;
-        //         if($mm->reType=='text'){
-        //             $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
-        //             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-        //         }
-        //         else{
-        //             $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
-        //             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-        //         }
-        //     }
-        //     $i++;
-        // }
         // if($message_text=='嗨'){
         //     $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('Hi！');
         //     $response = $bot->replyMessage($replyToken, $textMessageBuilder);
