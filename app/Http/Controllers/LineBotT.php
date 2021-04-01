@@ -97,7 +97,7 @@ class LineBotT extends Controller
 
         // $text = request()->input('events')[0]['message']['text'];
         // $replyToken = request()->input('events')[0]['replyToken'];
-        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($testImg);
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($testImg);
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         if ($response->isSucceeded()) {
             // return '--';
