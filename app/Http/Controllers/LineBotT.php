@@ -101,7 +101,16 @@ class LineBotT extends Controller
         // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($testImg);
         // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         
-        $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("Click"," ", $img_url, '');
+        $actions = array(
+            //一般訊息型 action
+            new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("按鈕1","文字1"),
+            //網址型 action
+            new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Google","http://www.google.com"),
+            //下列兩筆均為互動型action
+            new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("下一頁", "page=3"),
+            new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("上一頁", "page=1")
+          );
+        $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("Click"," ", $img_url, $actions);
         $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("這訊息要用手機的賴才看的到哦", $button);
         $response->replyMessage($replyToken,$msg);
         if ($response->isSucceeded()) {
