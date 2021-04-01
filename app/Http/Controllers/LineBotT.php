@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 
 class LineBotT extends Controller
 {
+     private $sender;
     public function postTest(Request $cc){
         $dates = date("Y-m-d H:i:s");
         
@@ -90,7 +91,6 @@ class LineBotT extends Controller
         // DB::insert('insert into lined (datT, dataTime) values (?, ?)', [$output->exception, $dates]);
         // $this - > response['response'] = json_decode($output);
 
-        $img_url = 'https://tkolifego.000webhostapp.com/img/klog1-3.png';
         
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
@@ -98,21 +98,51 @@ class LineBotT extends Controller
         // $text = request()->input('events')[0]['message']['text'];
         // $replyToken = request()->input('events')[0]['replyToken'];
 
-        // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($testImg);
-        // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        $i = 0;
+        $messages = DB::select('select * from message where 1');
+        // \Log::info(count($messages));
+        foreach ($messages as $mm) {
+            // echo $user->name;
+            // \Log::info($mm->reType);
+            if(count($messages)==$i+1){
+                if($mm->u_text==$message_text){
+                    $i=0;
+                    if($mm->reType=='text'){
+                        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
+                        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+                    }
+                    else{
+                        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
+                        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+                    }
+                }
+                else{
+                    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
+                    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+                }
+            }
+            else if($mm->u_text==$message_text){
+                $i=0;
+                if($mm->reType=='text'){
+                    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
+                    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+                }
+                else{
+                    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($mm->re_text);
+                    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+                }
+            }
+            $i++;
+        }
+        // if($message_text=='嗨'){
+        //     $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('Hi！');
+        //     $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        // }
+        // else{
+        //     $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
+        //     $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        // }
         
-        $actions = array(
-            //一般訊息型 action
-            new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("按鈕1","文字1"),
-            //網址型 action
-            new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Google","http://www.google.com"),
-            //下列兩筆均為互動型action
-            new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("下一頁", "page=3"),
-            new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("上一頁", "page=1")
-          );
-        $button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("Click","...", $img_url, $actions);
-        $msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("這訊息要用手機的賴才看的到哦", $button);
-        $response->replyMessage($replyToken,$msg);
         if ($response->isSucceeded()) {
             // return '--';
             \Log::info($source_userId.' --bot: yes.');
@@ -126,5 +156,17 @@ class LineBotT extends Controller
         // \Log::info($replyToken);
 
         return 'hello.';
+    }
+
+    public function buildTemplateMessageBuilderDeprecated(
+        string $imagePath,
+        string $directUri,
+        string $label
+    ): TemplateMessageBuilder {
+        $aa = new UriTemplateActionBuilder($label, $directUri);
+        $bb =  new ImageCarouselColumnTemplateBuilder($imagePath, $aa);
+        $target = new ImageCarouselTemplateBuilder([$bb, $bb, $bb, $bb, $bb, $bb, $bb, $bb]);
+
+        return new TemplateMessageBuilder('test123', $target);
     }
 }
