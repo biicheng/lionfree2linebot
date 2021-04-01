@@ -102,12 +102,12 @@ class LineBotT extends Controller
         $messages = DB::select('select * from message where u_text=?', [$message_text]);
         // \Log::info(count($messages));
         if(count($messages)==1){
-            if($mm['reType']=='text'){
-                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages['re_text']);
+            if($messages[0]->reType=='text'){
+                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
                 $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
             else{
-                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages['re_text']);
+                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
                 $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
         }
@@ -171,8 +171,8 @@ class LineBotT extends Controller
     }
 
     public function dbtest(){
-        $messages = DB::select('select * from message where u_text=?', ['000']);
-        return count($messages);
+        $messages = DB::select('select * from message where u_text=?', ['嗨']);
+        return $messages[0]->re_text;//json_encode($messages);//count($messages[0]->re_text);
     }
 
     public function buildTemplateMessageBuilderDeprecated(
