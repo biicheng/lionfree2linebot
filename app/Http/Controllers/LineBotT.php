@@ -112,7 +112,8 @@ class LineBotT extends Controller
             }
         }
         else{
-            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
+            // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
+            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://tkolifego.000webhostapp.com/img/klog1-3.png', 'https://tkolifego.000webhostapp.com/img/klog1-3.png');
             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         }
         // if($message_text=='嗨'){
