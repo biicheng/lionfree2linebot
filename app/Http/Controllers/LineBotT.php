@@ -149,7 +149,7 @@ class LineBotT extends Controller
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
 
-        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://tkolifego.000webhostapp.com/img/linebot_img/wang_Mask-shut-upB.jpg', 'https://tkolifego.000webhostapp.com/img/linebot_img/wang_Mask-shut-upB.jpg');
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($bImg, $sImg);
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         return 'ok';
     }
