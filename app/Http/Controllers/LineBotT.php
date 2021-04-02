@@ -103,7 +103,16 @@ class LineBotT extends Controller
         // \Log::info(count($messages));
         if(count($messages)==1){
             if($messages[0]->reType=='text'){
+                $this->pushText($messages[0]->re_text, $replyToken, $textMessageBuilder);
+                // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
+                // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+            }
+            else if($messages[0]->reType=='select'){
                 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
+                $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+            }
+            else if($messages[0]->reType=='img'){
+                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($messages[0]->re_text);
                 $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
             else{
@@ -138,6 +147,17 @@ class LineBotT extends Controller
         // \Log::info($replyToken);
 
         return 'hello.';
+    }
+
+    public function pushImg(){
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://tkolifego.000webhostapp.com/img/klog1-3.png', 'https://tkolifego.000webhostapp.com/img/klog1-3.png');
+        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        return 'ok';
+    }
+    public function pushText($text, $replyToken, $textMessageBuilder){
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text);
+        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        return 'ok';
     }
 
     public function dbtest(){
