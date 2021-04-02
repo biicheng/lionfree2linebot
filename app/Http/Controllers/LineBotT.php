@@ -103,7 +103,7 @@ class LineBotT extends Controller
         // \Log::info(count($messages));
         if(count($messages)==1){
             if($messages[0]->reType=='text'){
-                $this->pushText($messages[0]->re_text, $replyToken, $textMessageBuilder);
+                $txt = $this->pushText($messages[0]->re_text, $replyToken, $textMessageBuilder);
                 // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
                 // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
