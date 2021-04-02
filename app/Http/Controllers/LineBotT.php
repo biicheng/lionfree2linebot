@@ -108,12 +108,9 @@ class LineBotT extends Controller
                 // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
             else if($messages[0]->reType=='select'){
-                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
-                $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
             else if($messages[0]->reType=='img'){
-                $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($messages[0]->re_text);
-                $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+                $txt = $this->pushImg($messages[0]->bImg, $messages[0]->sImg, $replyToken);
             }
             else{
                 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
@@ -148,11 +145,11 @@ class LineBotT extends Controller
         return 'hello.';
     }
 
-    public function pushImg(){
+    public function pushImg($bImg, $sImg, $replyToken){
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
 
-        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://tkolifego.000webhostapp.com/img/klog1-3.png', 'https://tkolifego.000webhostapp.com/img/klog1-3.png');
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://tkolifego.000webhostapp.com/img/linebot_img/wang_Mask-shut-upB.jpg', 'https://tkolifego.000webhostapp.com/img/linebot_img/wang_Mask-shut-upB.jpg');
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         return 'ok';
     }
