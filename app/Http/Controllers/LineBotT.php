@@ -103,7 +103,7 @@ class LineBotT extends Controller
         // \Log::info(count($messages));
         if(count($messages)==1){
             if($messages[0]->reType=='text'){
-                $txt = $this->pushText($messages[0]->re_text, $replyToken, $textMessageBuilder);
+                $txt = $this->pushText($messages[0]->re_text, $replyToken);
                 // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
                 // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
@@ -121,8 +121,7 @@ class LineBotT extends Controller
             }
         }
         else{
-            // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
-            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://tkolifego.000webhostapp.com/img/klog1-3.png', 'https://tkolifego.000webhostapp.com/img/klog1-3.png');
+            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         }
         // if($message_text=='嗨'){
@@ -150,11 +149,17 @@ class LineBotT extends Controller
     }
 
     public function pushImg(){
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
+
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://tkolifego.000webhostapp.com/img/klog1-3.png', 'https://tkolifego.000webhostapp.com/img/klog1-3.png');
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         return 'ok';
     }
-    public function pushText($text, $replyToken, $textMessageBuilder){
+    public function pushText($text, $replyToken){
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
+
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text);
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         return 'ok';
