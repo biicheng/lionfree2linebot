@@ -43,40 +43,40 @@ class LineBotT extends Controller
             
         
     
-            $ch = curl_init();
-            $url = "https://api.line.me/v2/bot/profile/".$source_userId;
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_POST, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec ($ch);
-            $err = curl_error($ch);  //if you need
-            curl_close ($ch);
+            // $ch = curl_init();
+            // $url = "https://api.line.me/v2/bot/profile/".$source_userId;
+            // $ch = curl_init();
+            // curl_setopt($ch, CURLOPT_URL, $url);
+            // curl_setopt($ch, CURLOPT_POST, 0);
+            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // $response = curl_exec ($ch);
+            // $err = curl_error($ch);  //if you need
+            // curl_close ($ch);
     
-            $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
-            $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
-            $response = $bot->getProfile($source_userId);
-            if ($response->isSucceeded()) {
-                $profile = $response->getJSONDecodedBody();
-                if(!empty($profile['displayName'])){
-                    \Log::info('displayName: '.$profile['displayName']);
-                }
-                else{
-                    \Log::info('displayName: 無'.', err:'.$err);
-                }
-                if(!empty($profile['pictureUrl'])){
-                    \Log::info('pictureUrl: '.$profile['pictureUrl']);
-                }
-                else{
-                    \Log::info('pictureUrl: 無'.', err:'.$err);
-                }
-                if(!empty($profile['statusMessage'])){
-                    \Log::info('statusMessage: '.$profile['statusMessage']);
-                }
-                else{
-                    \Log::info('statusMessage: 無'.', err:'.$err);
-                }
-            }
+            // $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
+            // $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
+            // $response = $bot->getProfile($source_userId);
+            // if ($response->isSucceeded()) {
+            //     $profile = $response->getJSONDecodedBody();
+            //     if(!empty($profile['displayName'])){
+            //         \Log::info('displayName: '.$profile['displayName']);
+            //     }
+            //     else{
+            //         \Log::info('displayName: 無'.', err:'.$err);
+            //     }
+            //     if(!empty($profile['pictureUrl'])){
+            //         \Log::info('pictureUrl: '.$profile['pictureUrl']);
+            //     }
+            //     else{
+            //         \Log::info('pictureUrl: 無'.', err:'.$err);
+            //     }
+            //     if(!empty($profile['statusMessage'])){
+            //         \Log::info('statusMessage: '.$profile['statusMessage']);
+            //     }
+            //     else{
+            //         \Log::info('statusMessage: 無'.', err:'.$err);
+            //     }
+            // }
             
             $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
             $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
@@ -113,7 +113,7 @@ class LineBotT extends Controller
             $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
         }
         
-        
+        $this->lineUserData($source_userId);
         // \Log::info($response->getHTTPStatus() . ' ' . $response->getRawBody());
         // \Log::info('1message_text: '.$message_text);
         // \Log::info($replyToken);
@@ -136,6 +136,42 @@ class LineBotT extends Controller
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text);
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         return 'ok';
+    }
+    public function lineUserData($source_userId){
+        $ch = curl_init();
+        $url = "https://api.line.me/v2/bot/profile/".$source_userId;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec ($ch);
+        $err = curl_error($ch);  //if you need
+        curl_close ($ch);
+
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ZAXjHse7bver+MoWz0iGYAVDK1B9wPKyelo5rx9vbPlP60qioUjYo4pTkHT7NbdAc1FLeWETIeMjfcY0Ea5K3fOpwjIAmBDWPSBRG6anovKjNR2Gk+hXETElk8T8u1xEjpx8a8zq2tz+oBgeU0/RYwdB04t89/1O/w1cDnyilFU=');
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '59ef59273f9010d4c6c4c8c372d33964']);
+        $response = $bot->getProfile($source_userId);
+        if ($response->isSucceeded()) {
+            $profile = $response->getJSONDecodedBody();
+            if(!empty($profile['displayName'])){
+                \Log::info('displayName: '.$profile['displayName']);
+            }
+            else{
+                \Log::info('displayName: 無'.', err:'.$err);
+            }
+            if(!empty($profile['pictureUrl'])){
+                \Log::info('pictureUrl: '.$profile['pictureUrl']);
+            }
+            else{
+                \Log::info('pictureUrl: 無'.', err:'.$err);
+            }
+            if(!empty($profile['statusMessage'])){
+                \Log::info('statusMessage: '.$profile['statusMessage']);
+            }
+            else{
+                \Log::info('statusMessage: 無'.', err:'.$err);
+            }
+        }
     }
 
     public function dbtest(){
