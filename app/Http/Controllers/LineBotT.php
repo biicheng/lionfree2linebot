@@ -81,6 +81,7 @@ class LineBotT extends Controller
             $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
             $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
     
+            /* sele遠方mysql */
             $i = 0;
             $messages = DB::select('select * from message where u_text=?', [$message_text]);
             if(count($messages)==1){
@@ -102,6 +103,33 @@ class LineBotT extends Controller
                 $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
             
+            /* curl 000webhost API */
+            // $ch = curl_init();
+            // //curl_setopt可以設定curl參數
+            // //設定url
+            // curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/".$message_text);
+
+            // //獲取結果不顯示
+            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            // //設定AGENT
+            // curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
+            // //執行，並將結果存回
+            // $result = curl_exec($ch);
+            // //關閉連線
+            // curl_close($ch);
+
+            // $reD = json_decode($result);
+            // if($reD->reType=='text'){
+            //     $txt = $this->pushText($reD->re_text, $replyToken);
+            // }
+            // else if($reD->reType=='img'){
+            //     $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
+            // }
+            // else{
+            //     $txt = $this->pushText($message_text, $replyToken);
+            // }
+            
             if ($response->isSucceeded()) {
                 \Log::info($source_userId.' --bot: yes.');
             }
@@ -110,7 +138,8 @@ class LineBotT extends Controller
             }
         }
         else{
-            $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
+            $txt = $this->pushImg('https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseS.jpg', $replyToken);
+            // $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
         }
         
         $this->lineUserData($source_userId);
@@ -189,5 +218,49 @@ class LineBotT extends Controller
         $target = new ImageCarouselTemplateBuilder([$bb, $bb, $bb, $bb, $bb, $bb, $bb, $bb]);
 
         return new TemplateMessageBuilder('test123', $target);
+    }
+    
+    public function textPost(Request $cc){
+        $dates = date("Y-m-d H:i:s");
+        \Log::info('1.');
+        if(!empty($cc->input('events')[0]['message']['text'])){
+            \Log::info('2-1.');
+            $destination = $cc->input('destination');
+            $events_type = $cc->input('events')[0]['type'];
+            $replyToken = $cc->input('events')[0]['replyToken'];
+            $timestamp = $cc->input('events')[0]['timestamp'];
+            $mode = $cc->input('events')[0]['mode'];
+
+            $message_Id = $cc->input('events')[0]['message']['id'];
+            $message_type = $cc->input('events')[0]['message']['type'];
+            $message_text = $cc->input('events')[0]['message']['text'];
+
+            $source_userId = $cc->input('events')[0]['source']['userId'];
+            $source_type = $cc->input('events')[0]['source']['type'];
+
+            $ch = curl_init();
+            //curl_setopt可以設定curl參數
+            //設定url
+            curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/".$message_text);
+
+            //獲取結果不顯示
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            //設定AGENT
+            curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
+            //執行，並將結果存回
+            $result = curl_exec($ch);
+            //關閉連線
+            curl_close($ch);
+
+            $reD = json_decode($result);
+            // \Log::info('3-1. '.gettype($result));
+            // \Log::info('3-2. '.$reD->reType);
+
+        }
+        else{
+            \Log::info('2-2.');
+            $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
+        }
     }
 }
