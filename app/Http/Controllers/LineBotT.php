@@ -132,6 +132,15 @@ class LineBotT extends Controller
         return 'ok';
     }
     public function lineUserData($source_userId){
+        #-----------------
+        #變數宣告
+        #-----------------
+        $uId = $source_userId;
+        $uName = '';
+        $uImgURL = '';
+        $uTitleMessage = '';
+
+
         $ch = curl_init();
         $url = "https://api.line.me/v2/bot/profile/".$source_userId;
         $ch = curl_init();
@@ -142,28 +151,62 @@ class LineBotT extends Controller
         $err = curl_error($ch);  //if you need
         curl_close ($ch);
 
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ZAXjHse7bver+MoWz0iGYAVDK1B9wPKyelo5rx9vbPlP60qioUjYo4pTkHT7NbdAc1FLeWETIeMjfcY0Ea5K3fOpwjIAmBDWPSBRG6anovKjNR2Gk+hXETElk8T8u1xEjpx8a8zq2tz+oBgeU0/RYwdB04t89/1O/w1cDnyilFU=');
-        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '59ef59273f9010d4c6c4c8c372d33964']);
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
+        // $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ZAXjHse7bver+MoWz0iGYAVDK1B9wPKyelo5rx9vbPlP60qioUjYo4pTkHT7NbdAc1FLeWETIeMjfcY0Ea5K3fOpwjIAmBDWPSBRG6anovKjNR2Gk+hXETElk8T8u1xEjpx8a8zq2tz+oBgeU0/RYwdB04t89/1O/w1cDnyilFU=');
+        // $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '59ef59273f9010d4c6c4c8c372d33964']);
         $response = $bot->getProfile($source_userId);
         if ($response->isSucceeded()) {
             $profile = $response->getJSONDecodedBody();
             if(!empty($profile['displayName'])){
-                \Log::info('displayName: '.$profile['displayName']);
+                $uName = $profile['displayName'];
+                // \Log::info('displayName: '.$profile['displayName']);
             }
             else{
-                \Log::info('displayName: 無'.', err:'.$err);
+                $uName = '---';
+                // \Log::info('displayName: 無'.', err:'.$err);
             }
             if(!empty($profile['pictureUrl'])){
-                \Log::info('pictureUrl: '.$profile['pictureUrl']);
+                $uImgURL = $profile['pictureUrl'];
+                // \Log::info('pictureUrl: '.$profile['pictureUrl']);
             }
             else{
-                \Log::info('pictureUrl: 無'.', err:'.$err);
+                $uImgURL = '---';
+                // \Log::info('pictureUrl: 無'.', err:'.$err);
             }
             if(!empty($profile['statusMessage'])){
-                \Log::info('statusMessage: '.$profile['statusMessage']);
+                $uTitleMessage = $profile['statusMessage'];
+                // \Log::info('statusMessage: '.$profile['statusMessage']);
             }
             else{
-                \Log::info('statusMessage: 無'.', err:'.$err);
+                $uTitleMessage = '---';
+                // \Log::info('statusMessage: 無'.', err:'.$err);
+            }
+            // \Log::info($uId.' -- '.$uName.' -- '.$uImgURL.' -- '.$uTitleMessage);
+            /* curl 000webhost API */
+            // $ch = curl_init();
+            // //curl_setopt可以設定curl參數
+            // //設定url
+            // curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botUController/".$uId.'/'.$uName.'/'.$uImgURL.'/'.$uTitleMessage);
+
+            // //獲取結果不顯示
+            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            // //設定AGENT
+            // curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
+            // //執行，並將結果存回
+            // $result = curl_exec($ch);
+            // //關閉連線
+            // curl_close($ch);
+            
+            $UD = DB::select('select * from botUData where uId=?', [$uId]);
+            if(count($UD)==1){
+                $update = DB::update('update botUData set uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessage="'.$uTitleMessage.'" where uId = ?', [$uId]);
+                \Log::info('update');
+            }
+            else{
+                $insert = DB::insert('insert into botUData (uId, uName, uImgURL, uTitleMessage) values (?, ?, ?, ?)', [$uId, $uName, $uImgURL, $uTitleMessage]);
+                \Log::info('insert');
             }
         }
     }
@@ -185,47 +228,4 @@ class LineBotT extends Controller
         return new TemplateMessageBuilder('test123', $target);
     }
     
-    public function textPost(Request $cc){
-        $dates = date("Y-m-d H:i:s");
-        \Log::info('1.');
-        if(!empty($cc->input('events')[0]['message']['text'])){
-            \Log::info('2-1.');
-            $destination = $cc->input('destination');
-            $events_type = $cc->input('events')[0]['type'];
-            $replyToken = $cc->input('events')[0]['replyToken'];
-            $timestamp = $cc->input('events')[0]['timestamp'];
-            $mode = $cc->input('events')[0]['mode'];
-
-            $message_Id = $cc->input('events')[0]['message']['id'];
-            $message_type = $cc->input('events')[0]['message']['type'];
-            $message_text = $cc->input('events')[0]['message']['text'];
-
-            $source_userId = $cc->input('events')[0]['source']['userId'];
-            $source_type = $cc->input('events')[0]['source']['type'];
-
-            $ch = curl_init();
-            //curl_setopt可以設定curl參數
-            //設定url
-            curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/".$message_text);
-
-            //獲取結果不顯示
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            //設定AGENT
-            curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
-            //執行，並將結果存回
-            $result = curl_exec($ch);
-            //關閉連線
-            curl_close($ch);
-
-            $reD = json_decode($result);
-            // \Log::info('3-1. '.gettype($result));
-            // \Log::info('3-2. '.$reD->reType);
-
-        }
-        else{
-            \Log::info('2-2.');
-            $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
-        }
-    }
 }
