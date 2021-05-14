@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\DB;
 class LineBotT extends Controller
 {
     private $sender;
-    public function postTest(Request $cc){
+    public function postTest(Request $cc){\Log::info(' --bot');
         $dates = date("Y-m-d H:i:s");
         if((!empty($cc->input('events')[0]['message']['text']))||
             ($cc->input('events')[0]['message']['type']=='text')){
@@ -200,13 +200,11 @@ class LineBotT extends Controller
             // curl_close($ch);
             
             $UD = DB::select('select * from botUData where uId=?', [$uId]);
-            \Log::info('UD'.$UD);
+            // \Log::info('UD'.$UD);
             if(count($UD)==1){
-                \Log::info('UD 1');
                 $update = DB::update('update botUData set uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessage="'.$uTitleMessage.'" where uId = ?', [$uId]);
             }
             else{
-                \Log::info('UD 2');
                 $insert = DB::insert('insert into botUData (uId, uName, uImgURL, uTitleMessage) values (?, ?, ?, ?)', [$uId, $uName, $uImgURL, $uTitleMessage]);
             }
         }
