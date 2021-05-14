@@ -184,29 +184,29 @@ class LineBotT extends Controller
             }
             // \Log::info($uId.' -- '.$uName.' -- '.$uImgURL.' -- '.$uTitleMessage);
             /* curl 000webhost API */
-            // $ch = curl_init();
-            // //curl_setopt可以設定curl參數
-            // //設定url
-            // curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botUController/".$uId.'/'.$uName.'/'.$uImgURL.'/'.$uTitleMessage);
+            $ch = curl_init();
+            //curl_setopt可以設定curl參數
+            //設定url
+            curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botUController/".$uId.'/'.$uName.'/'.$uImgURL.'/'.$uTitleMessage);
 
-            // //獲取結果不顯示
-            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            //獲取結果不顯示
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-            // //設定AGENT
-            // curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
-            // //執行，並將結果存回
-            // $result = curl_exec($ch);
-            // //關閉連線
-            // curl_close($ch);
+            //設定AGENT
+            curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
+            //執行，並將結果存回
+            $result = curl_exec($ch);
+            //關閉連線
+            curl_close($ch);
             
-            $UD = DB::select('select * from botUData where uId=?', [$uId]);
-            // \Log::info('UD'.$UD);
-            if(count($UD)==1){
-                $update = DB::update('update botUData set uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessage="'.$uTitleMessage.'" where uId = ?', [$uId]);
-            }
-            else{
-                $insert = DB::insert('insert into botUData (uId, uName, uImgURL, uTitleMessage) values (?, ?, ?, ?)', [$uId, $uName, $uImgURL, $uTitleMessage]);
-            }
+            // $UD = DB::select('select * from botUData where uId=?', [$uId]);
+            // // \Log::info('UD'.$UD);
+            // if(count($UD)==1){
+            //     $update = DB::update('update botUData set uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessage="'.$uTitleMessage.'" where uId = ?', [$uId]);
+            // }
+            // else{
+            //     $insert = DB::insert('insert into botUData (uId, uName, uImgURL, uTitleMessage) values (?, ?, ?, ?)', [$uId, $uName, $uImgURL, $uTitleMessage]);
+            // }
         }
     }
 
