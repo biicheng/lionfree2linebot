@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => 'mysql',//env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mysql'),//'mysql',//
 
     /*
     |--------------------------------------------------------------------------
@@ -46,11 +46,11 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => 'sql6.freemysqlhosting.net',//env('DB_HOST', '127.0.0.1'),
-            'port' => '3306',//env('DB_PORT', '3306'),
-            'database' => 'sql6401619',//env('DB_DATABASE', 'forge'),
-            'username' => 'sql6401619',//env('DB_USERNAME', 'forge'),
-            'password' => 'QkKBd19xbL',//env('DB_PASSWORD', ''),
+            'host' => env('DB_HOST', '127.0.0.1'),//'sql6.freemysqlhosting.net',//
+            'port' => env('DB_PORT', '3306'),//'3306',//
+            'database' => env('DB_DATABASE', 'forge'),//'sql6401619',//
+            'username' => env('DB_USERNAME', 'forge'),//'sql6401619',//
+            'password' => env('DB_PASSWORD', ''),//'QkKBd19xbL',//
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
