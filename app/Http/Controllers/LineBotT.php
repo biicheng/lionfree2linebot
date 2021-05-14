@@ -91,7 +91,7 @@ class LineBotT extends Controller
                 $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
             }
             else{
-                $txt = $this->pushText($message_text, $replyToken);
+                $txt = $this->pushText('--0514'.$message_text, $replyToken);
             }
         }
         else{
