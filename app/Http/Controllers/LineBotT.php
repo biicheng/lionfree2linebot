@@ -202,7 +202,7 @@ class LineBotT extends Controller
             // curl_close($ch);
             // return 'ok';
 
-            $UD = DB::select('select * from botUData where uId=?', ['$uId']);
+            $UD = DB::select('select * from botUData where uId=?', [$uId]);
             // \Log::info('UD'.$UD);
             if(count($UD)>=1){
                 $update = DB::update('update botUData set 
