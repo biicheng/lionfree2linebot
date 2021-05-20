@@ -46,11 +46,11 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('sql6.freemysqlhosting.net', '127.0.0.1'),//'sql6.freemysqlhosting.net',//
-            'port' => env('3306', '3306'),//'3306',//
-            'database' => env('sql6401619', 'forge'),//'sql6401619',//
-            'username' => env('sql6401619', 'forge'),//'sql6401619',//
-            'password' => env('QkKBd19xbL', ''),//'QkKBd19xbL',//
+            'host' => env('DB_HOST', '127.0.0.1'),//'sql6.freemysqlhosting.net',//
+            'port' => env('DB_PORT', '3306'),//'3306',//
+            'database' => env('DB_DATABASE', 'forge'),//'sql6401619',//
+            'username' => env('DB_USERNAME', 'forge'),//'sql6401619',//
+            'password' => env('DB_PASSWORD', ''),//'QkKBd19xbL',//
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
