@@ -202,15 +202,15 @@ class LineBotT extends Controller
             // curl_close($ch);
             // return 'ok';
 
-            $UD = DB::select('select * from botUData where uId=?', [$uId]);
+            $UD = DB::select('select * from sql6401619.botUData where uId=?', [$uId]);
             // \Log::info('UD'.$UD);
             if(count($UD)==1){
-                $update = DB::update('update botUData set 
+                $update = DB::update('update sql6401619.botUData set 
                                         uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessage="'.
                                         $uTitleMessage.'", updatetime="'.$dates.'" where uId = ?', [$uId]);
             }
             else{
-                $insert = DB::insert('insert into botUData 
+                $insert = DB::insert('insert into sql6401619.botUData 
                                         (uId, uName, uImgURL, uTitleMessage, setDate, updatetime) 
                                         values (?, ?, ?, ?)', 
                                         [$uId, $uName, $uImgURL, $uTitleMessage, $dates, $dates]);
