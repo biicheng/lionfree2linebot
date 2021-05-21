@@ -219,10 +219,10 @@ class LineBotT extends Controller
                 \Log::info('no');
                 $connection = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
                 $connection->query('set names utf8;');
-                $connection->query('insert into botUData 
-                                         (uId, uName, uImgURL, uTitleMessage, setDate, updatetime) 
-                                         values ("'.$uId.'", "'.$uName.'", "'.$uImgURL.'", "'.$uTitleMessage.'", "'.$dates.'", "'.$dates.'"');
-                // $connection->exec('INSERT INTO sql6401619.botUData VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessage.'","'.$dates.'","'.$dates.'")');
+                // $connection->query('insert into botUData 
+                //                          (uId, uName, uImgURL, uTitleMessage, setDate, updatetime) 
+                //                          values ("'.$uId.'", "'.$uName.'", "'.$uImgURL.'", "'.$uTitleMessage.'", "'.$dates.'", "'.$dates.'"');
+                $connection->exec('INSERT INTO sql6401619.botUData VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessage.'","'.$dates.'","'.$dates.'")');
             }
             // \Log::info('UD'.gettype($udss).'--'.array_search($uId, $udss).'--'.$udss['uid']);
             // $UD = DB::select('select * from botUData where uId=?', [$uId]);
