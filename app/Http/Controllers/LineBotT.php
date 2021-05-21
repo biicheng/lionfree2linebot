@@ -205,7 +205,7 @@ class LineBotT extends Controller
             // return 'ok';*/
 
             $connection = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
-			$uds = $connection->query('SELECT * FROM sql6401619.botUData WHERE uid="'.$uId.'"');
+			$uds = $connection->query('SELECT * FROM sql6401619.botUData WHERE uid="'.$uId.'54654"');
 			$udss = $uds->fetch(PDO::FETCH_ASSOC);
             if(gettype($udss)=='array'){
                 \Log::info( $uId);
