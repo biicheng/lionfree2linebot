@@ -162,27 +162,21 @@ class LineBotT extends Controller
             $profile = $response->getJSONDecodedBody();
             if(!empty($profile['displayName'])){
                 $uName = $profile['displayName'];
-                // \Log::info('displayName: '.$profile['displayName']);
             }
             else{
                 $uName = '---';
-                // \Log::info('displayName: 無'.', err:'.$err);
             }
             if(!empty($profile['pictureUrl'])){
                 $uImgURL = $profile['pictureUrl'];
-                // \Log::info('pictureUrl: '.$profile['pictureUrl']);
             }
             else{
                 $uImgURL = '---';
-                // \Log::info('pictureUrl: 無'.', err:'.$err);
             }
             if(!empty($profile['statusMessage'])){
                 $uTitleMessage = $profile['statusMessage'];
-                // \Log::info('statusMessage: '.$profile['statusMessage']);
             }
             else{
                 $uTitleMessage = '---';
-                // \Log::info('statusMessage: 無'.', err:'.$err);
             }
             // \Log::info($uId.' -- '.$uName.' -- '.$uImgURL.' -- '.$uTitleMessage);
             // \Log::info('dd: '.$uId.'---'.$uName.'---'.$uImgURL.'---'.$uTitleMessage);
@@ -191,10 +185,8 @@ class LineBotT extends Controller
             //curl_setopt可以設定curl參數
             //設定url
             curl_setopt($conDB , CURLOPT_URL , "https://tkogo.000webhostapp.com/botUDSet/".$uId.'/'.$uName.'/'.$uImgURL.'/'.$uTitleMessage);
-
             //獲取結果不顯示
             curl_setopt($conDB, CURLOPT_RETURNTRANSFER, true);
-
             //設定AGENT
             curl_setopt($conDB, CURLOPT_USERAGENT, "Google Bot");
             //執行，並將結果存回
@@ -205,7 +197,7 @@ class LineBotT extends Controller
             // return 'ok';*/
 
             $connection = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
-			$uds = $connection->query('SELECT * FROM sql6401619.botUData WHERE uid="'.$uId.'54654"');
+			$uds = $connection->query('SELECT * FROM sql6401619.botUData WHERE uid="'.$uId.'"');
 			$udss = $uds->fetch(PDO::FETCH_ASSOC);
             if(gettype($udss)=='array'){
                 // \Log::info( $uId);
@@ -221,20 +213,6 @@ class LineBotT extends Controller
                 $connection->query('set names utf8;');
                 $connection->exec('INSERT INTO sql6401619.botUData VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessage.'","'.$dates.'","'.$dates.'")');
             }
-            // \Log::info('UD'.gettype($udss).'--'.array_search($uId, $udss).'--'.$udss['uid']);
-            // $UD = DB::select('select * from botUData where uId=?', [$uId]);
-            // // \Log::info('UD'.$UD);
-            // if(count($UD)>=1){
-            //     $update = DB::update('update botUData set 
-            //                             uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessage="'.
-            //                             $uTitleMessage.'", updatetime="'.$dates.'" where uId = ?', [$uId]);
-            // }
-            // else{
-            //     $insert = DB::insert('insert into botUData 
-            //                             (uId, uName, uImgURL, uTitleMessage, setDate, updatetime) 
-            //                             values (?, ?, ?, ?, ?, ?)', 
-            //                             [$uId, $uName, $uImgURL, $uTitleMessage, $dates, $dates]);
-            // }
         }
     }
 
