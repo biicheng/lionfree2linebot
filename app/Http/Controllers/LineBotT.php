@@ -139,7 +139,7 @@ class LineBotT extends Controller
         $uId = $source_userId;
         $uName = '';
         $uImgURL = '';
-        $uTitleMessage = '';
+        $uTitleMessega = '';
         $dates = date("Y-m-d H:i:s");
 
 
@@ -173,10 +173,10 @@ class LineBotT extends Controller
                 $uImgURL = '---';
             }
             if(!empty($profile['statusMessage'])){
-                $uTitleMessage = $profile['statusMessage'];
+                $uTitleMessega = $profile['statusMessage'];
             }
             else{
-                $uTitleMessage = '---';
+                $uTitleMessega = '---';
             }
             // \Log::info($uId.' -- '.$uName.' -- '.$uImgURL.' -- '.$uTitleMessage);
             // \Log::info('dd: '.$uId.'---'.$uName.'---'.$uImgURL.'---'.$uTitleMessage);
@@ -197,21 +197,21 @@ class LineBotT extends Controller
             // return 'ok';*/
 
             $connection = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
-			$uds = $connection->query('SELECT * FROM sql6401619.botUData WHERE uid="'.$uId.'"');
+			$uds = $connection->query('SELECT * FROM sql6401619.lineudata WHERE uid="'.$uId.'"');
 			$udss = $uds->fetch(PDO::FETCH_ASSOC);
             if(gettype($udss)=='array'){
-                // \Log::info( $uId);
+                \Log::info( $uId);
                 $connection = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
                 $connection->query('set names utf8;');
-                $connection->query('update botUData set 
-                                            uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessage="'.
-                                            $uTitleMessage.'", updatetime="'.$dates.'" where uid = "'.$uId.'"');
+                $connection->query('update lineudata set 
+                                            uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessega="'.
+                                            $uTitleMessega.'", updatetime="'.$dates.'" where uid = "'.$uId.'"');
             }
             else{
-                // \Log::info('no');
+                \Log::info('no');
                 $connection = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
                 $connection->query('set names utf8;');
-                $connection->exec('INSERT INTO sql6401619.botUData VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessage.'","'.$dates.'","'.$dates.'")');
+                $connection->exec('INSERT INTO sql6401619.lineudata VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessega.'","'.$dates.'","'.$dates.'")');
             }
         }
     }
