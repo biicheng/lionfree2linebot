@@ -45,7 +45,7 @@ class LineBotT extends Controller
     
             /* sele遠方mysql */
             // $i = 0;
-            $messages = DB::select('select * from message where u_text=?', [$message_text]);
+            $messages = DB::select('select * from sql6401619.message where u_text=?', [$message_text]);
             if(count($messages)>=1){
                 if($messages[0]->reType=='text'){
                     $txt = $this->pushText($messages[0]->re_text, $replyToken);
