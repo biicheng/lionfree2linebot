@@ -45,55 +45,55 @@ class LineBotT extends Controller
     
             /* sele遠方mysql */
             // $i = 0;
-            // $messages = DB::select('select * from message where u_text=?', [$message_text]);
-            // if(count($messages)==1){
-            //     if($messages[0]->reType=='text'){
-            //         $txt = $this->pushText($messages[0]->re_text, $replyToken);
-            //     }
-            //     else if($messages[0]->reType=='select'){
-            //         $txt = $this->pushText($message_text, $replyToken);
-            //     }
-            //     else if($messages[0]->reType=='img'){
-            //         $txt = $this->pushImg($messages[0]->bImg, $messages[0]->sImg, $replyToken);
-            //     }
-            //     else{
-            //         $txt = $this->pushText($message_text, $replyToken);
-            //         // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
-            //         // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-            //     }
-            // }
-            // else{
-            //     $txt = $this->pushText($message_text, $replyToken);
-            //     // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
-            //     // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-            // }
-            
-            /* curl 000webhost API */
-            $ch = curl_init();
-            //curl_setopt可以設定curl參數
-            //設定url
-            curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/txt/".$message_text."/--/--/--/--");
-
-            //獲取結果不顯示
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            //設定AGENT
-            curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
-            //執行，並將結果存回
-            $result = curl_exec($ch);
-            //關閉連線
-            curl_close($ch);
-
-            $reD = json_decode($result);
-            if($reD->reType=='text'){
-                $txt = $this->pushText($reD->re_text, $replyToken);
-            }
-            else if($reD->reType=='img'){
-                $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
+            $messages = DB::select('select * from message where u_text=?', [$message_text]);
+            if(count($messages)>=1){
+                if($messages[0]->reType=='text'){
+                    $txt = $this->pushText($messages[0]->re_text, $replyToken);
+                }
+                else if($messages[0]->reType=='select'){
+                    $txt = $this->pushText($message_text, $replyToken);
+                }
+                else if($messages[0]->reType=='img'){
+                    $txt = $this->pushImg($messages[0]->bImg, $messages[0]->sImg, $replyToken);
+                }
+                else{
+                    $txt = $this->pushText($message_text, $replyToken);
+                    // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
+                    // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+                }
             }
             else{
                 $txt = $this->pushText($message_text, $replyToken);
+                // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
+                // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
+            
+            /* curl 000webhost API */
+            // $ch = curl_init();
+            // //curl_setopt可以設定curl參數
+            // //設定url
+            // curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/txt/".$message_text."/--/--/--/--");
+
+            // //獲取結果不顯示
+            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            // //設定AGENT
+            // curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
+            // //執行，並將結果存回
+            // $result = curl_exec($ch);
+            // //關閉連線
+            // curl_close($ch);
+
+            // $reD = json_decode($result);
+            // if($reD->reType=='text'){
+            //     $txt = $this->pushText($reD->re_text, $replyToken);
+            // }
+            // else if($reD->reType=='img'){
+            //     $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
+            // }
+            // else{
+            //     $txt = $this->pushText($message_text, $replyToken);
+            // }
             
         }
         else{
