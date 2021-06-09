@@ -45,7 +45,11 @@ class LineBotT extends Controller
     
             /* sele遠方mysql */
             $i = 0;
-            $messages = DB::select('select * from message where u_text=?', [$message_text]);
+            $connection = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
+			$messages = $connection->query('select * from message where u_text=?', [$message_text]);
+			$messages = $messages->fetch(PDO::FETCH_ASSOC);
+            
+            // $messages = DB::select('select * from message where u_text=?', [$message_text]);
             if(count($messages)>0){
                 if($messages[0]->reType=='text'){
                     $txt = $this->pushText($messages[0]->re_text, $replyToken);
