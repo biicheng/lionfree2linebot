@@ -73,7 +73,7 @@ class LineBotT extends Controller
             //     // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
             //     // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             // }
-            $sql = "SELECT * FROM sql6401619.message WHERE u_text='".$message_text."'";
+            $sql = "SELECT * FROM message WHERE u_text='".$message_text."'";
             $query = $this->pdoConn->query($sql);
             $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             if(count($messages)==1){
