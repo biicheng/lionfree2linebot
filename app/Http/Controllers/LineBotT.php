@@ -125,11 +125,11 @@ class LineBotT extends Controller
         //         $txt = $this->pushText($message_text, $replyToken);
         //     }
             
-        // }
-        // else{
-        //     $txt = $this->pushImg('https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseS.jpg', $cc->input('events')[0]['replyToken']);
-        //     // $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
-        // }
+        }
+        else{
+            $txt = $this->pushImg('https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseS.jpg', $cc->input('events')[0]['replyToken']);
+            // $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
+        }
         
         $this->lineUserData($cc->input('events')[0]['source']['userId']);
         return 'hello.';
