@@ -20,11 +20,6 @@ use Illuminate\Support\Facades\DB;
 
 class LineBotT extends Controller
 {
-    public function __construct()
-    {
-        $this->pdoConn = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
-        $this->pdoConn->query("SET NAMES utf8");
-    }
     private $sender;
     public function postTest(Request $cc){\Log::info(' --bot');
         $dates = date("Y-m-d H:i:s");
@@ -51,63 +46,60 @@ class LineBotT extends Controller
             /* sele遠方mysql */
             // $i = 0;
             // $messages = DB::select('select * from message where u_text=?', [$message_text]);
-            $sql = "SELECT * FROM sql6401619.message WHERE u_text='".$message_text."'";
-            $query = $this->pdoConn->query($sql);
-            $messages = $query->fetchAll(PDO::FETCH_ASSOC);
-            if(count($messages)==1){
-                if($messages[0]['reType']=='text'){
-                    $txt = $this->pushText($messages[0]['re_text'], $replyToken);
-                }
-                else if($messages[0]['reType']=='select'){
-                    $txt = $this->pushText($message_text, $replyToken);
-                }
-                else if($messages[0]['reType']=='img'){
-                    $txt = $this->pushImg($messages[0]['bImg'], $messages[0]['sImg'], $replyToken);
-                }
-                else{
-                    $txt = $this->pushText($message_text, $replyToken);
-                    // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
-                    // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-                }
+            // if(count($messages)==1){
+            //     if($messages[0]->reType=='text'){
+            //         $txt = $this->pushText($messages[0]->re_text, $replyToken);
+            //     }
+            //     else if($messages[0]->reType=='select'){
+            //         $txt = $this->pushText($message_text, $replyToken);
+            //     }
+            //     else if($messages[0]->reType=='img'){
+            //         $txt = $this->pushImg($messages[0]->bImg, $messages[0]->sImg, $replyToken);
+            //     }
+            //     else{
+            //         $txt = $this->pushText($message_text, $replyToken);
+            //         // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
+            //         // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+            //     }
+            // }
+            // else{
+            //     $txt = $this->pushText($message_text, $replyToken);
+            //     // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
+            //     // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+            // }
+            
+            /* curl 000webhost API */
+            $ch = curl_init();
+            //curl_setopt可以設定curl參數
+            //設定url
+            curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/txt/".$message_text."/--/--/--/--");
+
+            //獲取結果不顯示
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            //設定AGENT
+            curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
+            //執行，並將結果存回
+            $result = curl_exec($ch);
+            //關閉連線
+            curl_close($ch);
+
+            $reD = json_decode($result);
+            if($reD->reType=='text'){
+                $txt = $this->pushText($reD->re_text, $replyToken);
+            }
+            else if($reD->reType=='img'){
+                $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
             }
             else{
                 $txt = $this->pushText($message_text, $replyToken);
-                // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
-                // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             }
             
-            /* curl 000webhost API */
-        //     $ch = curl_init();
-        //     //curl_setopt可以設定curl參數
-        //     //設定url
-        //     curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/txt/".$message_text."/--/--/--/--");
-
-        //     //獲取結果不顯示
-        //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        //     //設定AGENT
-        //     curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
-        //     //執行，並將結果存回
-        //     $result = curl_exec($ch);
-        //     //關閉連線
-        //     curl_close($ch);
-
-        //     $reD = json_decode($result);
-        //     if($reD->reType=='text'){
-        //         $txt = $this->pushText($reD->re_text, $replyToken);
-        //     }
-        //     else if($reD->reType=='img'){
-        //         $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
-        //     }
-        //     else{
-        //         $txt = $this->pushText($message_text, $replyToken);
-        //     }
-            
-        // }
-        // else{
-        //     $txt = $this->pushImg('https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseS.jpg', $cc->input('events')[0]['replyToken']);
-        //     // $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
-        // }
+        }
+        else{
+            $txt = $this->pushImg('https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseS.jpg', $cc->input('events')[0]['replyToken']);
+            // $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
+        }
         
         $this->lineUserData($cc->input('events')[0]['source']['userId']);
         return 'hello.';
