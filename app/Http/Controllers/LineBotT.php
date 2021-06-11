@@ -79,7 +79,7 @@ class LineBotT extends Controller
             if(count($messages)==1){
                 if($messages[0]['reType']=='text'){
                     $txt = $this->pushText($messages[0]['re_text'], $replyToken);
-                }
+                } 
                 else if($messages[0]['reType']=='select'){
                     $txt = $this->pushText($message_text, $replyToken);
                 }
