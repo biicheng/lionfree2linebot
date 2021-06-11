@@ -67,6 +67,31 @@ class LineBotT extends Controller
             //     // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
             //     // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             // }
+            // $sql = "SELECT * FROM sql6401619.message WHERE u_text='".$message_text."'";
+            // $query = $this->pdoConn->query($sql);
+            // $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+            // if(count($messages)==1){
+            //     if($messages[0]['reType']=='text'){
+            //         $txt = $this->pushText($messages[0]['re_text'], $replyToken);
+            //     }
+            //     else if($messages[0]['reType']=='select'){
+            //         $txt = $this->pushText($message_text, $replyToken);
+            //     }
+            //     else if($messages[0]['reType']=='img'){
+            //         $txt = $this->pushImg($messages[0]['bImg'], $messages[0]['sImg'], $replyToken);
+            //     }
+            //     else{
+            //         $txt = $this->pushText($message_text, $replyToken);
+            //         // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
+            //         // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+            //     }
+            // }
+            // else{
+            //     $txt = $this->pushText($message_text, $replyToken);
+            //     // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
+            //     // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+            // }
+            
             
             /* curl 000webhost API */
             $ch = curl_init();
