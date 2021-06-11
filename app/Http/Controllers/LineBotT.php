@@ -20,6 +20,12 @@ use Illuminate\Support\Facades\DB;
 
 class LineBotT extends Controller
 {
+    public function __construct()
+    {
+        $this->pdoConn = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
+        $this->pdoConn->query("SET NAMES utf8");
+    }
+
     private $sender;
     public function postTest(Request $cc){\Log::info(' --bot');
         $dates = date("Y-m-d H:i:s");
