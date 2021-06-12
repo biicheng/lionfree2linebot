@@ -79,7 +79,7 @@ class LineBotT extends Controller
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 if(count($messages)>0){
                     if($messages[0]['reType']=='text'){
-                        $txt = $this->pushText($messages[0]['re_text'].'...', $replyToken);
+                        $txt = $this->pushText($messages[0]['re_text'], $replyToken);
                     } 
                     else if($messages[0]['reType']=='select'){
                         $txt = $this->pushText($message_text, $replyToken);
@@ -88,7 +88,7 @@ class LineBotT extends Controller
                         $txt = $this->pushImg($messages[0]['bImg'], $messages[0]['sImg'], $replyToken);
                     }
                     else{
-                        $txt = $this->pushText($message_text.'..', $replyToken);
+                        $txt = $this->pushText($message_text, $replyToken);
                     }
                 }
                 else{
