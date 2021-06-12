@@ -141,7 +141,7 @@ class LineBotT extends Controller
         return 'hello.';
     }
     public function bot0($message_text, $replyToken){
-        return $txt = $this->pushText($message_text, $replyToken);
+        return $txt = $this->pushText($message_text.'-bot0', $replyToken);
     }
 
     public function pushImg($bImg, $sImg, $replyToken){
