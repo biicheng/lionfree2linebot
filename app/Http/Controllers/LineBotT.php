@@ -118,7 +118,7 @@ class LineBotT extends Controller
                 else{
                     $reD = json_decode($result);
                     if($reD->reType=='text'){
-                        $txt = $this->pushText($reD->re_text, $replyToken);
+                        $txt = $this->pushText($reD->re_text.'--', $replyToken);
                     }
                     else if($reD->reType=='img'){
                         $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
