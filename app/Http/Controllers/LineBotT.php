@@ -73,13 +73,13 @@ class LineBotT extends Controller
             //     // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
             //     // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             // }
-            if($this->pdoConn->errorCode()=='0000'){
+            if($this->pdoConn->errorCode()=='00000'){
                 $sql = "SELECT * FROM message WHERE u_text='".$message_text."'";
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 if(count($messages)>0){
                     if($messages[0]['reType']=='text'){
-                        $txt = $this->pushText($messages[0]['re_text'], $replyToken);
+                        $txt = $this->pushText($messages[0]['re_text'].'00000', $replyToken);
                     } 
                     else if($messages[0]['reType']=='select'){
                         $txt = $this->pushText($message_text, $replyToken);
@@ -88,11 +88,11 @@ class LineBotT extends Controller
                         $txt = $this->pushImg($messages[0]['bImg'], $messages[0]['sImg'], $replyToken);
                     }
                     else{
-                        $txt = $this->pushText($message_text, $replyToken);
+                        $txt = $this->pushText($message_text.'00000 err', $replyToken);
                     }
                 }
                 else{
-                    $txt = $this->pushText($message_text, $replyToken);
+                    $txt = $this->pushText($message_text.'00000 else', $replyToken);
                 }
             }
             else{
@@ -118,13 +118,13 @@ class LineBotT extends Controller
                 else{
                     $reD = json_decode($result);
                     if($reD->reType=='text'){
-                        $txt = $this->pushText($reD->re_text.'--', $replyToken);
+                        $txt = $this->pushText($reD->re_text.'curl', $replyToken);
                     }
                     else if($reD->reType=='img'){
                         $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
                     }
                     else{
-                        $txt = $this->pushText($message_text, $replyToken);
+                        $txt = $this->pushText($message_text.'curl err', $replyToken);
                     }
                 }
             }
