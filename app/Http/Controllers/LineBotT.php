@@ -73,7 +73,7 @@ class LineBotT extends Controller
             //     // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
             //     // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             // }
-            if($this->pdoConn->errorCode()=='00000'){
+            if($this->pdoConn->errorCode()!='00000'){
                 $sql = "SELECT * FROM message WHERE u_text='".$message_text."'";
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -92,8 +92,7 @@ class LineBotT extends Controller
                     }
                 }
                 else{
-                    $txt = $this->bot0($message_text, $replyToken);
-                    // $txt = $this->pushText($message_text, $replyToken);
+                    $txt = $this->pushText($message_text, $replyToken);
                 }
             }
             else{
@@ -113,9 +112,10 @@ class LineBotT extends Controller
                 //關閉連線
                 curl_close($ch);
     
-                if(json_decode($result)=='404'){
+                if(json_decode($result)=='403'){
                     $txt = $this->pushText($message_text, $replyToken);
                 }
+                else if($this->pdoConn->errorCode()!='00000'||!isset(json_decode($result)->reType)){}
                 else{
                     $reD = json_decode($result);
                     if($reD->reType=='text'){
@@ -140,9 +140,9 @@ class LineBotT extends Controller
         $this->lineUserData($cc->input('events')[0]['source']['userId']);
         return 'hello.';
     }
-    public function bot0($message_text, $replyToken){
-        return $txt = $this->pushText($message_text.'-bot0', $replyToken);
-    }
+    // public function bot0($message_text, $replyToken){
+    //     return $txt = $this->pushText($message_text, $replyToken);
+    // }
 
     public function pushImg($bImg, $sImg, $replyToken){
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
