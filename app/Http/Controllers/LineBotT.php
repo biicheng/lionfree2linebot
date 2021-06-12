@@ -115,7 +115,9 @@ class LineBotT extends Controller
                 if(json_decode($result)=='403'){
                     $txt = $this->pushText($message_text, $replyToken);
                 }
-                else if($this->pdoConn->errorCode()!='00000'||!isset(json_decode($result)->reType)){}
+                else if($this->pdoConn->errorCode()!='00000'||!isset(json_decode($result)->reType)){
+                    $txt = $this->pushText('伺服器維護中...', $replyToken);
+                }
                 else{
                     $reD = json_decode($result);
                     if($reD->reType=='text'){
