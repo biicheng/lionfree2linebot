@@ -73,13 +73,13 @@ class LineBotT extends Controller
             //     // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
             //     // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             // }
-            if($this->pdoConn->errorCode()!='00000'){
+            if($this->pdoConn->errorCode()=='00000'){
                 $sql = "SELECT * FROM message WHERE u_text='".$message_text."'";
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 if(count($messages)>0){
                     if($messages[0]['reType']=='text'){
-                        $txt = $this->pushText($messages[0]['re_text'], $replyToken);
+                        $txt = $this->pushText($messages[0]['re_text'].'...', $replyToken);
                     } 
                     else if($messages[0]['reType']=='select'){
                         $txt = $this->pushText($message_text, $replyToken);
@@ -88,7 +88,7 @@ class LineBotT extends Controller
                         $txt = $this->pushImg($messages[0]['bImg'], $messages[0]['sImg'], $replyToken);
                     }
                     else{
-                        $txt = $this->pushText($message_text, $replyToken);
+                        $txt = $this->pushText($message_text'..', $replyToken);
                     }
                 }
                 else{
@@ -115,7 +115,7 @@ class LineBotT extends Controller
                 if(json_decode($result)=='403'){
                     $txt = $this->pushText($message_text, $replyToken);
                 }
-                else if($this->pdoConn->errorCode()!='00001'&&isset(json_decode($result)->reType)){
+                else if($this->pdoConn->errorCode()!='00000'&&!isset(json_decode($result)->reType)){
                     $txt = $this->pushText('伺服器維護中...', $replyToken);
                 }
                 else{
