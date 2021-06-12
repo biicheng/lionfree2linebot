@@ -100,7 +100,7 @@ class LineBotT extends Controller
                 $ch = curl_init();
                 //curl_setopt可以設定curl參數
                 //設定url
-                curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/txt/".$message_text."/--/--/--/--");
+                curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/txt1/".$message_text."/--/--/--/--");
     
                 //獲取結果不顯示
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
