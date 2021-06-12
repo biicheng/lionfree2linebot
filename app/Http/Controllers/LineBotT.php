@@ -77,7 +77,7 @@ class LineBotT extends Controller
                 $sql = "SELECT * FROM message WHERE u_text='".$message_text."'";
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
-                if(count($messages)==1){
+                if(count($messages)>0){
                     if($messages[0]['reType']=='text'){
                         $txt = $this->pushText($messages[0]['re_text'], $replyToken);
                     } 
