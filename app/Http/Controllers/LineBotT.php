@@ -113,7 +113,7 @@ class LineBotT extends Controller
                 curl_close($ch);
     
                 if(json_decode($result)=='404'){
-                    $txt = $this->pushText($message_text, $replyToken);
+                    $txt = $this->pushText($message_text.'404', $replyToken);
                 }
                 else{
                     $reD = json_decode($result);
