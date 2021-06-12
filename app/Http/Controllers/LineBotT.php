@@ -73,13 +73,13 @@ class LineBotT extends Controller
             //     // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
             //     // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
             // }
-            if($this->pdoConn->errorCode()=='000001'){
+            if($this->pdoConn->errorCode()=='00000'){
                 $sql = "SELECT * FROM message WHERE u_text='".$message_text."'";
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 if(count($messages)>0){
                     if($messages[0]['reType']=='text'){
-                        $txt = $this->pushText($messages[0]['re_text'].'00000', $replyToken);
+                        $txt = $this->pushText($messages[0]['re_text'], $replyToken);
                     } 
                     else if($messages[0]['reType']=='select'){
                         $txt = $this->pushText($message_text, $replyToken);
@@ -88,11 +88,12 @@ class LineBotT extends Controller
                         $txt = $this->pushImg($messages[0]['bImg'], $messages[0]['sImg'], $replyToken);
                     }
                     else{
-                        $txt = $this->pushText($message_text.'00000 err', $replyToken);
+                        $txt = $this->pushText($message_text, $replyToken);
                     }
                 }
                 else{
-                    $txt = $this->pushText($message_text.'00000 else', $replyToken);
+                    $txt = $this->bot0($message_text, $replyToken);
+                    // $txt = $this->pushText($message_text, $replyToken);
                 }
             }
             else{
@@ -100,7 +101,7 @@ class LineBotT extends Controller
                 $ch = curl_init();
                 //curl_setopt可以設定curl參數
                 //設定url
-                curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/txt1/".$message_text."/--/--/--/--");
+                curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/txt/".$message_text."/--/--/--/--");
     
                 //獲取結果不顯示
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -113,18 +114,18 @@ class LineBotT extends Controller
                 curl_close($ch);
     
                 if(json_decode($result)=='404'){
-                    $txt = $this->pushText($message_text.'404', $replyToken);
+                    $txt = $this->pushText($message_text, $replyToken);
                 }
                 else{
                     $reD = json_decode($result);
                     if($reD->reType=='text'){
-                        $txt = $this->pushText($reD->re_text.'curl', $replyToken);
+                        $txt = $this->pushText($reD->re_text, $replyToken);
                     }
                     else if($reD->reType=='img'){
                         $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
                     }
                     else{
-                        $txt = $this->pushText($message_text.'curl err', $replyToken);
+                        $txt = $this->pushText($message_text, $replyToken);
                     }
                 }
             }
@@ -138,6 +139,9 @@ class LineBotT extends Controller
         
         $this->lineUserData($cc->input('events')[0]['source']['userId']);
         return 'hello.';
+    }
+    public function bot0($message_text, $replyToken){
+        return $txt = $this->pushText($message_text, $replyToken);
     }
 
     public function pushImg($bImg, $sImg, $replyToken){
