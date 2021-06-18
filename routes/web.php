@@ -19,3 +19,7 @@ Route::get('/infoGet', 'Controller@infoD');
 
 
 Route::get('/mmm', 'Mail\MailController@sendMailT');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
