@@ -278,6 +278,6 @@ class LineBotT extends Controller
     {
         $row = null;
         $messageD = DB::select('select * from message where 1');
-        return count($messageD);//$row;
+        return '+++';//count($messageD);//$row;
     }
 }
