@@ -23,3 +23,6 @@ Route::get('/mmm', 'Mail\MailController@sendMailT');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/dbt', 'LineBotT@dbT')->name('dbt');
+

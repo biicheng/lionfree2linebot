@@ -220,8 +220,7 @@ class LineBotT extends Controller
             else{
                 $uTitleMessega = '---';
             }
-            // \Log::info($uId.' -- '.$uName.' -- '.$uImgURL.' -- '.$uTitleMessage);
-            // \Log::info('dd: '.$uId.'---'.$uName.'---'.$uImgURL.'---'.$uTitleMessage);
+            
             /* curl 000webhost API */
             /*$conDB = curl_init();
             //curl_setopt可以設定curl參數
@@ -275,4 +274,10 @@ class LineBotT extends Controller
         return new TemplateMessageBuilder('test123', $target);
     }
     
+    public function dbT()
+    {
+        $row = null;
+        $messageD = DB::select('select * from message where 1');
+        return count($messageD);//$row;
+    }
 }
