@@ -9,6 +9,7 @@
  use Illuminate\Foundation\Validation\ValidatesRequests;
  use Illuminate\Routing\Controller as BaseController;
  
+ use DB;
  use PDO;
  use Illuminate\Support\Facades\Log;
  use LINE\LINEBot;
@@ -16,7 +17,7 @@
  use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 
 // use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 
 class LineBotT extends Controller
 {
@@ -277,7 +278,7 @@ class LineBotT extends Controller
     public function dbT()
     {
         $row = null;
-        $messageD = DB::select('select * from message where 1');
+        // $messageD = DB::select('select * from message where 1');
         return '+++';//count($messageD);//$row;
     }
 }
