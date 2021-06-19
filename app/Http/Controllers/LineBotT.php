@@ -278,7 +278,7 @@ class LineBotT extends Controller
     public function dbT()
     {
         $row = null;
-        // $messageD = DB::select('select * from message where 1');
+        $messageD = DB::select('select * from message where 1');
         return '+++';//count($messageD);//$row;
     }
 }
