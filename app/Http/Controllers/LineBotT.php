@@ -278,7 +278,8 @@ class LineBotT extends Controller
     {
         $row = null;
         // $messageD = DB::select('SELECT * from sql6401619.message where u_text="抽菸的規矩"');
-        $posts=DB::table('sql6401619.message')->where('u_text', '=', "tw")->get();
-        return 'select date count: '.count($posts).'筆, re_text: '.$posts[0]->re_text;//$row;//'+++';//
+        $posts=DB::table('sql6401619.message')->where('u_text', '=', "tw")->count();
+        return 'select date count: '.$posts.'筆';
+        //'筆, re_text: '.$posts[0]->re_text;//$row;//'+++';//
     }
 }
