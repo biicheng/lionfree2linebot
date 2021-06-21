@@ -65,10 +65,11 @@ class LineBotT extends Controller
                     }
                 }
                 else{
+                    \Log::info(' --else--');
                     $txt = $this->pushText($message_text, $replyToken);
                 }
             } catch (\Exception $exception){
-                // \Log::info(' --curl--');
+                \Log::info(' --curl--');
                 // /* curl 000webhost API */
                 // $ch = curl_init();
                 // //curl_setopt可以設定curl參數
