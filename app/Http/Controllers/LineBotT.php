@@ -284,7 +284,7 @@ class LineBotT extends Controller
             // return 'select date count: '.$posts.'筆';
             $posts=DB::table('sql6401619.message')->get();
             foreach($posts as $v){
-                $ttt = $v->reType.'<br>';
+                $ttt .= $v->reType.'<br>';
             }
             return $ttt;
         } catch (\Exception $exception) {
