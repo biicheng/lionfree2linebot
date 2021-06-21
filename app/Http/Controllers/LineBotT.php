@@ -60,7 +60,7 @@ class LineBotT extends Controller
                     \Log::info(' --db: '.json_encode($sql).'---');
                     if($sql[0]->reType=='text'){
                         \Log::info(' --text--');
-                        $txt = $this->pushText($sql->re_text, $replyToken);
+                        $txt = $this->pushText($sql[0]->re_text, $replyToken);
                     } 
                     else if($sql->reType=='select'){
                         \Log::info(' --select--');
