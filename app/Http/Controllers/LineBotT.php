@@ -53,7 +53,7 @@ class LineBotT extends Controller
                 // $posts=DB::table('sql6401619.message')->get();
                 
                 // $sql = DB::table('message')->where('u_text','=',$message_text)->get();
-                $sql = DB::select('select * from sql6401619.message where `u_text` = ?', [$message_text]);
+                $sql = DB::select('select * from sql6401619.message where u_text = ?', ['"'.$message_text.'"']);
                 //"SELECT * FROM message WHERE u_text='".$message_text."'";
                 if(count($sql)>0){
                     if($sql->reType=='text'){
