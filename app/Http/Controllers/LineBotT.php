@@ -77,7 +77,7 @@ class LineBotT extends Controller
                 }
                 else{
                     \Log::info('[] --text--');
-                    $txt = $this->pushText($message_text, $replyToken);
+                    $txt = $this->pushText('--'.$message_text, $replyToken);
                 }
             } catch (\Exception $exception) {
                 dd($exception->getMessage());//注意不要輸出這個
