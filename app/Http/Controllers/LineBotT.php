@@ -46,28 +46,17 @@ class LineBotT extends Controller
             $source_type = $cc->input('events')[0]['source']['type'];
     
 
-            try {
-                $ttt = null;
-                // $posts=DB::table('sql6401619.message')->where('u_text', '=', "tw")->count();
-                // return 'select date count: '.$posts.'筆';
-                // $posts=DB::table('sql6401619.message')->get();
-                
+            try{
                 $sql = DB::table('sql6401619.message')->where('u_text', '=',$message_text)->get();
-                // DB::table('sql6401619.message')->where('u_text','=',$message_text)->get();
-                // $sql = DB::select('select * from sql6401619.message where u_text = ?', ['"'.$message_text.'"']);
-                //"SELECT * FROM message WHERE u_text='".$message_text."'";
                 if(!empty($sql[0])){
-                    \Log::info(' --db: '.json_encode($sql).'---');
+                    // \Log::info(' --db: '.json_encode($sql).'---');
                     if($sql[0]->reType=='text'){
-                        \Log::info(' --text--');
                         $txt = $this->pushText($sql[0]->re_text, $replyToken);
                     } 
                     else if($sql[0]->reType=='select'){
-                        \Log::info(' --select--');
                         $txt = $this->pushText($message_text, $replyToken);
                     }
                     else if($sql[0]->reType=='img'){
-                        \Log::info(' --img--');
                         $txt = $this->pushImg($sql[0]->bImg, $sql[0]->sImg, $replyToken);
                     }
                     else{
@@ -76,10 +65,43 @@ class LineBotT extends Controller
                     }
                 }
                 else{
-                    \Log::info('[] --text--');
-                    $txt = $this->pushText('--'.$message_text, $replyToken);
+                    $txt = $this->pushText($message_text, $replyToken);
                 }
-            } catch (\Exception $exception) {
+            } catch (\Exception $exception){
+                /* curl 000webhost API */
+                $ch = curl_init();
+                //curl_setopt可以設定curl參數
+                //設定url
+                curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/txt/".$message_text."/--/--/--/--");
+    
+                //獲取結果不顯示
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+                //設定AGENT
+                curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
+                //執行，並將結果存回
+                $result = curl_exec($ch);
+                //關閉連線
+                curl_close($ch);
+    
+                if(json_decode($result)=='403'){
+                    $txt = $this->pushText($message_text, $replyToken);
+                }
+                else if($this->pdoConn->errorCode()!='00000'&&!isset(json_decode($result)->reType)){
+                    $txt = $this->pushText('伺服器維護中...', $replyToken);
+                }
+                else{
+                    $reD = json_decode($result);
+                    if($reD->reType=='text'){
+                        $txt = $this->pushText($reD->re_text, $replyToken);
+                    }
+                    else if($reD->reType=='img'){
+                        $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
+                    }
+                    else{
+                        $txt = $this->pushText($message_text, $replyToken);
+                    }
+                }
                 dd($exception->getMessage());//注意不要輸出這個
             }
         }
@@ -91,98 +113,98 @@ class LineBotT extends Controller
         return 'hello.';
     }
     
-    // public function postTests(Request $cc){\Log::info(' --bot');
-    //     $dates = date("Y-m-d H:i:s");
-    //     if((!empty($cc->input('events')[0]['message']['text']))||
-    //         ($cc->input('events')[0]['message']['type']=='text')){
-    //     // if(!empty($cc->input('events')[0]['message']['text'])){
-    //         $destination = $cc->input('destination');
-    //         $events_type = $cc->input('events')[0]['type'];
-    //         $replyToken = $cc->input('events')[0]['replyToken'];
-    //         $timestamp = $cc->input('events')[0]['timestamp'];
-    //         $mode = $cc->input('events')[0]['mode'];
+    public function postTests(Request $cc){\Log::info(' --bot');
+        $dates = date("Y-m-d H:i:s");
+        if((!empty($cc->input('events')[0]['message']['text']))||
+            ($cc->input('events')[0]['message']['type']=='text')){
+        // if(!empty($cc->input('events')[0]['message']['text'])){
+            $destination = $cc->input('destination');
+            $events_type = $cc->input('events')[0]['type'];
+            $replyToken = $cc->input('events')[0]['replyToken'];
+            $timestamp = $cc->input('events')[0]['timestamp'];
+            $mode = $cc->input('events')[0]['mode'];
     
-    //         $message_Id = $cc->input('events')[0]['message']['id'];
-    //         $message_type = $cc->input('events')[0]['message']['type'];
-    //         $message_text = $cc->input('events')[0]['message']['text'];
+            $message_Id = $cc->input('events')[0]['message']['id'];
+            $message_type = $cc->input('events')[0]['message']['type'];
+            $message_text = $cc->input('events')[0]['message']['text'];
     
-    //         $source_userId = $cc->input('events')[0]['source']['userId'];
-    //         $source_type = $cc->input('events')[0]['source']['type'];
+            $source_userId = $cc->input('events')[0]['source']['userId'];
+            $source_type = $cc->input('events')[0]['source']['type'];
     
 
-    //         // $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
-    //         // $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
+            // $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
+            // $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
     
-    //         /* sele遠方mysql */
-    //         if($this->pdoConn->errorCode()=='00000'){
-    //             $sql = "SELECT * FROM message WHERE u_text='".$message_text."'";
-    //             $query = $this->pdoConn->query($sql);
-    //             $messages = $query->fetchAll(PDO::FETCH_ASSOC);
-    //             if(count($messages)>0){
-    //                 if($messages[0]['reType']=='text'){
-    //                     $txt = $this->pushText($messages[0]['re_text'], $replyToken);
-    //                 } 
-    //                 else if($messages[0]['reType']=='select'){
-    //                     $txt = $this->pushText($message_text, $replyToken);
-    //                 }
-    //                 else if($messages[0]['reType']=='img'){
-    //                     $txt = $this->pushImg($messages[0]['bImg'], $messages[0]['sImg'], $replyToken);
-    //                 }
-    //                 else{
-    //                     $txt = $this->pushText($message_text, $replyToken);
-    //                 }
-    //             }
-    //             else{
-    //                 $txt = $this->pushText($message_text, $replyToken);
-    //             }
-    //         }
-    //         else{
-    //             /* curl 000webhost API */
-    //             $ch = curl_init();
-    //             //curl_setopt可以設定curl參數
-    //             //設定url
-    //             curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/txt/".$message_text."/--/--/--/--");
+            /* sele遠方mysql */
+            if($this->pdoConn->errorCode()=='00000'){
+                $sql = "SELECT * FROM message WHERE u_text='".$message_text."'";
+                $query = $this->pdoConn->query($sql);
+                $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+                if(count($messages)>0){
+                    if($messages[0]['reType']=='text'){
+                        $txt = $this->pushText($messages[0]['re_text'], $replyToken);
+                    } 
+                    else if($messages[0]['reType']=='select'){
+                        $txt = $this->pushText($message_text, $replyToken);
+                    }
+                    else if($messages[0]['reType']=='img'){
+                        $txt = $this->pushImg($messages[0]['bImg'], $messages[0]['sImg'], $replyToken);
+                    }
+                    else{
+                        $txt = $this->pushText($message_text, $replyToken);
+                    }
+                }
+                else{
+                    $txt = $this->pushText($message_text, $replyToken);
+                }
+            }
+            else{
+                /* curl 000webhost API */
+                $ch = curl_init();
+                //curl_setopt可以設定curl參數
+                //設定url
+                curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/txt/".$message_text."/--/--/--/--");
     
-    //             //獲取結果不顯示
-    //             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                //獲取結果不顯示
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     
-    //             //設定AGENT
-    //             curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
-    //             //執行，並將結果存回
-    //             $result = curl_exec($ch);
-    //             //關閉連線
-    //             curl_close($ch);
+                //設定AGENT
+                curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
+                //執行，並將結果存回
+                $result = curl_exec($ch);
+                //關閉連線
+                curl_close($ch);
     
-    //             if(json_decode($result)=='403'){
-    //                 $txt = $this->pushText($message_text, $replyToken);
-    //             }
-    //             else if($this->pdoConn->errorCode()!='00000'&&!isset(json_decode($result)->reType)){
-    //                 $txt = $this->pushText('伺服器維護中...', $replyToken);
-    //             }
-    //             else{
-    //                 $reD = json_decode($result);
-    //                 if($reD->reType=='text'){
-    //                     $txt = $this->pushText($reD->re_text, $replyToken);
-    //                 }
-    //                 else if($reD->reType=='img'){
-    //                     $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
-    //                 }
-    //                 else{
-    //                     $txt = $this->pushText($message_text, $replyToken);
-    //                 }
-    //             }
-    //         }
+                if(json_decode($result)=='403'){
+                    $txt = $this->pushText($message_text, $replyToken);
+                }
+                else if($this->pdoConn->errorCode()!='00000'&&!isset(json_decode($result)->reType)){
+                    $txt = $this->pushText('伺服器維護中...', $replyToken);
+                }
+                else{
+                    $reD = json_decode($result);
+                    if($reD->reType=='text'){
+                        $txt = $this->pushText($reD->re_text, $replyToken);
+                    }
+                    else if($reD->reType=='img'){
+                        $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
+                    }
+                    else{
+                        $txt = $this->pushText($message_text, $replyToken);
+                    }
+                }
+            }
             
             
-    //     }
-    //     else{
-    //         $txt = $this->pushImg('https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseS.jpg', $cc->input('events')[0]['replyToken']);
-    //         // $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
-    //     }
+        }
+        else{
+            $txt = $this->pushImg('https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseS.jpg', $cc->input('events')[0]['replyToken']);
+            // $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
+        }
         
-    //     $this->lineUserData($cc->input('events')[0]['source']['userId']);
-    //     return 'hello.';
-    // }
+        $this->lineUserData($cc->input('events')[0]['source']['userId']);
+        return 'hello.';
+    }
 
     public function pushImg($bImg, $sImg, $replyToken){
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
