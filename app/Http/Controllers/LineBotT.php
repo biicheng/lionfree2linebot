@@ -62,11 +62,11 @@ class LineBotT extends Controller
                         \Log::info(' --text--');
                         $txt = $this->pushText($sql[0]->re_text, $replyToken);
                     } 
-                    else if($sql->reType=='select'){
+                    else if($sql[0]->reType=='select'){
                         \Log::info(' --select--');
                         $txt = $this->pushText($message_text, $replyToken);
                     }
-                    else if($sql->reType=='img'){
+                    else if($sql[0]->reType=='img'){
                         \Log::info(' --img--');
                         $txt = $this->pushImg($sql[0]->bImg, $sql[0]->sImg, $replyToken);
                     }
