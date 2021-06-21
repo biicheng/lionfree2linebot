@@ -55,7 +55,7 @@ class LineBotT extends Controller
                 $sql = DB::table('sql6401619.message')->where('u_text','=',$message_text)->get();
                 // $sql = DB::select('select * from sql6401619.message where u_text = ?', ['"'.$message_text.'"']);
                 //"SELECT * FROM message WHERE u_text='".$message_text."'";
-                if($sql->count()>0){
+                if($sql==null){
                     if($sql->reType=='text'){
                         $txt = $this->pushText($sql->re_text, $replyToken);
                     } 
