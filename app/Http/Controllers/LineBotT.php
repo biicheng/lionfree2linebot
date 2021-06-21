@@ -68,6 +68,7 @@ class LineBotT extends Controller
                     $txt = $this->pushText($message_text, $replyToken);
                 }
             } catch (\Exception $exception){
+                \Log::info(' --curl--');
                 /* curl 000webhost API */
                 $ch = curl_init();
                 //curl_setopt可以設定curl參數
@@ -91,14 +92,18 @@ class LineBotT extends Controller
                     $txt = $this->pushText('伺服器維護中...', $replyToken);
                 }
                 else{
+                    \Log::info(' --curl else--');
                     $reD = json_decode($result);
                     if($reD->reType=='text'){
+                        \Log::info(' --curl text--');
                         $txt = $this->pushText($reD->re_text, $replyToken);
                     }
                     else if($reD->reType=='img'){
+                        \Log::info(' --curl img--');
                         $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
                     }
                     else{
+                        \Log::info(' --curl ...--');
                         $txt = $this->pushText($message_text, $replyToken);
                     }
                 }
