@@ -68,7 +68,7 @@ class LineBotT extends Controller
                     }
                     else if($sql->reType=='img'){
                         \Log::info(' --img--');
-                        $txt = $this->pushImg($sql->bImg, $sql->sImg, $replyToken);
+                        $txt = $this->pushImg($sql[0]->bImg, $sql[0]->sImg, $replyToken);
                     }
                     else{
                         \Log::info(' --no--');
