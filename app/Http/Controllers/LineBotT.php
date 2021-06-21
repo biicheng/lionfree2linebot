@@ -52,7 +52,8 @@ class LineBotT extends Controller
                 // return 'select date count: '.$posts.'筆';
                 // $posts=DB::table('sql6401619.message')->get();
                 
-                $sql = DB::table('sql6401619.message')->where('u_text','=',$message_text)->get();
+                $sql = DB::table('sql6401619.message')->where('u_text', '=',$message_text)->get();
+                // DB::table('sql6401619.message')->where('u_text','=',$message_text)->get();
                 // $sql = DB::select('select * from sql6401619.message where u_text = ?', ['"'.$message_text.'"']);
                 //"SELECT * FROM message WHERE u_text='".$message_text."'";
                 if(empty($sql->reType)){
