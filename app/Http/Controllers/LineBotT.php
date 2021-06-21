@@ -282,8 +282,7 @@ class LineBotT extends Controller
             $posts=DB::table('sql6401619.message')->where('u_text', '=', "tw")->count();
             return 'select date count: '.$posts.'筆';
         } catch (\Exception $exception) {
-            // dd($exception->getMessage());
-            return '---';
+            dd($exception->getMessage());//注意不要輸出這個
         }
         //'筆, re_text: '.$posts[0]->re_text;//$row;//'+++';//
     }
