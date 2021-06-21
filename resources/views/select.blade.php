@@ -38,7 +38,7 @@
                                             <input type="hidden" value={{ $v['u_text'] }} name="utext" id="utext" />
                                         </form>
                                     @else
-                                       <form method="POST" action="{{ route('edit') }}" tyle="margin-left:2.5vh;">>
+                                       <form method="POST" action="{{ route('edit') }}" tyle="margin-left:2.5vh;">
                                            @csrf
                                            <button type="submit" style="border:none;background:#0000;">
                                            <img src="{{ asset('/img/open_icon.png') }}" style="max-width:4.3vh;" />
