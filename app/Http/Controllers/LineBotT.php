@@ -47,14 +47,7 @@ class LineBotT extends Controller
     
 
             try {
-                $ttt = null;
-                // $posts=DB::table('sql6401619.message')->where('u_text', '=', "tw")->count();
-                // return 'select date count: '.$posts.'筆';
-                // $posts=DB::table('sql6401619.message')->get();
-                
-                // $sql = DB::table('message')->where('u_text','=',$message_text)->get();
                 $sql = DB::select('select * from sql6401619.message where u_text = ?', ['"'.$message_text.'"']);
-                //"SELECT * FROM message WHERE u_text='".$message_text."'";
                 if(count($sql)>0){
                     if($sql->reType=='text'){
                         $txt = $this->pushText($sql->re_text, $replyToken);
@@ -73,7 +66,41 @@ class LineBotT extends Controller
                     $txt = $this->pushText($message_text, $replyToken);
                 }
             } catch (\Exception $exception) {
-                dd($exception->getMessage());//注意不要輸出這個
+                // dd($exception->getMessage());//注意不要輸出這個
+                /* curl 000webhost API */
+                $ch = curl_init();
+                //curl_setopt可以設定curl參數
+                //設定url
+                curl_setopt($ch , CURLOPT_URL , "https://tkogo.000webhostapp.com/botController/txt/".$message_text."/--/--/--/--");
+    
+                //獲取結果不顯示
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+                //設定AGENT
+                curl_setopt($ch, CURLOPT_USERAGENT, "Google Bot");
+                //執行，並將結果存回
+                $result = curl_exec($ch);
+                //關閉連線
+                curl_close($ch);
+    
+                if(json_decode($result)=='403'){
+                    $txt = $this->pushText($message_text, $replyToken);
+                }
+                else if($this->pdoConn->errorCode()!='00000'&&!isset(json_decode($result)->reType)){
+                    $txt = $this->pushText('伺服器維護中...', $replyToken);
+                }
+                else{
+                    $reD = json_decode($result);
+                    if($reD->reType=='text'){
+                        $txt = $this->pushText($reD->re_text, $replyToken);
+                    }
+                    else if($reD->reType=='img'){
+                        $txt = $this->pushImg($reD->bImg, $reD->sImg, $replyToken);
+                    }
+                    else{
+                        $txt = $this->pushText($message_text, $replyToken);
+                    }
+                }
             }
         }
         else{
