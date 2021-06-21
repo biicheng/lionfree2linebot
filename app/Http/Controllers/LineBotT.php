@@ -55,8 +55,7 @@ class LineBotT extends Controller
                 $sql = DB::table('sql6401619.message')->where('u_text','=',$message_text)->get();
                 // $sql = DB::select('select * from sql6401619.message where u_text = ?', ['"'.$message_text.'"']);
                 //"SELECT * FROM message WHERE u_text='".$message_text."'";
-                // if($sql!=null){
-                    \Log::info(' --000db: '.json_encode($sql));
+                if(empty($sql->reType)){
                     if($sql->reType=='text'){
                         $txt = $this->pushText($sql->re_text, $replyToken);
                     } 
@@ -69,10 +68,10 @@ class LineBotT extends Controller
                     else{
                         $txt = $this->pushText($message_text, $replyToken);
                     }
-                // }
-                // else{
-                //     $txt = $this->pushText($message_text, $replyToken);
-                // }
+                }
+                else{
+                    $txt = $this->pushText($message_text, $replyToken);
+                }
             } catch (\Exception $exception) {
                 dd($exception->getMessage());//注意不要輸出這個
             }
