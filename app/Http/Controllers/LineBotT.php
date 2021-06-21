@@ -58,7 +58,7 @@ class LineBotT extends Controller
                 //"SELECT * FROM message WHERE u_text='".$message_text."'";
                 if(!empty($sql)){
                     \Log::info(' --db: '.json_encode($sql).'---');
-                    if($sql->reType=='text'){
+                    if($sql[0]->reType=='text'){
                         \Log::info(' --text--');
                         $txt = $this->pushText($sql->re_text, $replyToken);
                     } 
