@@ -56,18 +56,22 @@ class LineBotT extends Controller
                 // DB::table('sql6401619.message')->where('u_text','=',$message_text)->get();
                 // $sql = DB::select('select * from sql6401619.message where u_text = ?', ['"'.$message_text.'"']);
                 //"SELECT * FROM message WHERE u_text='".$message_text."'";
-                if(empty($sql->reType)){
-                    \Log::info(' --000db: '.json_encode($sql).'---');
+                if(empty($sql)){
+                    \Log::info(' --db: '.json_encode($sql).'---');
                     if($sql->reType=='text'){
+                        \Log::info(' --text--');
                         $txt = $this->pushText($sql->re_text, $replyToken);
                     } 
                     else if($sql->reType=='select'){
+                        \Log::info(' --select--');
                         $txt = $this->pushText($message_text, $replyToken);
                     }
                     else if($sql->reType=='img'){
+                        \Log::info(' --img--');
                         $txt = $this->pushImg($sql->bImg, $sql->sImg, $replyToken);
                     }
                     else{
+                        \Log::info(' --no--');
                         $txt = $this->pushText($message_text, $replyToken);
                     }
                 }
