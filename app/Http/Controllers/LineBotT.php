@@ -103,7 +103,7 @@ class LineBotT extends Controller
                 //         $txt = $this->pushText($message_text, $replyToken);
                 //     }
                 // }
-                $txt = $this->pushText($message_text, $replyToken);
+                $txt = $this->pushText('error...'.$message_text, $replyToken);
                 dd($exception->getMessage());//注意不要輸出這個
             }
         }
