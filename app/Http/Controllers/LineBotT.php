@@ -15,7 +15,7 @@
  use LINE\LINEBot\Event\MessageEvent;
  use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 
-// use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 class LineBotT extends Controller
