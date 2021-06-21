@@ -66,7 +66,7 @@ class LineBotT extends Controller
                         $txt = $this->pushImg($sql->bImg, $sql->sImg, $replyToken);
                     }
                     else{
-                        $txt = $this->pushText($message_text, $replyToken);
+                        $txt = $this->pushText($$sql->re_text, $replyToken);
                     }
                 }
                 else{
