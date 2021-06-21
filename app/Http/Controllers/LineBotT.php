@@ -27,7 +27,63 @@ class LineBotT extends Controller
     }
 
     private $sender;
-    public function postTest(Request $cc){\Log::info(' --bot');
+    public function postTest(Request $cc){
+        $dates = date("Y-m-d H:i:s");
+        if((!empty($cc->input('events')[0]['message']['text']))||
+            ($cc->input('events')[0]['message']['type']=='text')){
+        // if(!empty($cc->input('events')[0]['message']['text'])){
+            $destination = $cc->input('destination');
+            $events_type = $cc->input('events')[0]['type'];
+            $replyToken = $cc->input('events')[0]['replyToken'];
+            $timestamp = $cc->input('events')[0]['timestamp'];
+            $mode = $cc->input('events')[0]['mode'];
+    
+            $message_Id = $cc->input('events')[0]['message']['id'];
+            $message_type = $cc->input('events')[0]['message']['type'];
+            $message_text = $cc->input('events')[0]['message']['text'];
+    
+            $source_userId = $cc->input('events')[0]['source']['userId'];
+            $source_type = $cc->input('events')[0]['source']['type'];
+    
+
+            try {
+                $ttt = null;
+                // $posts=DB::table('sql6401619.message')->where('u_text', '=', "tw")->count();
+                // return 'select date count: '.$posts.'筆';
+                // $posts=DB::table('sql6401619.message')->get();
+                
+                $sql = DB::table('sql6401619.message')->where('u_text=','=',$message_text)->get();
+                //"SELECT * FROM message WHERE u_text='".$message_text."'";
+                if(count($sql)>0){
+                    if($sql->reType=='text'){
+                        $txt = $this->pushText($sql->re_text, $replyToken);
+                    } 
+                    else if($sql->reType=='select'){
+                        $txt = $this->pushText($message_text, $replyToken);
+                    }
+                    else if($sql->reType=='img'){
+                        $txt = $this->pushImg($sql->bImg, $sql->sImg, $replyToken);
+                    }
+                    else{
+                        $txt = $this->pushText($message_text, $replyToken);
+                    }
+                }
+                else{
+                    $txt = $this->pushText($message_text, $replyToken);
+                }
+            } catch (\Exception $exception) {
+                dd($exception->getMessage());//注意不要輸出這個
+            }
+        }
+        else{
+            $txt = $this->pushImg('https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseS.jpg', $cc->input('events')[0]['replyToken']);
+        }
+        
+        $this->lineUserData($cc->input('events')[0]['source']['userId']);
+        return 'hello.';
+    }
+    
+    public function postTests(Request $cc){\Log::info(' --bot');
         $dates = date("Y-m-d H:i:s");
         if((!empty($cc->input('events')[0]['message']['text']))||
             ($cc->input('events')[0]['message']['type']=='text')){
@@ -50,29 +106,6 @@ class LineBotT extends Controller
             // $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
     
             /* sele遠方mysql */
-            // $i = 0;
-            // $messages = DB::select('select * from message where u_text=?', [$message_text]);
-            // if(count($messages)==1){
-            //     if($messages[0]->reType=='text'){
-            //         $txt = $this->pushText($messages[0]->re_text, $replyToken);
-            //     }
-            //     else if($messages[0]->reType=='select'){
-            //         $txt = $this->pushText($message_text, $replyToken);
-            //     }
-            //     else if($messages[0]->reType=='img'){
-            //         $txt = $this->pushImg($messages[0]->bImg, $messages[0]->sImg, $replyToken);
-            //     }
-            //     else{
-            //         $txt = $this->pushText($message_text, $replyToken);
-            //         // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messages[0]->re_text);
-            //         // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-            //     }
-            // }
-            // else{
-            //     $txt = $this->pushText($message_text, $replyToken);
-            //     // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message_text);
-            //     // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-            // } 
             if($this->pdoConn->errorCode()=='00000'){
                 $sql = "SELECT * FROM message WHERE u_text='".$message_text."'";
                 $query = $this->pdoConn->query($sql);
@@ -142,9 +175,6 @@ class LineBotT extends Controller
         $this->lineUserData($cc->input('events')[0]['source']['userId']);
         return 'hello.';
     }
-    // public function bot0($message_text, $replyToken){
-    //     return $txt = $this->pushText($message_text, $replyToken);
-    // }
 
     public function pushImg($bImg, $sImg, $replyToken){
         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
