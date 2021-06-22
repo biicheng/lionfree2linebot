@@ -16,7 +16,7 @@ class DataSelectController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
 
         // $dsn = 'mysql:host=host=sql6.freemysqlhosting.net;port:3360;dbname:sql6401619;';
         // $this->pdoConn = new PDO($dsn, 'sql6401619', 'QkKBd19xbL');
@@ -88,7 +88,7 @@ class DataSelectController extends Controller
     {
         \Log::info(' --editD--');
         try{
-            $uodateData = DB::table('sql6401619.message')->where('u_texxt','=',$u_texxt)->set('oc','=',0);
+            $uodateData = DB::table('sql6401619.message')->where('u_text','=',$u_text)->update('oc','=',0);
             // DB::update('update message set oc=? where u_texxt=?', [$oc, '"'.$u_texxt.'"']);
             \Log::info(' --$this->seleDeditD--');
             return $this->seleD();
