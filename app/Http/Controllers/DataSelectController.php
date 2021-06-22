@@ -41,8 +41,8 @@ class DataSelectController extends Controller
                     }
                     else if($sql[0]->oc==1){
                         \Log::info(' --oc=1--');
-                        DB::table('sql6401619.message')->where('u_texxt','=',$u_texxt)->update(array('oc' => 0));
-                        // $affected = DB::update('update sql6401619.message set u_texxt=? where oc=?', [$u_texxt, 0]);
+                        // DB::table('sql6401619.message')->where('u_texxt','=',$u_texxt)->update(array('oc' => 0));
+                        $affected = DB::update('update message set oc=? where u_texxt=?', [0, '"'.$u_texxt.'"']);
                         return $this->seleD();
                     }
                     else{
