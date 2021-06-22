@@ -73,12 +73,12 @@ class DataSelectController extends Controller
     }
 
     public function seleD()
-    {
+    {\Log::info(' --seleD--');
         $sql = "SELECT * FROM sql6401619.message WHERE 1";
         $query = $this->pdoConn->query($sql);
         $messages = $query->fetchAll(PDO::FETCH_ASSOC);
         $messageRow = $query->rowCount();//取得資料筆數
-        // \Log::info('messageRow: '.json_encode($messages));
+        \Log::info('messageRow: '.json_encode($messages));
         return view('select', [
                     'messageRow'=>$messageRow,
                     'messageD'=>$messages,
@@ -86,8 +86,10 @@ class DataSelectController extends Controller
     }
     public function editD($u_texxt, $oc)
     {
-        DB::table('sql6401619.message')->where('u_texxt','=',$u_texxt)->update('oc','=',0);
+        \Log::info(' --editD--');
+        $uodateData = DB::table('sql6401619.message')->where('u_texxt','=',$u_texxt)->update('oc','=',0);
         // DB::update('update message set oc=? where u_texxt=?', [$oc, '"'.$u_texxt.'"']);
+        \Log::info(' --$this->seleDeditD--');
         return $this->seleD();
     }
 }
