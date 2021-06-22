@@ -340,18 +340,8 @@ class LineBotT extends Controller
     
     public function dbT()
     {
-        $u_text = 'tw';
-        $oc = 0;
-        $sqls = DB::table('sql6401619.message')->where('u_text','=',$u_text)->get();
-        \Log::info(' --$sqls->oc= '.$sqls[0]->oc);
-        if($sqls[0]->oc==0){
-            $oc = 1;
-            \Log::info(' --oc=1--');
-        }
-        else{
-            $oc = 0;
-            \Log::info(' --oc=0--');
-        }
+        $row = null;
+        // $messageD = DB::select('SELECT * from sql6401619.message where u_text="抽菸的規矩"');
         try {
             $ttt = null;
             // $posts=DB::table('sql6401619.message')->where('u_text', '=', "tw")->count();
@@ -363,9 +353,18 @@ class LineBotT extends Controller
             // }
             // return $ttt;
 
+            $u_text = 'tw';
+            $oc = 0;
+            $sqls = DB::table('sql6401619.message')->where('u_text','=',$u_text)->get();
+            if($sqls[0]->oc==0){
+                $oc = 1;
+            }
+            else{
+                $oc = 0;
+            }
             // $uodateData = DB::table('sql6401619.message')->where('u_text','=',$u_text)->update('oc','=',0);
-            \Log::info(' --oc= --'.$oc);
             // $uodateData = DB::update('update sql6401619.message set oc=? where u_text=?', [$oc, '"'.$u_text.'"']);
+            DB::table('sql6401619.message')->where('u_text', $u_text)->update(array('oc' => $oc));  
             $sqlss = DB::table('sql6401619.message')->where('u_text','=',$u_text)->get();
             return '+++'.$sqlss[0]->oc;
         } catch (\Exception $exception) {
