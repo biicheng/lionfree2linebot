@@ -89,7 +89,10 @@ class DataSelectController extends Controller
         \Log::info(' --editD--');
         try{
             // $uodateData = DB::table('sql6401619.message')->where('u_text','=',$u_text)->update('oc','=',0);
-            $uodateData = DB::update('update message set oc=? where u_text=?', [$oc, '"'.$u_text.'"']);
+            // $uodateData = DB::update('update message set oc=? where u_text=?', [$oc, '"'.$u_text.'"']);
+            $sql = 'UPDATE sql6401619.message SET oc='.$oc.' WHERE u_text="'.$u_text.'"';
+            $query = $this->pdoConn->query($sql);
+            $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             \Log::info(' --$this->seleDeditD--');
             return $this->seleD();
         } catch (\Exception $exception){
