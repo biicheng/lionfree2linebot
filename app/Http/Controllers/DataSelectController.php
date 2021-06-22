@@ -66,11 +66,13 @@ class DataSelectController extends Controller
                 $sql = 'UPDATE sql6401619.message SET oc=1 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+                $this->pdoConn = null;
             }
             else{
                 $sql = 'UPDATE sql6401619.message SET oc=0 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+                $this->pdoConn = null;
             }
         }
         return $this->seleD();
@@ -81,6 +83,7 @@ class DataSelectController extends Controller
         $query = $this->pdoConn->query($sql);
         $messages = $query->fetchAll(PDO::FETCH_ASSOC);
         $messageRow = $query->rowCount();//取得資料筆數
+        $this->pdoConn = null;
         \Log::info('messageRow: '.json_encode($messages));
         return view('select', [
                     'messageRow'=>$messageRow,
@@ -93,6 +96,7 @@ class DataSelectController extends Controller
             $sql = 'UPDATE sql6401619.message SET oc='.$oc.' WHERE u_text="'.$u_text.'"';
             $query = $this->pdoConn->query($sql);
             $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+            $this->pdoConn = null;
             \Log::info(' --$this->seleDeditD--');
             return $this->seleD();
         } catch (\Exception $exception){
