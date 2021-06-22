@@ -353,8 +353,8 @@ class LineBotT extends Controller
             // }
             // return $ttt;
 
-            $u_text = 'tw';
-            $oc = 0;
+            // $u_text = 'tw';
+            // $oc = 0;
             // $sqls = DB::table('sql6401619.message')->where('u_text','=',$u_text)->get();
             // if($sqls[0]->oc==0){
             //     $oc = 1;
@@ -365,8 +365,8 @@ class LineBotT extends Controller
             // $uodateData = DB::table('sql6401619.message')->where('u_text','=',$u_text)->update('oc','=',0);
             // $uodateData = DB::update('update sql6401619.message set oc=? where u_text=?', [$oc, '"'.$u_text.'"']);
             DB::table('sql6401619.message')->where('u_text','tw')->update(array('oc' => 0));  
-            $sqlss = DB::table('sql6401619.message')->where('u_text','=',$u_text)->get();
-            return '+++'.$sqlss[0]->oc;
+            // $sqlss = DB::table('sql6401619.message')->where('u_text','=',$u_text)->get();
+            return '+++';
         } catch (\Exception $exception) {
             dd($exception->getMessage());//注意不要輸出這個
         }
