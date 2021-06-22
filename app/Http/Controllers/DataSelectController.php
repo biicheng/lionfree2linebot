@@ -87,9 +87,13 @@ class DataSelectController extends Controller
     public function editD($u_texxt, $oc)
     {
         \Log::info(' --editD--');
-        $uodateData = DB::table('sql6401619.message')->where('u_texxt','=',$u_texxt)->update('oc','=',0);
-        // DB::update('update message set oc=? where u_texxt=?', [$oc, '"'.$u_texxt.'"']);
-        \Log::info(' --$this->seleDeditD--');
-        return $this->seleD();
+        try{
+            $uodateData = DB::table('sql6401619.message')->where('u_texxt','=',$u_texxt)->update('oc','=',0);
+            // DB::update('update message set oc=? where u_texxt=?', [$oc, '"'.$u_texxt.'"']);
+            \Log::info(' --$this->seleDeditD--');
+            return $this->seleD();
+        } catch (\Exception $exception){
+            dd($exception->getMessage());//注意不要輸出這個
+        }
     }
 }
