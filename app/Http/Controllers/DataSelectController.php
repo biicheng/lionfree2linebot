@@ -31,7 +31,7 @@ class DataSelectController extends Controller
         }
         else{
             try{
-                $sql = DB::table('sql6401619.message')->where('u_text', '=',$message_text)->get();
+                $sql = DB::table('sql6401619.message')->where('u_text', '=',$u_texxt)->get();
                 if(!empty($sql[0])){
                     \Log::info(' --db: '.json_encode($sql).'---');
                     if($sql[0]->oc==0){
