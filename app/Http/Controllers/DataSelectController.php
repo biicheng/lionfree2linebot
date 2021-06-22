@@ -89,7 +89,7 @@ class DataSelectController extends Controller
         \Log::info(' --editD--');
         try{
             // $uodateData = DB::table('sql6401619.message')->where('u_text','=',$u_text)->update('oc','=',0);
-            DB::update('update message set oc=? where u_text=?', [$oc, '"'.$u_text.'"']);
+            $uodateData = DB::update('update message set oc=? where u_text=?', [$oc, '"'.$u_text.'"']);
             \Log::info(' --$this->seleDeditD--');
             return $this->seleD();
         } catch (\Exception $exception){
