@@ -28,7 +28,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dbt', 'LineBotT@dbT')->name('dbt');
 
 
-Route::get('/select', 'DataSelectController@index')->name('select');
+Route::get('/select', 'DataSelectController@index');
 Route::post('/select', 'DataSelectController@editData')->name('select');
 Route::get('/insert', 'DataInsertController@index')->name('insert');
 Route::post('/insert', 'DataInsertController@insertD')->name('insert');
