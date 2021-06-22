@@ -76,7 +76,7 @@ class DataSelectController extends Controller
         return $this->seleD();
     }
     public function seleD()
-    {\Log::info(' --seleD--');
+    {
         $sql = "SELECT * FROM sql6401619.message WHERE 1";
         $query = $this->pdoConn->query($sql);
         $messages = $query->fetchAll(PDO::FETCH_ASSOC);
