@@ -343,6 +343,7 @@ class LineBotT extends Controller
         $u_text = 'tw';
         $oc = 0;
         $sqls = DB::table('sql6401619.message')->where('u_text','=',$u_text)->get();
+        \Log::info(' --$sqls->oc= '.$sqls[0]->oc);
         if($sqls[0]->oc==0){
             $oc = 1;
             \Log::info(' --oc=1--');
