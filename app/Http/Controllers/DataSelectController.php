@@ -51,13 +51,14 @@ class DataSelectController extends Controller
                 $sql = 'UPDATE sql6401619.message SET oc=1 WHERE u_text="'.$u_texxt.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $this->seleD();
             }
             else{
                 $sql = 'UPDATE sql6401619.message SET oc=0 WHERE u_text="'.$u_texxt.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $this->seleD();
             }
-            return $this->seleD();
         }
     }
 }
