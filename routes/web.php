@@ -29,7 +29,6 @@ Route::get('/dbt', 'LineBotT@dbT')->name('dbt');
 
 
 Route::get('/select', 'DataSelectController@index')->name('select');
-Route::post('/select', 'DataSelectController@editData')->name('select');
 Route::get('/insert', 'DataInsertController@index')->name('insert');
 Route::post('/insert', 'DataInsertController@insertD')->name('insert');
 Route::get('/update/{utext?}', 'DataUpdateController@index');
