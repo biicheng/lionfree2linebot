@@ -86,7 +86,7 @@ class DataSelectController extends Controller
     }
     public function editD($u_texxt, $oc)
     {
-        DB::update('update sql6401619.message set oc=? where u_texxt=?', [$oc, '"'.$u_texxt.'"']);
+        DB::update('update message set oc=? where u_texxt=?', [$oc, '"'.$u_texxt.'"']);
         return $this->seleD();
     }
 }
