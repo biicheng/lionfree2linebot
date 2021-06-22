@@ -22,13 +22,22 @@ class DataSelectController extends Controller
         $this->pdoConn->query("SET NAMES utf8");
     }
     
-    public function index($u_texxt, $oc)
+    public function index($u_texxt='', $oc='')
     {
         if($u_texxt!='' && $oc!=''){
             return editD($u_texxt, $oc);
         }
         else{
-            return seleD();
+            $sql = "SELECT * FROM sql6401619.message WHERE 1";
+            $query = $this->pdoConn->query($sql);
+            $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+            $messageRow = $query->rowCount();//取得資料筆數
+            // \Log::info('messageRow: '.json_encode($messages));
+            return view('select', [
+                        'messageRow'=>$messageRow,
+                        'messageD'=>$messages,
+            ]);
+            // return seleD();
         }
     }
 
