@@ -22,7 +22,7 @@ class DataSelectController extends Controller
         $this->pdoConn->query("SET NAMES utf8");
     }
     
-    public function index($u_texxt='', $oc='')
+    public function index($u_texxt, $oc)
     {
         if($u_texxt!='' && $oc!=''){
             return editD($u_texxt, $oc);
