@@ -363,8 +363,9 @@ class LineBotT extends Controller
                 $oc = 0;
             }
             // $uodateData = DB::table('sql6401619.message')->where('u_text','=',$u_text)->update('oc','=',0);
-            $uodateData = DB::update('update message set oc=? where u_text=?', [$oc, '"'.$u_text.'"']);
-            return '+++';
+            $uodateData = DB::update('update sql6401619.message set oc=? where u_text=?', [$oc, '"'.$u_text.'"']);
+            $sqlss = DB::table('sql6401619.message')->where('u_text','=',$u_text)->get();
+            return '+++'.$sqlss[0]->oc;
         } catch (\Exception $exception) {
             dd($exception->getMessage());//注意不要輸出這個
         }
