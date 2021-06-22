@@ -346,27 +346,11 @@ class LineBotT extends Controller
             $ttt = null;
             // $posts=DB::table('sql6401619.message')->where('u_text', '=', "tw")->count();
             // return 'select date count: '.$posts.'筆';
-
-            // $posts=DB::table('sql6401619.message')->get();
-            // foreach($posts as $v){
-            //     $ttt .= $v->reType.'<br>';
-            // }
-            // return $ttt;
-
-            // $u_text = 'tw';
-            // $oc = 0;
-            // $sqls = DB::table('sql6401619.message')->where('u_text','=',$u_text)->get();
-            // if($sqls[0]->oc==0){
-            //     $oc = 1;
-            // }
-            // else{
-            //     $oc = 0;
-            // }
-            // $uodateData = DB::table('sql6401619.message')->where('u_text','=',$u_text)->update('oc','=',0);
-            // $uodateData = DB::update('update sql6401619.message set oc=? where u_text=?', [$oc, '"'.$u_text.'"']);
-            DB::table('sql6401619.message')->where('u_text','tw')->update(array('oc' => 0));  
-            // $sqlss = DB::table('sql6401619.message')->where('u_text','=',$u_text)->get();
-            return '+++';
+            $posts=DB::table('sql6401619.message')->get();
+            foreach($posts as $v){
+                $ttt .= $v->reType.'<br>';
+            }
+            return $ttt;
         } catch (\Exception $exception) {
             dd($exception->getMessage());//注意不要輸出這個
         }
