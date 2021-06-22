@@ -353,9 +353,9 @@ class LineBotT extends Controller
             // }
             // return $ttt;
 
-            $sqls = DB::table('sql6401619.message')->where($seleWhere)->get();
             $u_text = 'tw';
             $oc = 0;
+            $sqls = DB::table('sql6401619.message')->where('u_text','=',$u_text)->get();
             if($sqls[0]->oc==0){
                 $oc = 1;
             }
