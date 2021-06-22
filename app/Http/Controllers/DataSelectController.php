@@ -22,7 +22,17 @@ class DataSelectController extends Controller
         $this->pdoConn->query("SET NAMES utf8");
     }
     
-    public function index()
+    public function index($u_texxt='', $oc='')
+    {
+        if($u_texxt!='' && $oc!=''){
+            return editD($u_texxt, $oc);
+        }
+        else{
+            return seleD();
+        }
+    }
+
+    public function seleD()
     {
         $sql = "SELECT * FROM sql6401619.message WHERE 1";
         $query = $this->pdoConn->query($sql);
@@ -33,5 +43,21 @@ class DataSelectController extends Controller
                     'messageRow'=>$messageRow,
                     'messageD'=>$messages,
         ]);
+    }
+    public function editD($u_texxt, $oc)
+    {
+        if($this->pdoConn->errorCode()=='00000'){
+            if($data==0){
+                $sql = 'UPDATE sql6401619.message SET oc=1 WHERE u_text="'.$dataU.'"';
+                $query = $this->pdoConn->query($sql);
+                $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                $sql = 'UPDATE sql6401619.message SET oc=0 WHERE u_text="'.$dataU.'"';
+                $query = $this->pdoConn->query($sql);
+                $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+            }
+            return seleD();
+        }
     }
 }

@@ -28,7 +28,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dbt', 'LineBotT@dbT')->name('dbt');
 
 
-Route::get('/select', 'DataSelectController@index')->name('select');
+Route::get('/select/{u_text?}/{oc?}', 'DataSelectController@index')->name('select');
 Route::get('/insert', 'DataInsertController@index')->name('insert');
 Route::post('/insert', 'DataInsertController@insertD')->name('insert');
 Route::get('/update/{utext?}', 'DataUpdateController@index');
