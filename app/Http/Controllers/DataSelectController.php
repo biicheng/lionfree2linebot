@@ -36,14 +36,16 @@ class DataSelectController extends Controller
                     \Log::info(' --db: '.json_encode($sql).'---');
                     if($sql[0]->oc==0){
                         \Log::info(' --oc=0--');
-                        $affected = DB::update('update sql6401619.message set u_texxt=? where oc=?', [$u_texxt, 1]);
-                        return $this->seleD();
+                        return $this->editD($u_texxt,1);
+                        // $affected = DB::update('update sql6401619.message set u_texxt=? where oc=?', [$u_texxt, 1]);
+                        // return $this->seleD();
                     }
                     else if($sql[0]->oc==1){
                         \Log::info(' --oc=1--');
+                        return $this->editD($u_texxt,0);
                         // DB::table('sql6401619.message')->where('u_texxt','=',$u_texxt)->update(array('oc' => 0));
-                        $affected = DB::update('update message set oc=? where u_texxt=?', [0, '"'.$u_texxt.'"']);
-                        return $this->seleD();
+                        // $affected = DB::update('update message set oc=? where u_texxt=?', [0, '"'.$u_texxt.'"']);
+                        // return $this->seleD();
                     }
                     else{
                         \Log::info(' --pc else--');
@@ -83,19 +85,7 @@ class DataSelectController extends Controller
     }
     public function editD($u_texxt, $oc)
     {
-        if($this->pdoConn->errorCode()=='00000'){
-            if($data==0){
-                $sql = 'UPDATE sql6401619.message SET oc=1 WHERE u_text="'.$u_texxt.'"';
-                $query = $this->pdoConn->query($sql);
-                $messages = $query->fetchAll(PDO::FETCH_ASSOC);
-                return $this->seleD();
-            }
-            else{
-                $sql = 'UPDATE sql6401619.message SET oc=0 WHERE u_text="'.$u_texxt.'"';
-                $query = $this->pdoConn->query($sql);
-                $messages = $query->fetchAll(PDO::FETCH_ASSOC);
-                return $this->seleD();
-            }
-        }
+        DB::update('update sql6401619.message set oc=? where u_texxt=?', [$oc, $u_texxt]);
+        return $this->seleD();
     }
 }

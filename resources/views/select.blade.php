@@ -29,7 +29,7 @@
                                         <img src="{{ asset('/img/edit_icon.png') }}" style="width:4.3vh;" />
                                     </a>
                                     @if($v['oc']==1)
-                                        <a href="select/{{$v['u_text']}}/{{$v['oc']}}">
+                                        <a href="select/{{$v['u_text']}}/{{$v['oc']}}" style="margin-left:3vh;">
                                             <img src="{{ asset('/img/close_icon.png') }}" style="width:4.3vh;" />
                                         </a>
                                         {{-- <form method="POST" action="{{ route('edit') }}" tyle="margin-left:2.5vh;">
@@ -41,7 +41,7 @@
                                             <input type="hidden" value={{ $v['u_text'] }} name="utext" id="utext" />
                                         </form> --}}
                                     @else
-                                        <a href="select/{{$v['u_text']}}/{{$v['oc']}}">
+                                        <a href="select/{{$v['u_text']}}/{{$v['oc']}}" style="margin-left:3vh;">
                                             <img src="{{ asset('/img/open_icon.png') }}" style="max-width:4.3vh;" />
                                         </a>
                                        {{-- <form method="POST" action="{{ route('edit') }}" tyle="margin-left:2.5vh;">
