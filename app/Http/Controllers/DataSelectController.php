@@ -58,6 +58,7 @@ class DataSelectController extends Controller
                 }
             } catch (\Exception $exception){
                 \Log::info(' --catch--');
+                dd($exception->getMessage());//注意不要輸出這個
             }
             // if($oc==1){
             //     $affected = DB::update('update sql6401619.message set u_texxt=? where oc=?', [$u_texxt, 1]);
