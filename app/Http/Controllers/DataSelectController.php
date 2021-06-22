@@ -24,7 +24,7 @@ class DataSelectController extends Controller
     
     public function index()
     {
-        return $this->seleD();
+        return $this->seleD(); 
         // if($u_texxt=='' && $oc==''){
         //     return $this->seleD();
         // }
