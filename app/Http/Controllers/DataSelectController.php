@@ -56,14 +56,14 @@ class DataSelectController extends Controller
             } catch (\Exception $exception){
                 \Log::info(' --catch--');
             }
-            if($oc==1){
-                $affected = DB::update('update sql6401619.message set u_texxt=? where oc=?', [$u_texxt, 1]);
-                return $this->seleD();
-            }
-            else{
-                $affected = DB::update('update sql6401619.message set u_texxt=? where oc=?', [$u_texxt, 1]);
-                return $this->seleD();
-            }
+            // if($oc==1){
+            //     $affected = DB::update('update sql6401619.message set u_texxt=? where oc=?', [$u_texxt, 1]);
+            //     return $this->seleD();
+            // }
+            // else{
+            //     $affected = DB::update('update sql6401619.message set u_texxt=? where oc=?', [$u_texxt, 1]);
+            //     return $this->seleD();
+            // }
             //return $this->editD($u_texxt, $oc);
         }
     }
