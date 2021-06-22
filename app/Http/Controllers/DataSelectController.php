@@ -64,17 +64,17 @@ class DataSelectController extends Controller
         if($this->pdoConn->errorCode()=='00000'){
             if($data==0){
                 \Log::info(' --oc=0--');
-                DB::table('sql6401619.message')->where('u_text',$dataU)->update(array('oc' => 1));  
-                // $sql = 'UPDATE sql6401619.message SET oc=1 WHERE u_text="'.$dataU.'"';
-                // $query = $this->pdoConn->query($sql);
-                // $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+                // DB::table('sql6401619.message')->where('u_text',$dataU)->update(array('oc' => 1));  
+                $sql = 'UPDATE sql6401619.message SET oc=1 WHERE u_text="'.$dataU.'"';
+                $query = $this->pdoConn->query($sql);
+                $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             }
             else{
                 \Log::info(' --oc=1--');
-                DB::table('sql6401619.message')->where('u_text',$dataU)->update(array('oc' => 0));  
-                // $sql = 'UPDATE sql6401619.message SET oc=0 WHERE u_text="'.$dataU.'"';
-                // $query = $this->pdoConn->query($sql);
-                // $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+                // DB::table('sql6401619.message')->where('u_text',$dataU)->update(array('oc' => 0));  
+                $sql = 'UPDATE sql6401619.message SET oc=0 WHERE u_text="'.$dataU.'"';
+                $query = $this->pdoConn->query($sql);
+                $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             }
         }
         return $this->seleD();
