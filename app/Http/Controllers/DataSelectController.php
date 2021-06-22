@@ -84,12 +84,12 @@ class DataSelectController extends Controller
                     'messageD'=>$messages,
         ]);
     }
-    public function editD($u_texxt, $oc)
+    public function editD($u_text, $oc)
     {
         \Log::info(' --editD--');
         try{
-            $uodateData = DB::table('sql6401619.message')->where('u_text','=',$u_text)->update('oc','=',0);
-            // DB::update('update message set oc=? where u_texxt=?', [$oc, '"'.$u_texxt.'"']);
+            // $uodateData = DB::table('sql6401619.message')->where('u_text','=',$u_text)->update('oc','=',0);
+            DB::update('update message set oc=? where u_text=?', [$oc, '"'.$u_text.'"']);
             \Log::info(' --$this->seleDeditD--');
             return $this->seleD();
         } catch (\Exception $exception){
