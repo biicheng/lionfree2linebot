@@ -346,11 +346,25 @@ class LineBotT extends Controller
             $ttt = null;
             // $posts=DB::table('sql6401619.message')->where('u_text', '=', "tw")->count();
             // return 'select date count: '.$posts.'筆';
-            $posts=DB::table('sql6401619.message')->get();
-            foreach($posts as $v){
-                $ttt .= $v->reType.'<br>';
+
+            // $posts=DB::table('sql6401619.message')->get();
+            // foreach($posts as $v){
+            //     $ttt .= $v->reType.'<br>';
+            // }
+            // return $ttt;
+
+            $sqls = DB::table('sql6401619.message')->where($seleWhere)->get();
+            $u_text = 'tw';
+            $oc = 0;
+            if($sqls[0]->oc==0){
+                $oc = 1;
             }
-            return $ttt;
+            else{
+                $oc = 0;
+            }
+            // $uodateData = DB::table('sql6401619.message')->where('u_text','=',$u_text)->update('oc','=',0);
+            $uodateData = DB::update('update message set oc=? where u_text=?', [$oc, '"'.$u_text.'"']);
+            return '+++';
         } catch (\Exception $exception) {
             dd($exception->getMessage());//注意不要輸出這個
         }

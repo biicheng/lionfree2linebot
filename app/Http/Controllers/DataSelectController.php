@@ -18,8 +18,6 @@ class DataSelectController extends Controller
     {
         $this->middleware('auth');
 
-        // $dsn = 'mysql:host=host=sql6.freemysqlhosting.net;port:3360;dbname:sql6401619;';
-        // $this->pdoConn = new PDO($dsn, 'sql6401619', 'QkKBd19xbL');
         $this->pdoConn = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
         $this->pdoConn->query("SET NAMES utf8");
     }
@@ -75,14 +73,10 @@ class DataSelectController extends Controller
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             }
         }
-        
-        // \Log::info('editD: ');
-        // \Log::info('messageRow: '.$data);
-        // return view('update');
         return $this->seleD();
     }
     public function seleD()
-    {\Log::info(' --seleD--');
+    {
         $sql = "SELECT * FROM sql6401619.message WHERE 1";
         $query = $this->pdoConn->query($sql);
         $messages = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -95,10 +89,7 @@ class DataSelectController extends Controller
     }
     public function editD($u_text, $oc)
     {
-        \Log::info(' --editD--');
         try{
-            // $uodateData = DB::table('sql6401619.message')->where('u_text','=',$u_text)->update('oc','=',0);
-            // $uodateData = DB::update('update message set oc=? where u_text=?', [$oc, '"'.$u_text.'"']);
             $sql = 'UPDATE sql6401619.message SET oc='.$oc.' WHERE u_text="'.$u_text.'"';
             $query = $this->pdoConn->query($sql);
             $messages = $query->fetchAll(PDO::FETCH_ASSOC);
