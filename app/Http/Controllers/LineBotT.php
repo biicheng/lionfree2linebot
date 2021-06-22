@@ -50,7 +50,7 @@ class LineBotT extends Controller
                 $seleWhere = [['u_text', '=',$message_text],['oc','=',1]];
                 $sql = DB::table('sql6401619.message')->where($seleWhere)->get();
                 if(!empty($sql[0])){
-                    \Log::info(' --db: '.json_encode($sql).'---');
+                    // \Log::info(' --db: '.json_encode($sql).'---');
                     if($sql[0]->reType=='text'){
                         $txt = $this->pushText($sql[0]->re_text, $replyToken);
                     } 
