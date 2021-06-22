@@ -24,11 +24,45 @@ class DataSelectController extends Controller
     
     public function index($u_texxt='', $oc='')
     {
-        if($u_texxt!='' && $oc!=''){
-            return $this->editD($u_texxt, $oc);
+        if($u_texxt=='' && $oc==''){
+            return $this->seleD();
         }
         else{
-            return $this->seleD();
+            try{
+                $sql = DB::table('sql6401619.message')->where('u_text', '=',$message_text)->get();
+                if(!empty($sql[0])){
+                    \Log::info(' --db: '.json_encode($sql).'---');
+                    if($sql[0]->oc==0){
+                        \Log::info(' --oc=0--');
+                        $affected = DB::update('update sql6401619.message set u_texxt=? where oc=?', [$u_texxt, 1]);
+                        return $this->seleD();
+                    }
+                    else if($sql[0]->oc==1){
+                        \Log::info(' --oc=1--');
+                        $affected = DB::update('update sql6401619.message set u_texxt=? where oc=?', [$u_texxt, 0]);
+                        return $this->seleD();
+                    }
+                    else{
+                        \Log::info(' --pc else--');
+                        return 'err.';
+                    }
+                }
+                else{
+                    \Log::info(' --else--');
+                    return 'data err.';
+                }
+            } catch (\Exception $exception){
+                \Log::info(' --catch--');
+            }
+            if($oc==1){
+                $affected = DB::update('update sql6401619.message set u_texxt=? where oc=?', [$u_texxt, 1]);
+                return $this->seleD();
+            }
+            else{
+                $affected = DB::update('update sql6401619.message set u_texxt=? where oc=?', [$u_texxt, 1]);
+                return $this->seleD();
+            }
+            //return $this->editD($u_texxt, $oc);
         }
     }
 
