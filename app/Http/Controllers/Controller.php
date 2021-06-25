@@ -34,10 +34,11 @@ class Controller extends BaseController
         $imgType = explode("/",$path->getClientMimeType());
         // $path = $request->file('imgs')->store('/', $days.'.'.$imgType[1]);
         $path = $request->file('imgs')->storeAs(
-            'https://mytpl6.herokuapp.com/storage/app', $days.'.'.$imgType[1]
+            '/', $days.'.'.$imgType[1]
         );
         \Log::info(' --path--'.$path.'--'.$days.'.'.$imgType[1]);
-        // File::copy('http://local/storage/app/'.$path, './img/'.$path);
+        File::copy(storage_path().'\\app\\'.$path, './img/'.$path);
+        // File::copy(storage_path().'\\app\\'.$path, './images/'.$path);
         // Storage::delete('./'.$path);
         return $path;
     }
