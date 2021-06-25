@@ -26,6 +26,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/dbt', 'LineBotT@dbT')->name('dbt');
+Route::get('/fileText', function(){
+    return view('fileText',[
+        'postT'=>false
+    ]);
+});
+Route::post('/fileText', 'Controller@fileText')->name('fileText');
 
 
 Route::get('/select', 'DataSelectController@index')->name('select');

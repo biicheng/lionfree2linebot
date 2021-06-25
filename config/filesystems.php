@@ -46,6 +46,16 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
+            'permissions' => [
+                'file' => [
+                    'public' => 0664,
+                    'private' => 0600,
+                ],
+                'dir' => [
+                    'public' => 0775,
+                    'private' => 0700,
+                ],
+            ],
         ],
 
         'public' => [
@@ -64,6 +74,13 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
+        
+        // 'document_uploads' => [
+        //     'driver' => 'local',
+        //     'root' => public_path('uploads/clients_documents'),
+        //     'visibility' => 'public',
+        //     'url' => env('APP_URL').'/pblic/img/',
+        // ],
 
     ],
 
