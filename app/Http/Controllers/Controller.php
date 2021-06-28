@@ -36,9 +36,9 @@ class Controller extends BaseController
         $path = $request->file('imgs')->storeAs(
             '/app/storage/app', $days.'.'.$imgType[1]
         );
-        \Log::info(' --path--'.$path.'--'.$days.'.'.$imgType[1]);//./img/LineBot_Img
+        // \Log::info(' --path--'.$path.'--'.$days.'.'.$imgType[1]);//./img/LineBot_Img
         // File::copy('/app/storage/app/'.$path, './img/LineBot_Img'.$path);
-        File::copy($path, './images/'.$path);
+        File::copy('/'.$path, './img/'.$path);
         // Storage::delete('./'.$path);
         return $path;
     }
