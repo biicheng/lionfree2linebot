@@ -36,10 +36,10 @@ class Controller extends BaseController
         $path = $request->file('imgs')->storeAs(
             '/', $days.'.'.$imgType[1]
         );
-        \Log::info(' --path--'.$path.'--'.$days.'.'.$imgType[1]);//./img/LineBot_Img
-        File::copy(storage_path().'\\app\\'.$path, './img/LineBot_Img'.$path);
-        // File::copy(storage_path().'\\app\\'.$path, './images/'.$path);
-        Storage::delete('./'.$path);
+        \Log::info(' --path--'.$path.'--'.$days.'.'.$imgType[1]);
+        File::copy(storage_path().'/app/'.$path, './img/'.$path);
+        // File::copy(storage_path().'\\app\\'.$path, './img/'.$path);
+        // Storage::delete('./'.$path);
         return $path;
     }
 }
