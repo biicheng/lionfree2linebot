@@ -32,13 +32,12 @@ class Controller extends BaseController
         $days = date("YmdHis");
         $path = $request->file('imgs');
         $imgType = explode("/",$path->getClientMimeType());
-        // $path = $request->file('imgs')->store('/', $days.'.'.$imgType[1]);
-        $path = $request->file('imgs')->storeAs(
-            '/', $days.'.'.$imgType[1]
-        );
-        \Log::info(' --path--'.$path.'--'.$days.'.'.$imgType[1]);
-        File::copy(storage_path().'/'.$path, './img/'.$path);
-        // File::copy(storage_path().'\\app\\'.$path, './img/'.$path);
+        $path = $request->file('imgs')->store('/', $days.'.'.$imgType[1]);
+        // $path = $request->file('imgs')->storeAs(
+        //     '/', $days.'.'.$imgType[1]
+        // );
+        // \Log::info(' --path--'.$path.'--'.$days.'.'.$imgType[1]);
+        // File::copy(storage_path().'\\app\\'.$path, './images/'.$path);
         // Storage::delete('./'.$path);
         return $path;
     }
