@@ -36,7 +36,7 @@ class Controller extends BaseController
         // $path = $request->file('imgs')->storeAs(
         //     '/', $days.'.'.$imgType[1]
         // );
-        $path = $request->file('imgs')->store('/');
+        $path = $request->file('imgs')->store('/public');
         // \Log::info(' --path--'.$path.'--'.$days.'.'.$imgType[1]);
         // File::copy(storage_path().'\\app\\'.$path, './images/'.$path);
         // Storage::delete('./'.$path);
