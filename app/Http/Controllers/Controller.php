@@ -37,7 +37,7 @@ class Controller extends BaseController
             '/', $days.'.'.$imgType[1]
         );
         \Log::info(' --path--'.$path.'--'.$days.'.'.$imgType[1]);//./img/LineBot_Img
-        File::copy('/app/storage/app/'.$path, '/img/LineBot_Img'.$path);
+        File::copy('/app/storage/app/'.$path, '/img/LineBot_Img/'.$path);
         // File::copy(storage_path().'\\app\\'.$path, './images/'.$path);
         Storage::delete('./'.$path);
         return $path;
