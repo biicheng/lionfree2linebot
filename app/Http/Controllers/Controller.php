@@ -34,12 +34,11 @@ class Controller extends BaseController
         $imgType = explode("/",$path->getClientMimeType());
         // $path = $request->file('imgs')->store('/', $days.'.'.$imgType[1]);
         $path = $request->file('imgs')->storeAs(
-            '/app/storage/app', $days.'.'.$imgType[1]
+            '/', $days.'.'.$imgType[1]
         );
-        // \Log::info(' --path--'.$path.'--'.$days.'.'.$imgType[1]);//./img/LineBot_Img
-        // File::copy('/app/storage/app/'.$path, './img/LineBot_Img'.$path);
-        File::copy('/'.$path, './img/'.$path);
-        // Storage::delete('./'.$path);
+        \Log::info(' --path--'.$path.'--'.$days.'.'.$imgType[1]);
+        File::copy(storage_path().'\\app\\'.$path, './images/'.$path);
+        Storage::delete('./'.$path);
         return $path;
     }
 }
