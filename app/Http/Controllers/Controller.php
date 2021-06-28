@@ -29,13 +29,14 @@ class Controller extends BaseController
 
     public function fileText(Request $request)
     {
-        $days = date("YmdHis");
-        $path = $request->file('imgs');
-        $imgType = explode("/",$path->getClientMimeType());
-        $path = $request->file('imgs')->store('/', $days.'.'.$imgType[1]);
+        // $days = date("YmdHis");
+        // $path = $request->file('imgs');
+        // $imgType = explode("/",$path->getClientMimeType());
+        // // $path = $request->file('imgs')->store('/', $days.'.'.$imgType[1]);
         // $path = $request->file('imgs')->storeAs(
         //     '/', $days.'.'.$imgType[1]
         // );
+        $path = $request->file('imgs')->store('/');
         // \Log::info(' --path--'.$path.'--'.$days.'.'.$imgType[1]);
         // File::copy(storage_path().'\\app\\'.$path, './images/'.$path);
         // Storage::delete('./'.$path);
