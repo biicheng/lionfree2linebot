@@ -24,9 +24,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="Utxt" class="col-md-4 col-form-label text-md-right">使用者訊息</label>
+                            <label for="Utxt" class="col-md-4 col-form-label text-md-right">回覆圖片</label>
                             <div class="col-md-6">
-                                <input id="imgs" type="file" class="form-control" name="imgs" value="">
+                                <input id="imgs" type="file" class="form-control" name="imgs" value="" accept="image/jpeg, image/png">
                             </div>
                         </div>
                         <div class="form-group row">
