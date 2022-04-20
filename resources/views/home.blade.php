@@ -3,28 +3,35 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             {{-- <div class="card"> --}}
-                <a href="{{route('select')}}" style="text-decoration:none;">
-                    <div class="alert alert-success" style="border:1px #A9A9A9 solid;">
-                        查詢關鍵詞語.
-                    </div>
-                </a>
-                <a href="{{route('insert')}}" style="text-decoration:none;">
-                    <div class="alert alert-primary" style="margin-top:5%;border:1px #A9A9A9 solid;">
-                        新增關鍵詞語.
-                    </div>
-                </a>
-                <a href="{{route('update')}}" style="text-decoration:none;">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <a href="{{route('select')}}" style="text-decoration:none;">
+                        <div class="alert alert-success" style="border:1px #A9A9A9 solid;margin-top:5vh;height:10vh;line-height:6vh;font-size:3vh;">
+                            關鍵詞語列表.
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-5">
+                    <a href="{{route('insert')}}" style="text-decoration:none;">
+                        <div class="alert alert-primary" style="border:1px #A9A9A9 solid;margin-top:5vh;height:10vh;line-height:6vh;font-size:3vh;">
+                            <img src="{{asset('/img/add_icon.png')}}" style="width:7vh;" />
+                            新增關鍵詞語.
+                        </div>
+                    </a>
+                </div>
+            </div>
+                {{-- <a href="{{route('update')}}" style="text-decoration:none;">
                     <div class="alert alert-warning" style="margin-top:5%;border:1px #A9A9A9 solid;">
                         更新關鍵詞語.
                     </div>
-                </a>
-                <a href="{{route('delet')}}" style="text-decoration:none;">
+                </a> --}}
+                {{-- <a href="{{route('delet')}}" style="text-decoration:none;">
                     <div class="alert alert-danger" style="margin-top:5%;border:1px #A9A9A9 solid;">
                         刪除關鍵詞語.
                     </div>
-                </a>
+                </a> --}}
 
                 {{-- <div class="card-body"> --}}
                     @if (session('status'))

@@ -8,7 +8,7 @@
                 <div class="card-header">Select bland</div>
 
                 <div class="card-body">
-                    @if($messageRow>0)
+                    @if(count($messageD)>0)
                         @foreach($messageD as $v)
                             <div class="row" style="font-size:120%;margin-top:5%;">
                                 <div class="col-md-7">
@@ -29,10 +29,7 @@
                                         <img src="{{ asset('/img/edit_icon.png') }}" style="width:4.3vh;" />
                                     </a>
                                     @if($v['oc']==1)
-                                        {{-- <a href="select/{{$v['u_text']}}/{{$v['oc']}}" style="margin-left:3vh;">
-                                            <img src="{{ asset('/img/close_icon.png') }}" style="width:4.3vh;" />
-                                        </a> --}}
-                                        <form method="POST" action="{{ route('select') }}" tyle="margin-left:2.5vh;">
+                                        <form method="POST" action="{{ route('edit') }}" style="margin-left:2.5vh;">
                                             @csrf
                                             <button type="submit" style="border:none;background:#0000;">
                                             <img src="{{ asset('/img/close_icon.png') }}" style="width:4.3vh;" />
@@ -41,10 +38,7 @@
                                             <input type="hidden" value={{ $v['u_text'] }} name="utext" id="utext" />
                                         </form>
                                     @else
-                                        {{-- <a href="select/{{$v['u_text']}}/{{$v['oc']}}" style="margin-left:3vh;">
-                                            <img src="{{ asset('/img/open_icon.png') }}" style="max-width:4.3vh;" />
-                                        </a> --}}
-                                       <form method="POST" action="{{ route('select') }}" tyle="margin-left:2.5vh;">
+                                       <form method="POST" action="{{ route('edit') }}" style="margin-left:2.5vh;">
                                            @csrf
                                            <button type="submit" style="border:none;background:#0000;">
                                            <img src="{{ asset('/img/open_icon.png') }}" style="max-width:4.3vh;" />

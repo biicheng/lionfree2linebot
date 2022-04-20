@@ -14,7 +14,7 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/infoGet', 'Controller@infoD');
 
@@ -35,11 +35,20 @@ Route::post('/fileText', 'Controller@fileText')->name('fileText');
 
 
 Route::get('/select', 'DataSelectController@index')->name('select');
-Route::post('/select', 'DataSelectController@editData')->name('select');
 Route::get('/insert', 'DataInsertController@index')->name('insert');
 Route::post('/insert', 'DataInsertController@insertD')->name('insert');
 Route::get('/update/{utext?}', 'DataUpdateController@index');
 Route::post('/update', 'DataUpdateController@updateD')->name('update');
 Route::post('/edit', 'DataUpdateController@editD')->name('edit');
 Route::get('/delet', 'DataDeletController@index')->name('delet');
+
+
+// Route::get('/select', 'DataSelectController@index')->name('select');
+// Route::post('/select', 'DataSelectController@editData')->name('select');
+// Route::get('/insert', 'DataInsertController@index')->name('insert');
+// Route::post('/insert', 'DataInsertController@insertD')->name('insert');
+// Route::get('/update/{utext?}', 'DataUpdateController@index');
+// Route::post('/update', 'DataUpdateController@updateD')->name('update');
+// Route::post('/edit', 'DataUpdateController@editD')->name('edit');
+// Route::get('/delet', 'DataDeletController@index')->name('delet');
 

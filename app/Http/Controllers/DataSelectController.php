@@ -62,6 +62,7 @@ class DataSelectController extends Controller
         $data = $editD->input('oc');
         $dataU = $editD->input('utext');
         if($this->pdoConn->errorCode()=='00000'){
+            \Log::info('00000');
             if($data==0){
                 $sql = 'UPDATE sql6401619.message SET oc=1 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
@@ -69,6 +70,7 @@ class DataSelectController extends Controller
                 $this->pdoConn = null;
             }
             else{
+                \Log::info('Err');
                 $sql = 'UPDATE sql6401619.message SET oc=0 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -79,16 +81,22 @@ class DataSelectController extends Controller
     }
     public function seleD()
     {
-        $sql = "SELECT * FROM sql6401619.message WHERE 1";
-        $query = $this->pdoConn->query($sql);
-        $messages = $query->fetchAll(PDO::FETCH_ASSOC);
-        $messageRow = $query->rowCount();//取得資料筆數
-        $this->pdoConn = null;
-        \Log::info('messageRow: '.json_encode($messages));
-        return view('select', [
-                    'messageRow'=>$messageRow,
-                    'messageD'=>$messages,
-        ]);
+        if($this->pdoConn->errorCode()=='00000'){
+            $sql = "SELECT * FROM sql6401619.message WHERE 1";
+            $query = $this->pdoConn->query($sql);
+            $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+            $messageRow = $query->rowCount();//取得資料筆數
+            $this->pdoConn = null;
+            // \Log::info('messageRow: '.json_encode($messages));
+            return  view('select', [
+                        'messageRow'=>$messageRow,
+                        'messageD'=>$messages,
+            ]);
+            //redirect('/select');
+        }
+        else{
+            return view('databeseErr');
+        }
     }
     public function editD($u_text, $oc)
     {
