@@ -22,7 +22,7 @@ class LineBotT extends Controller
 {
     public function __construct()
     {
-        $this->pdoConn = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
+        $this->pdoConn = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
         $this->pdoConn->query("SET NAMES utf8");
     }
 
