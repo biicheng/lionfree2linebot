@@ -27,7 +27,7 @@ class LineBotT extends Controller
     }
 
     private $sender;
-    public function postTest(Request $cc){
+    public function postTests(Request $cc){
         $dates = date("Y-m-d H:i:s");
         if((!empty($cc->input('events')[0]['message']['text']))||
             ($cc->input('events')[0]['message']['type']=='text')){
@@ -117,7 +117,7 @@ class LineBotT extends Controller
         return 'hello.';
     }
     
-    public function postTests(Request $cc){\Log::info(' --bot');
+    public function postTest(Request $cc){\Log::info(' --bot');
         $dates = date("Y-m-d H:i:s");
         if((!empty($cc->input('events')[0]['message']['text']))||
             ($cc->input('events')[0]['message']['type']=='text')){
