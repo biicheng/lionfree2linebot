@@ -110,7 +110,7 @@ class LineBotT extends Controller
             }
         }
         else{
-            $txt = $this->pushImg('https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseS.jpg', $cc->input('events')[0]['replyToken']);
+            $txt = $this->pushImg('https://mytpl6.herokuapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://mytpl6.herokuapp.com/img/linebot_img/you-say-chineseS.jpg', $cc->input('events')[0]['replyToken']);
         }
         
         $this->lineUserData($cc->input('events')[0]['source']['userId']);
@@ -202,7 +202,7 @@ class LineBotT extends Controller
             
         }
         else{
-            $txt = $this->pushImg('https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://tkolifego.000webhostapp.com/img/linebot_img/you-say-chineseS.jpg', $cc->input('events')[0]['replyToken']);
+            $txt = $this->pushImg('https://mytpl6.herokuapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://mytpl6.herokuapp.com/img/linebot_img/you-say-chineseS.jpg', $cc->input('events')[0]['replyToken']);
             // $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
         }
         
