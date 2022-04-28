@@ -18,7 +18,7 @@ class DataUpdateController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->pdoConn = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
+        $this->pdoConn = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
         $this->pdoConn->query("SET NAMES utf8");
     }
     
@@ -30,8 +30,8 @@ class DataUpdateController extends Controller
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 $messageRow = $query->rowCount();//取得資料筆數
-                // $explodeStr = 'https://tkolifego.000webhostapp.com/img/linebot_img/';
-                $explodeStr = 'https://tkolifego.000webhostapp.com/img/linebot_img/';
+                // $explodeStr = 'https://mytpl6.herokuapp.com/img/linebot_img/';
+                $explodeStr = 'https://mytpl6.herokuapp.com/img/linebot_img/';
                 if(!empty($messages[0]['bImg'])){
                     // $bimg = explode($explodeStr, $messages[0]['bImg']);
                     // $bimg = $bimg[1];
@@ -71,12 +71,12 @@ class DataUpdateController extends Controller
         $dataU = $editD->input('utext');
         if($this->pdoConn->errorCode()=='00000'){
             if($data==0){
-                $sql = 'UPDATE sql6401619.message SET oc=1 WHERE u_text="'.$dataU.'"';
+                $sql = 'UPDATE sql4463017.message SET oc=1 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             }
             else{
-                $sql = 'UPDATE sql6401619.message SET oc=0 WHERE u_text="'.$dataU.'"';
+                $sql = 'UPDATE sql4463017.message SET oc=0 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             }
@@ -90,7 +90,7 @@ class DataUpdateController extends Controller
     public function updateD(Request $editD)
     {
         // try{} catch (\Exception $exception){}
-        $imgAddr = 'https://tkolifego.000webhostapp.com/img/linebot_img/';
+        $imgAddr = 'https://mytpl6.herokuapp.com/img/linebot_img/';
         $editD=$editD->input();
         if(empty($editD['re_txt'])){
             $re_txt = '';
@@ -110,7 +110,7 @@ class DataUpdateController extends Controller
         else{
             $sImg = $imgAddr.$editD['sImg'];
         }
-        $affected = DB::update('update sql6401619.message set re_text=?, reType=?,
+        $affected = DB::update('update sql4463017.message set re_text=?, reType=?,
                                                             bImg=?, sImg=? 
                                                             where u_text=?', 
                                                             [$re_txt, $editD['reType'],
