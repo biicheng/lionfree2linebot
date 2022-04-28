@@ -33,15 +33,17 @@ class DataUpdateController extends Controller
                 // $explodeStr = 'https://tkolifego.000webhostapp.com/img/linebot_img/';
                 $explodeStr = 'https://tkolifego.000webhostapp.com/img/linebot_img/';
                 if(!empty($messages[0]['bImg'])){
-                    $bimg = explode($explodeStr, $messages[0]['bImg']);
-                    $bimg = $bimg[1];
+                    // $bimg = explode($explodeStr, $messages[0]['bImg']);
+                    // $bimg = $bimg[1];
+                    $bimg = $messages[0]['bImg'];
                 }
                 else{
                     $bimg = $messages[0]['bImg'];
                 }
                 if(!empty($messages[0]['sImg'])){
-                    $simg = explode($explodeStr, $messages[0]['sImg']);
-                    $simg = $simg[1];
+                    // $simg = explode($explodeStr, $messages[0]['sImg']);
+                    // $simg = $simg[1];
+                    $simg = $messages[0]['sImg'];
                 }
                 else{
                     $simg = $messages[0]['sImg'];
