@@ -302,12 +302,12 @@ class LineBotT extends Controller
             #\Log::info(' --000db: '.$result);
             // return 'ok';*/
 
-            $connection = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
-			$uds = $connection->query('SELECT * FROM sql6401619.lineudata WHERE uid="'.$uId.'"');
+            $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
+			$uds = $connection->query('SELECT * FROM lineudata WHERE uid="'.$uId.'"');
 			$udss = $uds->fetch(PDO::FETCH_ASSOC);
             if(gettype($udss)=='array'){
                 \Log::info( $uId);
-                $connection = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
+                $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
                 $connection->query('set names utf8;');
                 $connection->query('update lineudata set 
                                             uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessega="'.
@@ -315,9 +315,9 @@ class LineBotT extends Controller
             }
             else{
                 \Log::info('no');
-                $connection = new PDO('mysql:host=sql6.freemysqlhosting.net;dbname=sql6401619;', 'sql6401619', 'QkKBd19xbL');
+                $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
                 $connection->query('set names utf8;');
-                $connection->exec('INSERT INTO sql6401619.lineudata VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessega.'","'.$dates.'","'.$dates.'")');
+                $connection->exec('INSERT INTO lineudata VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessega.'","'.$dates.'","'.$dates.'")');
             }
         }
     }
