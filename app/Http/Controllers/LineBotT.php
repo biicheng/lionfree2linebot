@@ -151,7 +151,7 @@ class LineBotT extends Controller
                     else if($messages[0]['reType']=='select'){
                         $txt = $this->pushText($message_text, $replyToken);
                     }
-                    else if($messages[0]['reType']=='img'){
+                    else if($messages[0]['reType']=='img'){Log::info("imgUrl".$messages[0]['bImg']);
                         $txt = $this->pushImg($messages[0]['bImg'], $messages[0]['sImg'], $replyToken);
                     }
                     else{
@@ -206,23 +206,38 @@ class LineBotT extends Controller
             $txt = $this->pushImg('https://mytpl6.herokuapp.com/img/linebot_img/you-say-chineseB.jpg', 'https://mytpl6.herokuapp.com/img/linebot_img/you-say-chineseS.jpg', $cc->input('events')[0]['replyToken']);
             // $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
         }
-        
-        $this->lineUserData($cc->input('events')[0]['source']['userId']);
+        // Log::info("uid:".$cc->input('events')[0]['source']['userId']);
+        // $this->lineUserData($cc->input('events')[0]['source']['userId']);
         return 'hello.';
     }
 
     public function pushImg($bImg, $sImg, $replyToken){
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
-        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
+        $httpClient = new CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
+        $bot = new LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
+        // $replyToken = $request['events'][0]['replyToken'];
+        
+        $imgUrl = 'https://3e8c-122-121-44-111.jp.ngrok.io/heroku_mytpl6/public';
+        // $imgUrl = 'https://https://mytpl6.herokuapp.com';
+        $image = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($bImg, $sImg);
+        // $image = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder(
+        //     'https://mytpl6.herokuapp.com/img/linebot_img/you-say-chineseB.jpg',
+        //     'https://mytpl6.herokuapp.com/img/linebot_img/you-say-chineseS.jpg'
+        // );
+        $bot->replyMessage($replyToken, $image);
 
-        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($bImg, $sImg);
-        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-        if ($response->isSucceeded()) {
-            \Log::info(' --bot_img: yes.');
-        }
-        else{
-            \Log::info(' --bot_img: no.');
-        }
+        // $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
+        // $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
+
+        // $imgUrl = 'https://3e8c-122-121-44-111.jp.ngrok.io/heroku_mytpl6/public';
+        // // $imgUrl = 'https://https://mytpl6.herokuapp.com';
+        // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($imgUrl.$bImg, $imgUrl.$sImg);
+        // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        // if ($response->isSucceeded()) {
+        //     \Log::info(' --bot_img: yes.');
+        // }
+        // else{
+        //     \Log::info(' --bot_img: no.');
+        // }
         return 'ok';
     }
     public function pushText($text, $replyToken){
@@ -305,7 +320,9 @@ class LineBotT extends Controller
             $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
 			$uds = $connection->query('SELECT * FROM lineudata WHERE uid="'.$uId.'"');
 			$udss = $uds->fetch(PDO::FETCH_ASSOC);
-            if(gettype($udss)=='array'){
+            // $udss = $uds->fetchAll(PDO::FETCH_ASSOC);
+            if(gettype($udss)>0){
+            // if(gettype($udss)=='array'){
                 \Log::info( $uId);
                 $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
                 $connection->query('set names utf8;');
