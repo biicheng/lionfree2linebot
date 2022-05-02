@@ -141,7 +141,7 @@ class LineBotT extends Controller
     
             /* sele遠方mysql */
             if($this->pdoConn->errorCode()=='00000'){
-                $sql = "SELECT * FROM botmessage WHERE u_text='".$message_text."'";
+                $sql = "SELECT * FROM botmessage WHERE u_text='".$message_text."'&&oc=1";
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 if(count($messages)>0){
