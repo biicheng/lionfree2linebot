@@ -25,7 +25,7 @@
                                 
                             @else
                                 <label>
-                                    <label style="color:#ffc400;">●{{'停用'}}</label>
+                                    <label style="color:#ffc400;">●</label>{{'停用'}}</label>
                                     <form method="POST" action="{{ route('edit') }}">
                                         @csrf
                                         <button type="submit" style="border:none;background:#0000;width:85%;height:85%;">
