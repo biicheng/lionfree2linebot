@@ -30,7 +30,7 @@ class DataSelectController extends Controller
         // }
         // else{
         //     try{
-        //         $sql = DB::table('sql4463017.botmessage')->where('u_text', '=',$u_texxt)->get();
+        //         $sql = DB::table('sql4463017.message')->where('u_text', '=',$u_texxt)->get();
         //         if(!empty($sql[0])){
         //             \Log::info(' --db: '.json_encode($sql).'---');
         //             if($sql[0]->oc==0){
@@ -64,14 +64,14 @@ class DataSelectController extends Controller
         if($this->pdoConn->errorCode()=='00000'){
             \Log::info('00000');
             if($data==0){
-                $sql = 'UPDATE sql4463017.botmessage SET oc=1 WHERE u_text="'.$dataU.'"';
+                $sql = 'UPDATE sql4463017.message SET oc=1 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 $this->pdoConn = null;
             }
             else{
                 \Log::info('Err');
-                $sql = 'UPDATE sql4463017.botmessage SET oc=0 WHERE u_text="'.$dataU.'"';
+                $sql = 'UPDATE sql4463017.message SET oc=0 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 $this->pdoConn = null;
@@ -82,7 +82,7 @@ class DataSelectController extends Controller
     public function seleD()
     {
         if($this->pdoConn->errorCode()=='00000'){
-            $sql = "SELECT * FROM sql4463017.botmessage WHERE 1";
+            $sql = "SELECT * FROM sql4463017.message WHERE 1";
             $query = $this->pdoConn->query($sql);
             $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             $messageRow = $query->rowCount();//取得資料筆數
@@ -101,7 +101,7 @@ class DataSelectController extends Controller
     public function editD($u_text, $oc)
     {
         try{
-            $sql = 'UPDATE sql4463017.botmessage SET oc='.$oc.' WHERE u_text="'.$u_text.'"';
+            $sql = 'UPDATE sql4463017.message SET oc='.$oc.' WHERE u_text="'.$u_text.'"';
             $query = $this->pdoConn->query($sql);
             $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             $this->pdoConn = null;
