@@ -71,12 +71,12 @@ class DataUpdateController extends Controller
         $dataU = $editD->input('utext');
         if($this->pdoConn->errorCode()=='00000'){
             if($data==0){
-                $sql = 'UPDATE sql4463017.botmessage SET oc=1 WHERE u_text="'.$dataU.'"';
+                $sql = 'UPDATE botmessage SET oc=1 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             }
             else{
-                $sql = 'UPDATE sql4463017.botmessage SET oc=0 WHERE u_text="'.$dataU.'"';
+                $sql = 'UPDATE botmessage SET oc=0 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             }
