@@ -26,7 +26,7 @@ class DataUpdateController extends Controller
     {
         if($utext!=''){
             if($this->pdoConn->errorCode()=='00000'){
-                $sql = "SELECT * FROM message WHERE u_text='".$utext."'";
+                $sql = "SELECT * FROM botmessage WHERE u_text='".$utext."'";
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 $messageRow = $query->rowCount();//取得資料筆數
@@ -71,12 +71,12 @@ class DataUpdateController extends Controller
         $dataU = $editD->input('utext');
         if($this->pdoConn->errorCode()=='00000'){
             if($data==0){
-                $sql = 'UPDATE sql4463017.message SET oc=1 WHERE u_text="'.$dataU.'"';
+                $sql = 'UPDATE sql4463017.botmessage SET oc=1 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             }
             else{
-                $sql = 'UPDATE sql4463017.message SET oc=0 WHERE u_text="'.$dataU.'"';
+                $sql = 'UPDATE sql4463017.botmessage SET oc=0 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             }
@@ -110,7 +110,7 @@ class DataUpdateController extends Controller
         else{
             $sImg = $imgAddr.$editD['sImg'];
         }
-        $affected = DB::update('update sql4463017.message set re_text=?, reType=?,
+        $affected = DB::update('update sql4463017.botmessage set re_text=?, reType=?,
                                                             bImg=?, sImg=? 
                                                             where u_text=?', 
                                                             [$re_txt, $editD['reType'],
