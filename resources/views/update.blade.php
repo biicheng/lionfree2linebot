@@ -29,7 +29,7 @@
                                     <form method="POST" action="{{ route('edit') }}">
                                         @csrf
                                         <button type="submit" style="border:none;background:#0000;width:85%;height:85%;">
-                                        <img src="{{ asset('/img/open_icon.png') }}" style="width:50%;" />
+                                        <img src="{{ asset('/img/open_icon.png') }}" style="width:25%;" />
                                         </button>
                                         <input type="hidden" value={{ $oc }} name="oc" id="oc" />
                                         <input type="hidden" value={{ $utext }} name="utext" id="utext" />
