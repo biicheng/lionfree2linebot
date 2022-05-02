@@ -30,7 +30,7 @@ class DataSelectController extends Controller
         // }
         // else{
         //     try{
-        //         $sql = DB::table('sql4463017.message')->where('u_text', '=',$u_texxt)->get();
+        //         $sql = DB::table('sql4463017.botmessage')->where('u_text', '=',$u_texxt)->get();
         //         if(!empty($sql[0])){
         //             \Log::info(' --db: '.json_encode($sql).'---');
         //             if($sql[0]->oc==0){
@@ -82,7 +82,7 @@ class DataSelectController extends Controller
     public function seleD()
     {
         if($this->pdoConn->errorCode()=='00000'){
-            $sql = "SELECT * FROM sql4463017.message WHERE 1";
+            $sql = "SELECT * FROM sql4463017.botmessage WHERE 1";
             $query = $this->pdoConn->query($sql);
             $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             $messageRow = $query->rowCount();//取得資料筆數
