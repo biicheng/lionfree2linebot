@@ -117,7 +117,7 @@ class LineBotT extends Controller
         return 'hello.';
     }
     
-    public function postTest(Request $cc){\Log::info(' --bot');
+    public function postTest(Request $cc){\Log::info('post --bot');
         $dates = date("Y-m-d H:i:s");
         if((!empty($cc->input('events')[0]['message']['text']))||
             ($cc->input('events')[0]['message']['type']=='text')){
@@ -141,7 +141,7 @@ class LineBotT extends Controller
     
             /* sele遠方mysql */
             if($this->pdoConn->errorCode()=='00000'){
-                $sql = "SELECT * FROM message WHERE u_text='".$message_text."'";
+                $sql = "SELECT * FROM botmessage WHERE u_text='".$message_text."'";
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 if(count($messages)>0){
@@ -207,7 +207,7 @@ class LineBotT extends Controller
             // $txt = $this->pushText('請輸入文字...', $cc->input('events')[0]['replyToken']);
         }
         // Log::info("uid:".$cc->input('events')[0]['source']['userId']);
-        // $this->lineUserData($cc->input('events')[0]['source']['userId']);
+        $this->lineUserData($cc->input('events')[0]['source']['userId']);
         return 'hello.';
     }
 
@@ -216,22 +216,14 @@ class LineBotT extends Controller
         $bot = new LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
         // $replyToken = $request['events'][0]['replyToken'];
         
-        $imgUrl = 'https://3e8c-122-121-44-111.jp.ngrok.io/heroku_mytpl6/public';
-        // $imgUrl = 'https://https://mytpl6.herokuapp.com';
+        // $imgUrl = 'https://3e8c-122-121-44-111.jp.ngrok.io/heroku_mytpl6/public';
+        // $imgUrl = 'https://mytpl6.herokuapp.com';
         $image = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($bImg, $sImg);
         // $image = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder(
         //     'https://mytpl6.herokuapp.com/img/linebot_img/you-say-chineseB.jpg',
         //     'https://mytpl6.herokuapp.com/img/linebot_img/you-say-chineseS.jpg'
         // );
         $bot->replyMessage($replyToken, $image);
-
-        // $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
-        // $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
-
-        // $imgUrl = 'https://3e8c-122-121-44-111.jp.ngrok.io/heroku_mytpl6/public';
-        // // $imgUrl = 'https://https://mytpl6.herokuapp.com';
-        // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($imgUrl.$bImg, $imgUrl.$sImg);
-        // $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         // if ($response->isSucceeded()) {
         //     \Log::info(' --bot_img: yes.');
         // }
@@ -300,7 +292,9 @@ class LineBotT extends Controller
             else{
                 $uTitleMessega = '---';
             }
-            
+            Log::info("uName:".$uName);
+            Log::info("uImgURL:".$uImgURL);
+            Log::info("uTitleMessega:".$uTitleMessega);
             /* curl 000webhost API */
             /*$conDB = curl_init();
             //curl_setopt可以設定curl參數
@@ -318,23 +312,32 @@ class LineBotT extends Controller
             // return 'ok';*/
 
             $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
-			$uds = $connection->query('SELECT * FROM lineudata WHERE uid="'.$uId.'"');
-			$udss = $uds->fetch(PDO::FETCH_ASSOC);
-            // $udss = $uds->fetchAll(PDO::FETCH_ASSOC);
-            if(gettype($udss)>0){
-            // if(gettype($udss)=='array'){
-                \Log::info( $uId);
-                $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
-                $connection->query('set names utf8;');
-                $connection->query('update lineudata set 
-                                            uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessega="'.
-                                            $uTitleMessega.'", updatetime="'.$dates.'" where uid = "'.$uId.'"');
+            $connection->query('set names utf8;');
+			$uds = $connection->query('SELECT * FROM botudata WHERE uid="'.$uId.'"');
+			// $uds = $this->pdoConn->query('SELECT * FROM botudata WHERE uid="'.$uId.'"');
+            // $udss = $uds->fetch(PDO::FETCH_ASSOC);
+            $udss = $uds->fetchAll(PDO::FETCH_ASSOC);
+            if(count($udss)>0){
+                \Log::info('yes');
+                // $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
+                // $connection->query('set names utf8;');
+                $connection->query('update botudata set 
+                                            uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessage="'.
+                                            $uTitleMessega.'" where uid = "'.$uId.'"');
             }
             else{
                 \Log::info('no');
-                $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
-                $connection->query('set names utf8;');
-                $connection->exec('INSERT INTO lineudata VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessega.'","'.$dates.'","'.$dates.'")');
+                // $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
+                // $connection->query('set names utf8;');
+                $connection->exec('INSERT INTO botudata (uid, uName, uImgURL, uTitleMessage, uindex) VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessega.'",0)');
+                // DB::table('botudata')->insert([
+                //     'uid'=>$uId,
+                //     'uName'=>$uName,
+                //     'uImgURL'=>$uImgURL,
+                //     'uTitleMessage'=>$uTitleMessega,
+                //     'uindex'=>0
+                // ]);
+                // $this->pdoConn->exec('INSERT INTO botudata VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessega.'")');
             }
         }
     }
