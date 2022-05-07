@@ -4,8 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage; //20220505 add
+//20220506 add
+// use Intervention\Image\ImageManagerStatic as Image;  
+use Intervention\Image\Facades\Image;
+use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests;
+use DB;
+use Auth;
+use App\User;
+use App\Photo;
+
 class DataInsertController extends Controller
 {
+    /**
+     * Update the avatar for the user.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
     /**
      * Create a new controller instance.
      *
@@ -25,19 +42,20 @@ class DataInsertController extends Controller
         ]);
     }
 
-    public function insertD(Request $Utxt)
+    public function insertD(Request $request)
     {
-        $Utxt = $Utxt->input();
-        // $reType = $Utxt->input('Utxt');
-        if(!empty($Utxt['Utxt']) && !empty($Utxt['reType'])){
-            \Log::info('Utxt: '.$Utxt['Utxt'].' -- reType: '.$Utxt['reType']);
-            // return view('insert',[
-            //     'postT'=>true,
-            // ]);
-            // redirect()->route
+        $request = $request->all();
+        if($request['reType']=='text' && $request['BotText']!=""){
             return view('insert',[
                 'alert'=>'success',
-                'alertT'=>'新增成功.',
+                'alertT'=>'新增文字回覆成功.',
+                'postT'=>true,
+            ]);
+        }
+        else if($request['reType']=='img' && $request['bImg']!="" && $request['sImg']!=""){
+            return view('insert',[
+                'alert'=>'success',
+                'alertT'=>'新增圖片回覆成功.',
                 'postT'=>true,
             ]);
         }
