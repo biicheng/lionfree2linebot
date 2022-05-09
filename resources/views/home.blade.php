@@ -9,7 +9,7 @@
                 <div class="col-md-5">
                     <a href="{{route('select')}}" style="text-decoration:none;">
                         <div class="alert alert-success" style="border:1px #A9A9A9 solid;margin-top:5vh;height:10vh;line-height:6vh;font-size:3vh;">
-                            關鍵詞語列表..
+                            關鍵詞語列表.
                         </div>
                     </a>
                 </div>
