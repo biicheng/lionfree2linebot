@@ -87,7 +87,6 @@ class DataInsertController extends Controller
         \Log::info("...".Storage::exists(storage_path('app\\'.$bImgNewName[1])));
         // echo storage_path('app\public\\').$bImgNewName[1];
         if($request->input('reType')=='text' && $request->input('BotText')!=""){
-            echo $bImgName;
             return view('insert',[
                 'alert'=>'success',
                 'alertT'=>'新增成功.',
