@@ -68,7 +68,7 @@ class DataInsertController extends Controller
         // $request = $request->input();
         // $request = $request->all();
 
-        $bImgName = Storage::disk('public')->put('images/'.$request->input('bImg'), $request->file('bImg'), 'public');
+        $bImgName = Storage::disk('public')->put('img/'.$request->input('bImg'), $request->file('bImg'), 'public');
         // Storage::putFileAs('photos', new File(), $request->file('bImg'));
         // $bImgNewName = explode('//', $bImgName);
         $bImgNewName = mb_split('//', $bImgName);
@@ -87,11 +87,12 @@ class DataInsertController extends Controller
         \Log::info("...".Storage::exists(storage_path('app\\'.$bImgNewName[1])));
         // echo storage_path('app\public\\').$bImgNewName[1];
         if($request->input('reType')=='text' && $request->input('BotText')!=""){
-            return view('insert',[
-                'alert'=>'success',
-                'alertT'=>'新增成功.',
-                'postT'=>true,
-            ]);
+            echo $bImgName;
+            // return view('insert',[
+            //     'alert'=>'success',
+            //     'alertT'=>'新增成功.',
+            //     'postT'=>true,
+            // ]);
         }
         else if($request['reType']=='img' && $request['bImg']!="" && $request['sImg']!=""){
             return view('insert',[
