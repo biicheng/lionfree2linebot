@@ -21,8 +21,8 @@
                         </div>
                     </a>
                 </div>
+                <img src="{{ url('storage/app/public/GJ4Tm6j7VbDImdAGxAXd9qJOQLoTyO5nGVTekfDf.png') }}" alt="" title="" />
             </div>
-            <img src="{{ url('storage/app/public/GJ4Tm6j7VbDImdAGxAXd9qJOQLoTyO5nGVTekfDf.png') }}" alt="" title="" />
                 {{-- <a href="{{route('update')}}" style="text-decoration:none;">
                     <div class="alert alert-warning" style="margin-top:5%;border:1px #A9A9A9 solid;">
                         更新關鍵詞語.
