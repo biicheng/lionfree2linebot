@@ -12,7 +12,7 @@
                         <label class="col-form-label text-md-right" style="width:5%;" onclick="winClose()"><a>X</a></label>
                         </div>
                     @endif
-                    <form method="POST" action="{{ route('insert') }}">
+                    <form method="POST" action="{{ route('insert') }}" enctype="multipart/form-data">
                         {{--  enctype="multipart/form-data" --}}
                         @csrf
                         <div class="form-group row">

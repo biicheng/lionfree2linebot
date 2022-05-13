@@ -42,13 +42,12 @@ return [
     */
 
     'disks' => [
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
             'permissions' => [
                 'file' => [
-                    'public' => 0664,
+                    'public' => 0777,
                     'private' => 0600,
                 ],
                 'dir' => [
@@ -56,6 +55,10 @@ return [
                     'private' => 0700,
                 ],
             ],
+        ],
+        'article' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
         ],
 
         'public' => [
@@ -73,8 +76,52 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
+            #20220505 add 'cache'=>[]
+            'cache' => [
+                'store' => 'memcached',
+                'expire' => 600,
+                'prefix' => 'cache-prefix',
+            ],
         ],
 
+    ],
+
+    #20220513 add 'ftp'=>[]
+    'ftp' => [
+        'driver' => 'ftp',
+        'host' => 'ftp.example.com',
+        'username' => 'your-username',
+        'password' => 'your-password',
+     
+        // Optional FTP Settings...
+        // 'port' => 21,
+        // 'root' => '',
+        // 'passive' => true,
+        // 'ssl' => true,
+        // 'timeout' => 30,
+    ],
+    
+    #20220513 add 'sftp'=>[]    
+    'sftp' => [
+        'driver' => 'sftp',
+        'host' => 'example.com',
+        'username' => 'your-username',
+        'password' => 'your-password',
+     
+        // Settings for SSH key based authentication...
+        // 'privateKey' => '/path/to/privateKey',
+        // 'password' => 'encryption-password',
+     
+        // Optional SFTP Settings...
+        // 'port' => 22,
+        // 'root' => '',
+        // 'timeout' => 30,
+    ],
+
+    #20220513 add
+    'links' => [
+        public_path('storage') => storage_path('app/public'),
+        public_path('images') => storage_path('app/public'),
     ],
 
 ];
