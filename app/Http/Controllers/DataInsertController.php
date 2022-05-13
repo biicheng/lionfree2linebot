@@ -11,6 +11,8 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests;
 use Illuminate\Http\File;
 
+use App\Providers\RouteServiceProvider;
+
 class DataInsertController extends Controller
 {
     /**
@@ -24,6 +26,14 @@ class DataInsertController extends Controller
      *
      * @return void
      */
+    
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = RouteServiceProvider::HOME;
+
     public function __construct()
     {
         $this->middleware('auth');
