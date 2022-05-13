@@ -68,7 +68,7 @@ class DataInsertController extends Controller
         // $request = $request->input();
         // $request = $request->all();
 
-        $bImgName = Storage::disk('local')->put('public/'.$request->input('bImg'), $request->file('bImg'), 'public');
+        $bImgName = Storage::disk('public')->put('images/'.$request->input('bImg'), $request->file('bImg'), 'public');
         // Storage::putFileAs('photos', new File(), $request->file('bImg'));
         // $bImgNewName = explode('//', $bImgName);
         $bImgNewName = mb_split('//', $bImgName);
