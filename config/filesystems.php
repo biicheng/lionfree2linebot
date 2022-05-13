@@ -121,7 +121,7 @@ return [
     #20220513 add
     'links' => [
         public_path('storage') => storage_path('app/public'),
-        public_path('images') => storage_path('app/public'),
+        public_path('images') => storage_path('app/images'),
     ],
 
 ];
