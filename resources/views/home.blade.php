@@ -21,7 +21,7 @@
                         </div>
                     </a>
                 </div>
-                <img src="{{ asset('storage/GJ4Tm6j7VbDImdAGxAXd9qJOQLoTyO5nGVTekfDf.png') }}" alt="..." title="..." />
+                {{-- <img src="{{ asset('storage/GJ4Tm6j7VbDImdAGxAXd9qJOQLoTyO5nGVTekfDf.png') }}" alt="..." title="..." /> --}}
             </div>
                 {{-- <a href="{{route('update')}}" style="text-decoration:none;">
                     <div class="alert alert-warning" style="margin-top:5%;border:1px #A9A9A9 solid;">
