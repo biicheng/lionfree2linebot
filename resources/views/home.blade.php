@@ -17,7 +17,7 @@
                     <a href="{{route('insert')}}" style="text-decoration:none;">
                         <div class="alert alert-primary" style="border:1px #A9A9A9 solid;margin-top:5vh;height:10vh;line-height:6vh;font-size:3vh;">
                             <img src="{{asset('/img/add_icon.png')}}" style="width:7vh;" />
-                            新增關鍵詞語..
+                            新增關鍵詞語.
                         </div>
                     </a>
                 </div>
