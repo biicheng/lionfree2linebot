@@ -14,7 +14,9 @@
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.5",
         "laravel/ui": "1.2",
-        "linecorp/line-bot-sdk": "^6.2"
+        "league/flysystem-sftp": "~1.0",
+        "linecorp/line-bot-sdk": "^6.2",
+        "anchu/ftp": "~2.0"
     },
     "require-dev": {
         "facade/ignition": "^1.16.4",

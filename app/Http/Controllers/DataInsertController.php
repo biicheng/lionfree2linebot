@@ -13,6 +13,9 @@ use Illuminate\Http\File;
 
 use App\Providers\RouteServiceProvider;
 
+//共用模組
+use App\Http\Controllers\shared\CheckDataController;
+
 class DataInsertController extends Controller
 {
     /**
@@ -37,6 +40,7 @@ class DataInsertController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->CheckData = new CheckDataController;
     }
     
     public function index()
@@ -74,4 +78,21 @@ class DataInsertController extends Controller
             ]);
         }
     }
+
+    public function insertD_API(Request $request)
+    {
+
+        $bImgName = Storage::disk('updateImg')->put('img/'.$request->input('bImg'), $request->file('bImg'), 'public');
+        $bImgNewName = mb_split('//', $bImgName);
+        if($request->input('reType')=='text' && $request->input('BotText')!=""){
+            return "api_text_ok";
+        }
+        else if($request['reType']=='img' && $request['bImg']!="" && $request['sImg']!=""){
+            return "api_img_ok";
+        }
+        else{
+            return "api_err";
+        }
+    }
+    
 }

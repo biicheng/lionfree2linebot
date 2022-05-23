@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,//20220513 add
+        Anchu\Ftp\FtpServiceProvider::class,//20220522 add
 
         /*
          * Package Service Providers...
@@ -228,7 +229,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Image' => Intervention\Image\Facades\Image::class,//20220513 add
-        
+        // 'Anchu' => Anchu\Ftp\FtpServiceProvider,//20220522 add
+        // 'Anchu\Ftp\FtpServiceProvider',//20220522 add
+
     ],
 
 ];

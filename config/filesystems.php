@@ -96,33 +96,33 @@ return [
     #20220513 add 'ftp'=>[]
     'ftp' => [
         'driver' => 'ftp',
-        'host' => 'ftp.example.com',
-        'username' => 'your-username',
-        'password' => 'your-password',
+        'host' => 'files.000webhost.com',
+        'username' => 'linebotimg',
+        'password' => '1989@Sweet1219',
      
         // Optional FTP Settings...
-        // 'port' => 21,
-        // 'root' => '',
-        // 'passive' => true,
+        'port' => 21,
+        'root' => '/public_html',
+        'passive' => false,//true,
         // 'ssl' => true,
-        // 'timeout' => 30,
+        'timeout' => 100,
     ],
     
     #20220513 add 'sftp'=>[]    
     'sftp' => [
         'driver' => 'sftp',
-        'host' => 'example.com',
-        'username' => 'your-username',
-        'password' => 'your-password',
+        'host' => 'files.000webhost.com',
+        'username' => 'linebotimg',
+        'password' => '1989@Sweet1219',
      
         // Settings for SSH key based authentication...
         // 'privateKey' => '/path/to/privateKey',
         // 'password' => 'encryption-password',
      
         // Optional SFTP Settings...
-        // 'port' => 22,
-        // 'root' => '',
-        // 'timeout' => 30,
+        'port' => 21,
+        'root' => '/public_html/img',
+        'timeout' => 100,
     ],
 
     #20220513 add
