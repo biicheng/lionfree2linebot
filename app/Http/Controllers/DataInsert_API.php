@@ -48,7 +48,8 @@ class DataInsert_API extends Controller
         // \Log::info("repuestf:".json_encode($repuestf));
         // \Log::info("requesta:".json_encode($requesta));
 
-        Ftp::connection('default')->makeDir('img');
+        // dd($ftp);
+        // Ftp::connection('default')->makeDir('img');
         if($repqesti['Utxt']!=''){
             $Utxt = $repqesti['Utxt'];
             $reType = $repqesti['reType'];
@@ -66,7 +67,7 @@ class DataInsert_API extends Controller
                         if($sImgName->ImgNewName!=''&&$sImgName!='upImg_err'){
                             $insertData = $this->insertData();
                             if($insertData==1){
-                                $reText = $this->insertD_API_returnD('s','新增成功.','200');
+                                $reText = $this->insertD_API_returnD('s',Storage::disk('updateImg')->url('img'.'/'.$bImgName->ImgNewName),'200');
                             }
                             else{
                                 $reText = $this->insertD_API_returnD('e','新增失敗.','404.1');
