@@ -47,7 +47,7 @@ return [
             'root' => storage_path('app'),
             'permissions' => [
                 'file' => [
-                    'public' => 0777,
+                    'public' => 0664,
                     'private' => 0600,
                 ],
                 'dir' => [
@@ -91,38 +91,38 @@ return [
             ],
         ],
 
-    ],
+        #20220513 add 'ftp'=>[]
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => 'files.000webhost.com',
+            'username' => 'linebotimg',
+            'password' => '1989@Sweet1219',
+         
+            // Optional FTP Settings...
+            'port' => 21,
+            'root' => '/public_html',
+            'passive' => false,//true,
+            // 'ssl' => true,
+            'timeout' => 100,
+        ],
+        
+        #20220513 add 'sftp'=>[]    
+        'sftp' => [
+            'driver' => 'sftp',
+            'host' => 'files.000webhost.com',
+            'username' => 'linebotimg',
+            'password' => '1989@Sweet1219',
+         
+            // Settings for SSH key based authentication...
+            // 'privateKey' => '/path/to/privateKey',
+            // 'password' => 'encryption-password',
+         
+            // Optional SFTP Settings...
+            'port' => 21,
+            'root' => '/public_html/img',
+            'timeout' => 100,
+        ],
 
-    #20220513 add 'ftp'=>[]
-    'ftp' => [
-        'driver' => 'ftp',
-        'host' => 'files.000webhost.com',
-        'username' => 'linebotimg',
-        'password' => '1989@Sweet1219',
-     
-        // Optional FTP Settings...
-        'port' => 21,
-        'root' => '/public_html',
-        'passive' => false,//true,
-        // 'ssl' => true,
-        'timeout' => 100,
-    ],
-    
-    #20220513 add 'sftp'=>[]    
-    'sftp' => [
-        'driver' => 'sftp',
-        'host' => 'files.000webhost.com',
-        'username' => 'linebotimg',
-        'password' => '1989@Sweet1219',
-     
-        // Settings for SSH key based authentication...
-        // 'privateKey' => '/path/to/privateKey',
-        // 'password' => 'encryption-password',
-     
-        // Optional SFTP Settings...
-        'port' => 21,
-        'root' => '/public_html/img',
-        'timeout' => 100,
     ],
 
     #20220513 add
