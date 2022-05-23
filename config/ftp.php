@@ -5,7 +5,7 @@ return array(
 	|--------------------------------------------------------------------------
 	| Default FTP Connection Name
 	|--------------------------------------------------------------------------
-	|
+	| 
 	| Here you may specify which of the FTP connections below you wish
 	| to use as your default connection for all ftp work.
 	|
