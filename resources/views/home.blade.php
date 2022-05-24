@@ -24,6 +24,19 @@
                 {{-- <img src="{{ asset('storage/GJ4Tm6j7VbDImdAGxAXd9qJOQLoTyO5nGVTekfDf.png') }}" alt="..." title="..." /> --}}
                 {{-- <img src="{{ url('storage/GJ4Tm6j7VbDImdAGxAXd9qJOQLoTyO5nGVTekfDf.png') }}" alt="+++" title="+++" /> --}}
             </div>
+            @if(Auth::id()==1)
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <a href="{{route('lineUser')}}" style="text-decoration:none;">
+                            <div class="alert alert-primary" style="border:1px #A9A9A9 solid;margin-top:5vh;height:10vh;line-height:6vh;font-size:3vh;">
+                                <img src="{{asset('/img/add_icon.png')}}" style="width:7vh;" />
+                                ...
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-5"></div>
+                </div>
+            @endif
                 {{-- <a href="{{route('update')}}" style="text-decoration:none;">
                     <div class="alert alert-warning" style="margin-top:5%;border:1px #A9A9A9 solid;">
                         更新關鍵詞語.
@@ -36,11 +49,11 @@
                 </a> --}}
 
                 {{-- <div class="card-body"> --}}
-                    @if (session('status'))
+                    {{-- @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
+                    @endif --}}
 
                     {{-- You are logged in!<br> --}}
                     @csrf

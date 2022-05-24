@@ -48,6 +48,8 @@ class DataInsert_API extends Controller
         // \Log::info("repuestf:".json_encode($repuestf));
         // \Log::info("requesta:".json_encode($requesta));
 
+        // if($this->pdoConn->errorCode()=='00000'){}
+        
         // dd($ftp);
         // Ftp::connection('default')->makeDir('img');
         if($repqesti['Utxt']!=''){

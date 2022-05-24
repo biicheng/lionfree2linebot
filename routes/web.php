@@ -41,4 +41,5 @@ Route::get('/update/{utext?}', 'DataUpdateController@index');
 Route::post('/update', 'DataUpdateController@updateD')->name('update');
 Route::post('/edit', 'DataUpdateController@editD')->name('edit');
 Route::get('/delet', 'DataDeletController@index')->name('delet');
+Route::get('/lineUser', 'LineUserListController@LineUserList')->name('lineUser');
 
