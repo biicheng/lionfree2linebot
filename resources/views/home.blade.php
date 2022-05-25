@@ -7,27 +7,28 @@
             {{-- <div class="card"> --}}
             <div class="row justify-content-center">
                 <div class="col-md-5">
-                    <a href="{{route('select')}}" style="text-decoration:none;">
-                        <div class="alert alert-success" style="border:1px #A9A9A9 solid;margin-top:5vh;height:10vh;line-height:6vh;font-size:3vh;">
+                    <a class="listA" href="{{route('select')}}" >
+                        <div class="alert alert-success listDiv">
+                            <img class="listImgStyle" src="{{asset('/img/textlist_128.png')}}" />
                             關鍵詞語列表.
                         </div>
                     </a>
                 </div>
                 <div class="col-md-5">
-                    <a href="{{route('insert')}}" style="text-decoration:none;">
-                        <div class="alert alert-success" style="border:1px #A9A9A9 solid;margin-top:5vh;height:10vh;line-height:6vh;font-size:3vh;">
-                            <img src="{{asset('/img/add_icon.png')}}" style="width:7vh;" />
+                    <a class="listA" href="{{route('insert')}}" >
+                        <div class="alert alert-success listDiv">
+                            <img class="listImgStyle" src="{{asset('/img/add_icon.png')}}" />
                             新增關鍵詞語.
                         </div>
                     </a>
                 </div>
             </div>
             @if(Auth::id()==1)
-                <div class="row justify-content-center">
+                <div class="row justify-content-center ">
                     <div class="col-md-5">
-                        <a href="{{route('lineUser')}}" style="text-decoration:none;">
-                            <div class="alert alert-primary" style="border:1px #A9A9A9 solid;margin-top:5vh;height:10vh;line-height:6vh;font-size:3vh;">{{-- background:#d78af2; --}}
-                                <img src="{{asset('/img/users_128.png')}}" style="width:7vh;" />
+                        <a class="listA" href="{{route('lineUser')}}" >
+                            <div class="alert alert-primary listDiv">{{-- background:#d78af2; --}}
+                                <img class="listImgStyle" src="{{asset('/img/users_128.png')}}" />
                                 LineBot User.
                             </div>
                         </a>
@@ -64,4 +65,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('content_css')
+  <link href="{{ URL::asset('/css/home_css.css') }}" rel="stylesheet">
 @endsection

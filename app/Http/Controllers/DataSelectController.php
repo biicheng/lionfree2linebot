@@ -62,7 +62,6 @@ class DataSelectController extends Controller
         $data = $editD->input('oc');
         $dataU = $editD->input('utext');
         if($this->pdoConn->errorCode()=='00000'){
-            \Log::info('00000');
             if($data==0){
                 $sql = 'UPDATE sql4463017.botmessage SET oc=1 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
@@ -70,7 +69,6 @@ class DataSelectController extends Controller
                 $this->pdoConn = null;
             }
             else{
-                \Log::info('Err');
                 $sql = 'UPDATE sql4463017.botmessage SET oc=0 WHERE u_text="'.$dataU.'"';
                 $query = $this->pdoConn->query($sql);
                 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -87,7 +85,6 @@ class DataSelectController extends Controller
             $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             $messageRow = $query->rowCount();//取得資料筆數
             $this->pdoConn = null;
-            // \Log::info('messageRow: '.json_encode($messages));
             return  view('select', [
                         'messageRow'=>$messageRow,
                         'messageD'=>$messages,
@@ -105,10 +102,9 @@ class DataSelectController extends Controller
             $query = $this->pdoConn->query($sql);
             $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             $this->pdoConn = null;
-            \Log::info(' --$this->seleDeditD--');
             return $this->seleD();
         } catch (\Exception $exception){
-            dd($exception->getMessage());//注意不要輸出這個
+            // dd($exception->getMessage());//注意不要輸出這個
         }
     }
 }

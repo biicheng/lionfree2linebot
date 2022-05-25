@@ -1,0 +1,14 @@
+﻿.listDiv{
+    border:1px #A9A9A9 solid;
+    margin-top:5vh;height:10vh;
+    line-height:6vh;
+    font-size:3vh;
+    display:flex;
+    align-items: center;
+}
+.listImgStyle{
+    width:7vh;
+}
+.listA{
+    text-decoration:none;
+}
