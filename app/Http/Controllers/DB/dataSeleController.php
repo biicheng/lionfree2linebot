@@ -11,11 +11,14 @@ class dataSeleController extends Controller
     function seleBotUser(){
         $data = [];
         try{
-            $d = DB::table('sql4463017.users')->get();
+            \Log::info("data 1");
+            $d = DB::table('botudata')->get();
+            \Log::info("data 11");
             $data['data'] = $d;
             $data['code'] = 1;
         }
         catch(\Exception $exception){
+            \Log::info("data 0");
             $data['code'] = 0;
         }
         return $data;

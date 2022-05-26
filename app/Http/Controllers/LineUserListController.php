@@ -23,13 +23,17 @@ class LineUserListController extends Controller
         // \Log::info("id:".Auth::id());
         if(Auth::id()==1){
             $lineUserDB = $this->sele->seleBotUser();
-            if($lineUserDB['code']==1){
-                \Log::info("db:".getType($lineUserDB));
-                return view('userList',[
-                                    'd'=>$lineUserDB['data'],
-                ]);
-            }
-            else{ $this->reeUI->laravel_404(); }
+            \Log::info("code:".$lineUserDB['code']);
+            return view('userList',[
+                                'd'=>$lineUserDB['data'],
+            ]);
+            // if($lineUserDB['code']==1){
+            //     \Log::info("db:".json_encode($lineUserDB['data']));
+            //     return view('userList',[
+            //                         'd'=>$lineUserDB['data'],
+            //     ]);
+            // }
+            // else{ $this->reeUI->laravel_404(); }
         }
         else{ $this->reeUI->laravel_404(); }
     }

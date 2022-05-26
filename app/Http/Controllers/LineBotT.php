@@ -311,6 +311,7 @@ class LineBotT extends Controller
             #\Log::info(' --000db: '.$result);
             // return 'ok';*/
 
+            $dateTime = date("Y-m-d H:i:s");
             $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
             $connection->query('set names utf8;');
 			$uds = $connection->query('SELECT * FROM botudata WHERE uid="'.$uId.'"');
@@ -323,13 +324,13 @@ class LineBotT extends Controller
                 // $connection->query('set names utf8;');
                 $connection->query('update botudata set 
                                             uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessage="'.
-                                            $uTitleMessega.'" where uid = "'.$uId.'"');
+                                            $uTitleMessega.'", updateTime='.$dateTime.' where uid = "'.$uId.'"');
             }
             else{
                 \Log::info('no');
                 // $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
                 // $connection->query('set names utf8;');
-                $connection->exec('INSERT INTO botudata (uid, uName, uImgURL, uTitleMessage, uindex) VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessega.'",0)');
+                $connection->exec('INSERT INTO botudata (uid, uName, uImgURL, uTitleMessage, uindex, createTime, updateTime) VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessega.'",0,'.$dateTime.','.$dateTime.')');
                 // DB::table('botudata')->insert([
                 //     'uid'=>$uId,
                 //     'uName'=>$uName,
