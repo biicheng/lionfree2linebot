@@ -324,13 +324,13 @@ class LineBotT extends Controller
                 // $connection->query('set names utf8;');
                 $connection->query('update botudata set 
                                             uName="'.$uName.'", uImgURL="'.$uImgURL.'", uTitleMessage="'.
-                                            $uTitleMessega.'", updateTime='.$dateTime.' where uid = "'.$uId.'"');
+                                            $uTitleMessega.'", updateTime="'.$dateTime.'" where uid = "'.$uId.'"');
             }
             else{
                 \Log::info('no');
                 // $connection = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
                 // $connection->query('set names utf8;');
-                $connection->exec('INSERT INTO botudata (uid, uName, uImgURL, uTitleMessage, uindex, createTime, updateTime) VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessega.'",0,'.$dateTime.','.$dateTime.')');
+                $connection->exec('INSERT INTO botudata (uid, uName, uImgURL, uTitleMessage, uindex, createTime, updateTime) VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessega.'",0,"'.$dateTime.'","'.$dateTime.'")');
                 // DB::table('botudata')->insert([
                 //     'uid'=>$uId,
                 //     'uName'=>$uName,
