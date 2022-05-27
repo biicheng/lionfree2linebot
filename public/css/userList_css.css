@@ -1,0 +1,24 @@
+﻿.row_col3{
+    align-items:center;
+    display:flex;
+    padding-left:1.5vh;
+}
+.row_col{
+    align-items:center;
+    display:flex;
+}
+.row_4{
+    margin-bottom:1.5vh;
+    margin-top:1vh;
+}
+.row_col3_text{
+    align-items:center;
+    display:inline-block;
+    padding-left:1.5vh;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+.row_col3_img{
+    width:5vh;
+}

@@ -23,9 +23,9 @@ class LineUserListController extends Controller
         // \Log::info("id:".Auth::id());
         if(Auth::id()==1){
             $lineUserDB = $this->sele->seleBotUser();
-            \Log::info("code:".$lineUserDB['code']);
             return view('userList',[
-                                'd'=>$lineUserDB['data'],
+                                'd'=>count($lineUserDB['data'])<1?[]:$lineUserDB['data'],
+                                'code'=>$lineUserDB['code']
             ]);
             // if($lineUserDB['code']==1){
             //     \Log::info("db:".json_encode($lineUserDB['data']));

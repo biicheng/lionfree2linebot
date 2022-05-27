@@ -13,6 +13,7 @@
                     </div>
                 @endif
                 <div class="div-group row" role="alert" id="alert" style="display:none;">
+                    {{-- <div class="modal-dialog modal-lg">...</div> --}}
                 <label class="col-form-label text-md-left" style="width:95%;" id="alertT"></label>
                 <label class="col-form-label text-md-right" style="width:5%;" onclick="winClose()"><a>X</a></label>
                 </div>
