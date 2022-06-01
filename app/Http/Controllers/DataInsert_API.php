@@ -68,8 +68,9 @@ class DataInsert_API extends Controller
                         $sImgName = json_decode($this->uploadImg($request,'sImg'));
                         if($sImgName->ImgNewName!=''&&$sImgName!='upImg_err'){
                             $insertData = $this->insertData();
-                            if($insertData==1){\Log::info("bImg:".$bImgName->ImgNewName);
-                                $reText = $this->insertD_API_returnD('s','新增成功.','200');
+                            if($insertData==1){
+                                $reText = $this->insertD_API_returnD('s',$bImgName->ImgNewName,'200');
+                                // $reText = $this->insertD_API_returnD('s','新增成功.','200');
                             }
                             else{
                                 $reText = $this->insertD_API_returnD('e','新增失敗.','404.1');
