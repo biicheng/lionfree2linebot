@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center loadUI">
+        <div class="loadingUI"><div class="loadingUIDiv"><div class="spinner-border loadingUIPinner-border" role="status"></div><div class="loadingUIText">請稍後...</div></div></div>
         <div class="card-body col-md-8">
             <div class="card">
                 <div class="card-header">新增回覆資訊.</div>
@@ -17,7 +18,7 @@
                 <label class="col-form-label text-md-left" style="width:95%;" id="alertT"></label>
                 <label class="col-form-label text-md-right" style="width:5%;" onclick="winClose()"><a>X</a></label>
                 </div>
-                <form method="POST" id="form" action="/insert" enctype="multipart/form-data">
+                <form method="POST" id="form" action="/insert" enctype="multipart/form-data" style="padding:0 1.5vh;">
                     @csrf
                     <div class="form-group row">
                         <label for="Utxt" class="col-md-12 col-form-label text-md-left">使用者訊息</label>
@@ -55,7 +56,7 @@
                         </div>
                     </div>
                 </form>
-                <button type="button" class="btn btn-primary" id="isChecked" onclick="cli()">送出</button>
+                <button type="button" class="btn btn-primary btn" id="isChecked" onclick="cli()">送出</button>
             </div>
         </div>
     </div>
@@ -64,7 +65,7 @@
 
 
 @section('content_css')
-  {{-- <link href="{{ URL::asset('/css/gotop.css') }}" rel="stylesheet"> --}}
+  <link href="{{ URL::asset('/css/dataInsert_css.css') }}" rel="stylesheet">
 @endsection
 
 @section('content_js')

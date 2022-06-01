@@ -33,7 +33,7 @@ class imgUploadEditController extends Controller
             $ImgNewName = mb_split('/', $ImgName);
             $d['ImgNewName'] = $ImgNewName[1];
             $fileName = $ImgNewName[1];
-            Storage::disk('ftp')->putFileAs('img'.'/'.$ImgNewName[1]);
+            // Storage::disk('ftp')->putFileAs('img'.'/'.$ImgNewName[1]);
         }
         else{
             $d['ImgNewName'] = '';

@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div style="z-index:99999;background:rgb(199, 192, 192);height:100vh;">...</div>
+<div class="container" style="height:100%;">
     <div class="row justify-content-center" style="z-index:999;">
         <div class="card-body col-md-10">
             <div class="card">

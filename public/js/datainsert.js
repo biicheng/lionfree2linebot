@@ -1,11 +1,14 @@
-function loadingUI(str){
-	$("#"+str).empty();
-	$("#"+str).append('<div class="container" style="padding-top:10%;padding-bottom:3vh;height:50%;font-size:2vh;"><div class="spinner-border" role="status" style="color:#5a5a5c;width:5vh;height:5vh;"></div><div style="color:#5a5a5c;padding-top:1vh;font-size:2.5vh;">請稍後...</div></div>');
+function loadingUI(sta){
+    $(".loadingUI").css("display",sta);
 }
 
 function cli(){
+    loadingUI('flex');
+    btnStatus(true);
     if($("select[id='reType']").val()!='...'&&$("input[id='Utxt']").val()!=''){ this.equ(); }
     else{
+        loadingUI('none');
+        btnStatus(false);
         if($("input[id='Utxt']").val()==''){ this.errCode("e","請輸入使用者訊息..."); }
         else if($("select[id='reType']").val()=='...'){this.errCode("e","請選擇回覆內容..."); }
         else{ this.errCode("e","請確認表單..."); }
@@ -31,10 +34,16 @@ function equ(){
         processData:false,
         contentType:false,
 		success: function(response){
-            if(response.result=='s'){ reSetForm(); }
+            if(response.result=='s'){ 
+                loadingUI('none');
+                btnStatus(false);
+                reSetForm(); 
+            }
             errCode(response.result,response.errCode+' '+response.resultT);
 		},
 		error: function(xhr, ajaxOptions, thrownError){
+            loadingUI('none');
+            btnStatus(false);
             errCode("e","伺服器異常...");
 		}
 	});
@@ -93,4 +102,7 @@ function reSetForm(){
     $("#reType").val(0);
     $("#bImg").val("");
     $("#sImg").val("");
+}
+function btnStatus(sta){
+    $(".btn").attr("disabled", sta);
 }
