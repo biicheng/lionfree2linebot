@@ -22,3 +22,43 @@
 .row_col3_img{
     width:5vh;
 }
+.colText{
+    font-size:14px;
+}
+
+.allWindowUI{
+    width:100%;
+    height:100%;
+    background-color:#ffffff6a;
+    /* opacity:0.7; */
+    position:absolute;
+    left:0px;
+    top:0px;
+    display:none;/*block;*//*none;*/
+    z-index:1000;
+}
+.UIDivTitle{
+    height:25%;
+    text-align:right;
+    color:#000;
+    font-size:6vh;
+    padding-right:3vh;
+    padding-top:5vh;
+    margin-bottom:5vh;
+}
+.UIDiv{
+    /* padding-top:20%; */
+    padding-left:40%;
+}
+.jsUserImg{
+    width:40%;
+}
+.UIText{
+    color:#8d03b3;
+    padding-top:1vh;
+    font-size:2.5vh;
+}
+.uiStyle{
+    text-align:center;
+    margin:0;
+}

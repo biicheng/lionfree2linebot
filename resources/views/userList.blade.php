@@ -2,6 +2,15 @@
 
 @section('content')
 <div class="container" style="height:100%;">
+    <div class="allWindowUI">
+        {{-- <div class="UIDivTitle" onclick="UIDivTitleClose()">X</div>
+        <div class="row justify-content-center uiStyle">
+            <div class="col-12 UIText">
+                <img class="jsUserImg" src="https://sprofile.line-scdn.net/0hkR3lSH57NH0eFR1roRRKAm5FNxc9ZG1vZyQpHClHakhzcnZ_MCFzHCwdah93d3Z4NXpzG3gcaEUSBkMbAEPISRklakonIXcuNnJ-kg">
+            </div>
+            <div class="col-12 UIText">請稍後...</div>
+        </div> --}}
+    </div>
     <div class="row justify-content-center" style="z-index:999;">
         <div class="card-body col-md-10">
             <div class="card">
@@ -13,17 +22,17 @@
                     </div> --}}
                     <div class="container">
                         <div class="row row-cols-4">
-                            <div class="col-3 row_col3">使用者</div>
-                            <div class="col row_col">狀態</div>
-                            <div class="col row_col">加入時間</div>
-                            <div class="col row_col">更新時間</div>
+                            <div class="col-3 row_col3 colText">使用者</div>
+                            <div class="col row_col colText">狀態</div>
+                            <div class="col row_col colText">加入時間</div>
+                            <div class="col row_col colText">更新時間</div>
                         </div>
                         @foreach($d as $v)
                             <div class="row row-cols-4 row_4">
-                                <div class="col-3 row_col3_text"><img src="{{$v->uImgURL}}" class="row_col3_img" onclick="enlargeImg('{{$v->uImgURL}}')"><span onclick="enlargeText('{{$v->uName}}')">{{$v->uName}}</span></div>
-                                <div class="col row_col">{{$v->uTitleMessage}}</div>
-                                <div class="col row_col">{{$v->createTime}}</div>
-                                <div class="col row_col">{{$v->updateTime}}</div>
+                                <div class="col-3 row_col3_text colText" onclick="allWindowUI('{{$v->uImgURL}}','{{$v->uName}}')"><img src="{{$v->uImgURL}}" class="row_col3_img" onclick="enlargeImg('{{$v->uImgURL}}')" /><span onclick="enlargeText('{{$v->uName}}')">{{$v->uName}}</span></div>
+                                <div class="col row_col colText">{{$v->uTitleMessage}}</div>
+                                <div class="col row_col colText">{{$v->createTime}}</div>
+                                <div class="col row_col colText">{{$v->updateTime}}</div>
                             </div>
                         @endforeach
                     </div>
@@ -52,9 +61,10 @@
 
 
 @section('content_css')
-  <link href="{{ URL::asset('/css/userList_css.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/css/userList_css.css') }}" rel="stylesheet">
 @endsection
 
 @section('content_js')
-  {{-- <script src="{{URL::asset('/js/datainsert.js')}}"></script> --}}
+    {{-- <script src="{{URL::asset('/js/jquery_360min.js')}}"></script> --}}
+    <script src="{{URL::asset('/js/userList_js.js')}}"></script>
 @endsection
