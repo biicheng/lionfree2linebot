@@ -23,7 +23,7 @@ class imgUploadEditController extends Controller
         $fileName = '';
         // $ftpImgName = Storage::disk('ftp')->putFileAs($pathFolder, $request->file($type), $strtotime.'_'.$type.'.'.$imgType);
         $ImgName = Storage::disk($path)->putFileAs($pathFolder, $request->file($type), $strtotime.'_'.$type.'.'.$imgType, 'public');
-        $img = Storage::disk('ftp')->putFileAs($pathFolder, $request->file($type), $strtotime.'_'.$type.'.'.$imgType, 'public');
+        // $img = Storage::disk('ftp')->putFileAs($pathFolder, $request->file($type), $strtotime.'_'.$type.'.'.$imgType, 'public');
         // Storage::disk('updateImg')->url('img'.'/'.$bImgName->ImgNewName);
         // \Log::info("000:".Storage::disk($path)->url($pathFolder.'/'.$ImgName));
         // $ftp = FTP::connection()->uploadFile('','img/linebot_img');
