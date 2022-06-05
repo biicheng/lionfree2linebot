@@ -128,7 +128,7 @@ class DataInsert_API extends Controller
     function uploadImg($request, $type){
         if($this->upfileNum<3){
             // $this->upfileNum += 1;
-            $ImgName = $this->imgUploadEdit->imgUploadEdit($request, $type, 'jpg', 'updateImg', 'img');
+            $ImgName = $this->imgUploadEdit->imgUploadEdit($request, $type, 'jpg', 'updateImg', 'img/linebot_img');
             if(json_decode($ImgName)->ImgNewName!=''){
                 return $ImgName;
             }
