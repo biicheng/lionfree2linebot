@@ -14,15 +14,17 @@ use Illuminate\Http\File;
 
 use Ftp;//20220523 add
 use DB;//20220606 add
+use Config;//20220606 add
 
 class imgUploadEditController extends Controller
 {
-    public function __construct()
-    {
-        $this->fileDB = DB::table('filehosturl')->get();
-        \Log::info("+++".json_encode($this->fileDB));
-        \Log::info("..".$this->fileDB[0]->host);
-    }
+    // public function __construct()
+    // {
+    //     $this->fileDB = DB::table('filehosturl')->get();
+    //     // \Log::info("+++".json_encode($this->fileDB));
+    //     // \Log::info("..".$this->fileDB[0]->host);
+    //     // \Log::info("config:".config('example.FTP_HOST'));
+    // }
 
     function imgUploadEdit($request, $type, $imgType, $path, $pathFolder){
         $requestf = $request->input();
@@ -61,7 +63,7 @@ class imgUploadEditController extends Controller
     {
         $ch = curl_init();
         // curl_setopt($ch, CURLOPT_URL,'https://linebotimg.000webhostapp.com/img/linebot_img/'.$img);
-        curl_setopt($ch, CURLOPT_URL,$this->fileDB[0]->host.$this->fileDB[0]->dirurl.$img);
+        curl_setopt($ch, CURLOPT_URL,config('example.FILE_HOST').config('example.FILE_DIR').$img);
         curl_setopt($ch, CURLOPT_NOBODY, 1);
         curl_setopt($ch, CURLOPT_FAILONERROR, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
