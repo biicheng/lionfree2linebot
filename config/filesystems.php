@@ -94,13 +94,13 @@ return [
         #20220513 add 'ftp'=>[]
         'ftp' => [
             'driver' => 'ftp',
-            'host' => 'files.000webhost.com',
-            'username' => 'linebotimg',
-            'password' => '1989@Sweet1219',
+            'host' => env('FTP_HOST'),//'files.000webhost.com',
+            'username' => env('FTP_USER'),//'linebotimg',
+            'password' => env('FTP_PW'),//'1989@Sweet1219',
          
             // Optional FTP Settings...
-            'port' => 21,
-            'root' => '/public_html',
+            'port' => env('FTP_PORT'),//21,
+            'root' => env('FTP_ROOT'),//'/public_html',
             'passive' => false,//true,
             // 'ssl' => true,
             'timeout' => 100,
