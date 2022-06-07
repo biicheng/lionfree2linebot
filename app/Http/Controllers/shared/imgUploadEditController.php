@@ -12,7 +12,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests;
 use Illuminate\Http\File;
 
-use Ftp;//20220523 add
+// use Ftp;//20220523 add
 use DB;//20220606 add
 use Config;//20220606 add
 
