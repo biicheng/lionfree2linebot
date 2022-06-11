@@ -32,9 +32,27 @@ class imgUploadEditController extends Controller
         $d = [];
         $file = $strtotime.'_'.$type.'.'.$imgType;
         $fileName = '';
+
         // $ftpImgName = Storage::disk('ftp')->putFileAs($pathFolder, $request->file($type), $strtotime.'_'.$type.'.'.$imgType);
         $ImgName = Storage::disk($path)->putFileAs($pathFolder, $request->file($type), $file, 'public');
         $img = Storage::disk('ftp')->putFileAs($pathFolder, $request->file($type), $file, 'public');
+        
+        // FILE_HOST="https://linebotimg.000webhostapp.com"
+        // FILE_DIR="/img/linebot_img/"
+        // $ftpConn = @ftp_connect('files.000webhost.com', 21) or die ('cannot connect to host');
+        // \Log::info("ftp_connect:".$ftpConn);
+        // $ftp_login = ftp_login($ftpConn, 'linebotimg', '1989@Sweet1219') or die('cannot login');
+        // \Log::info("ftp_login:".$ftp_login);
+        // // 路徑設定
+        // $local_file = "public/img/linebot_img/".$file;//public_path('/img/linebot_img/').$file;//'C:\xampp\htdocs\heroku_mytpl6\public\img\acces_icon.png';// // 本端的路徑
+        // $ftp_path = 'img/linebot_img'; // 遠端的路徑
+        // // 開始上傳
+        // $upload = ftp_put($ftpConn, $ftp_path, $local_file, FTP_ASCII);//FTP_ASCII //FTP_BINARY
+        // \Log::info("upload:".$upload);
+        // if (!$upload) {
+        //     exit('failed');
+        // }
+
         // $this->checkImg($file);
         // \Log::info("000:".Storage::disk($path)->url($pathFolder.'/'.$ImgName));
         // $ftp = FTP::connection()->uploadFile('','img/linebot_img');
