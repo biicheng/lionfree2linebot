@@ -21,4 +21,29 @@ class dataSeleController extends Controller
         }
         return $data;
     }
+    
+    public function seleImgMaps($type){
+        $imgD = [];
+        try{
+            $imgD = DB::table('botimgmaps')->where([
+                ['imgName','!=',''],
+                ['imgType','=',$type],
+                ['op','=',1]
+            ])->get();
+        }
+        catch(\Exception $exception){
+        }
+        return $imgD;
+    }
+    
+    //check data
+    public function seleCheckImg($str){
+        $imgD = [];
+        try{
+            return $imgD = DB::table('botimgmaps')->where('imgName','=',$str)->get();
+        }
+        catch(\Exception $exception){
+            return 'err';
+        }
+    }
 }

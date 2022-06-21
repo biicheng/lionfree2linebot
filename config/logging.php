@@ -43,13 +43,13 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs/.gitignore'),
+            'path' => storage_path('logs/'.env('LOG_FILE')),
             'level' => 'debug',
         ],
 
         'daily' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/.gitignore'),
+            'path' => storage_path('logs/'.env('LOG_FILE')),
             'level' => 'debug',
             'days' => 14,
         ],
@@ -97,7 +97,7 @@ return [
         ],
 
         'emergency' => [
-            'path' => storage_path('logs/.gitignore'),
+            'path' => storage_path('logs/'.env('LOG_FILE')),
         ],
     ],
 

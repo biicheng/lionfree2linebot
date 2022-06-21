@@ -7,7 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>LineBot管理系統</title>
     <script src="/js/app.js" defer></script>
-    <script src="/js/1.8.2_jquery_min.js" defer></script>
+    {{-- <script src="/js/1.8.2_jquery_min.js" defer></script> --}}
+    <script src="/js/3.6.0.jquery.js" defer></script>
     <script src="/js/myjs.js" defer></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

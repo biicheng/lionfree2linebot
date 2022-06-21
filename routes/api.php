@@ -22,4 +22,7 @@ Route::post('/linebot', 'LineBotT@postTest');
 
 Route::post('/insertAPI', 'DataInsert_API@insertD_API');
 
+// bot_cms_imgFileMapsSele
+Route::post('/imgMaps', 'seleDataAPI@seleImgMap');
+
 //Route::get('/dbt', 'LineBotT@dbtest');

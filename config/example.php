@@ -7,5 +7,8 @@
     'FTP_ROOT' => env('FTP_ROOT'),
     'FILE_HOST' => env('FILE_HOST'),
     'FILE_DIR' => env('FILE_DIR'),
+    
+    'HEROKU_FILE_URL' => env('HEROKU_FILE_URL'),
+    'HEROKU_FILE_DIR' => env('HEROKU_FILE_DIR'),
     ];
 ?>

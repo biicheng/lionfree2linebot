@@ -16,6 +16,7 @@
                     </div>
                 @endif
                 <div class="div-group row" role="alert" id="alert" style="display:none;margin:0;">
+                    {{-- <div class="modal-dialog modal-lg">...</div> --}}
                 <label class="col-form-label text-md-left" style="width:95%;" id="alertT"></label>
                 <label class="col-form-label text-md-right" style="width:5%;" onclick="winClose()"><a>X</a></label>
                 </div>
@@ -37,8 +38,32 @@
                             </select> 
                         </div>
                     </div>
-                    <div class="form-group row botReText" style="margin-top:2.5vh;"></div>
-                    <div class="imgD" id="imgD"></div>
+                    <div class="form-group row botReText" style="margin-top:2.5vh;">
+                        {{-- <label for="Utxt" class="col-md-12 col-form-label text-md-left">Bot回覆訊息</label>
+                        <div class="col-md-6">
+                            <input id="BotText" type="text" class="form-control" name="BotText" value="">
+                        </div> --}}
+                    </div>
+                    {{-- <fieldset id="imgType">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="imgType" id="flexRadioDefault1" value="update" onclick="updaType(1)" disabled>上傳圖片
+                            <label class="form-check-label" for="flexRadioDefault1"></label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="imgType" id="flexRadioDefault2" value="use" onclick="updaType(2)">使用圖片
+                            <label class="form-check-label" for="flexRadioDefault2"></label>
+                        </div>
+                    </fieldset> --}}
+                    <div class="imgD" id="imgD">
+                        {{-- <div class="mb-3" style="margin-top:2.5vh;">
+                          <label for="formFile" class="form-label">Bot回覆大圖</label>
+                          <input class="form-control" type="file" id="bImg" name="bImg" accept=".png, .jpg, .jpeg" style="width:90%;">
+                        </div>
+                        <div class="mb-3" style="margin-top:2.5vh;">
+                          <label for="formFile" class="form-label">Bot回覆小圖</label>
+                          <input class="form-control" type="file" id="sImg" name="sImg" accept=".png, .jpg, .jpeg" style="width:90%;">
+                        </div> --}}
+                    </div>
                     <div class="imgFileDiv"></div>
                     <div class="form-group row mb-0">
                         <div class="col-md-8 offset-md-4">

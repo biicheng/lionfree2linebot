@@ -15,6 +15,7 @@ use App\Providers\RouteServiceProvider;
 
 //共用模組
 use App\Http\Controllers\shared\CheckDataController;
+use App\Http\Controllers\DB\dataSeleController;//20220611 add
 
 class DataInsertController extends Controller
 {
@@ -41,6 +42,7 @@ class DataInsertController extends Controller
     {
         $this->middleware('auth');
         $this->CheckData = new CheckDataController;
+        $this->slesData = new dataSeleController;
     }
     
     public function index()
@@ -49,6 +51,10 @@ class DataInsertController extends Controller
             'alert'=>'danger',
             'alertT'=>'',
             'postT'=>false,
+            // 'bimg'=>json_encode($this->slesData->seleImgMaps('b')),
+            // 'simg'=>json_encode($this->slesData->seleImgMaps('s')),
+            'bimg'=>$this->slesData->seleImgMaps('b'),
+            'simg'=>$this->slesData->seleImgMaps('s'),
         ]);
     }
 
