@@ -10,7 +10,7 @@ class dataInsertController extends Controller
 {
     public function botMessage_Text_Insert($reType, $u_text, $retext){
         try{
-            DB::table('botmessage2line')->insert([
+            DB::table('sql4463017.botmessage2line')->insert([
                 'mIndex'=>null, 'reType'=>$reType, 
                 'u_text'=>$u_text, 're_text'=>$retext, 'oc'=>1
             ]);
@@ -23,7 +23,7 @@ class dataInsertController extends Controller
     }
     public function botMessage_Img_Insert($reType, $u_text, $bImg, $sImg){
         try{
-            DB::table('botmessage2line')->insert([
+            DB::table('sql4463017.botmessage2line')->insert([
                 'mIndex'=>null, 'reType'=>$reType, 'u_text'=>$u_text, 
                 'bImg'=>$bImg, 'sImg'=>$sImg, 'oc'=>1
             ]);
