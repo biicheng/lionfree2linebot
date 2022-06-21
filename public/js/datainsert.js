@@ -45,6 +45,7 @@ function equ(){
     }
 }
 function requestAPI(formData, url){
+    errCode("l",'')
     $.ajax({
 		type: "POST",
 		charset:"utf-8",
@@ -72,51 +73,13 @@ function requestAPI(formData, url){
 }
 
 function errCode(type,t){
-    if(type=='e'){
-        this.reAlertLight();
-        this.reAlertSuccess();
-        this.alertDanger();
-        this.addCss('flex');
-    }
-    else if(type=='s'){
-        this.reAlertLight();
-        this.reAlertDanger();
-        this.alertSuccess();
-        this.addCss('flex');
-    }
-    else if(type=='l'){
-        this.reAlertDanger();
-        this.reAlertSuccess();
-        this.alertLight();
-        this.addCss('none');
-    }
-    $('[id$=alertT]').text(t);
-    return 1;
-}
-function alertText(t){
-    $("#alert").removeClass("alert alert-light");
-}
-function reAlertLight(){
-    $("#alert").removeClass("alert alert-light");
-}
-function reAlertDanger(){
-    $("#alert").removeClass("alert alert-danger");
-}
-function reAlertSuccess(){
-    $("#alert").removeClass("alert alert-success");
-}
-function alertLight(){
-    $("#alert").addClass("alert alert-light");
-}
-function alertDanger(){
-    $("#alert").addClass("alert alert-danger");
-}
-function alertSuccess(){
-    $("#alert").addClass("alert alert-success");
-}
-function addCss(t){
-    if(t=="flex"){$("#alert").css("display","flex");}
-    if(t=="none"){$("#alert").css("display","none");}
+    let successAlert = '<div class="div-group row alert alert-success" role="alert" id="alert" style="margin:0;"><label class="col-form-label text-md-left" style="width:95%;" id="alertT">';
+    let dangerAlert = '<div class="div-group row alert alert-danger" role="alert" id="alert" style="margin:0;"><label class="col-form-label text-md-left" style="width:95%;" id="alertT">';
+    let lightAlert = '<div class="div-group row alert alert-light" role="alert" id="alert" style="margin:0;"><label class="col-form-label text-md-left" style="width:95%;" id="alertT">';
+    let DomEnd = '</label><label class="col-form-label text-md-right" style="width:5%;" onclick="winClose()"><a>X</a></label></div>';
+    if(type=='e'){$(".myAlert").html(dangerAlert+t+DomEnd);}
+    else if(type=='s'){$(".myAlert").html(successAlert+t+DomEnd);}
+    else if(type=='l'){$(".myAlert").empty();}
     return 1;
 }
 function reSetForm(){
@@ -177,7 +140,7 @@ function attrDisa(className){
     $(className).attr("disabled","disabled");
 }
 function imgFile(i){
-    if(imgFileD==null){imgdataGet(i);}
+    if(imgFileD==null){errCode("l",'');imgdataGet(i);}
     if(imgFileD!=null){imgFileDom(i);}
 }
 function imgFileDom(Type){

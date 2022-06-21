@@ -15,10 +15,7 @@
                     <label class="col-form-label text-md-right" style="width:5%;" onclick="winClose()"><a>X</a></label>
                     </div>
                 @endif
-                <div class="div-group row" role="alert" id="alert" style="display:none;margin:0;">
-                <label class="col-form-label text-md-left" style="width:95%;" id="alertT"></label>
-                <label class="col-form-label text-md-right" style="width:5%;" onclick="winClose()"><a>X</a></label>
-                </div>
+                <div class=myAlert></div>
                 <form method="POST" id="form" action="/insert" enctype="multipart/form-data" style="padding:0 1.5vh;">
                     @csrf
                     <div class="form-group row">
