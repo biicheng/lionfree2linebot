@@ -247,8 +247,10 @@ class LineBotT extends Controller
                     else if($message[0]->reType=='select'){
                         $txt = $this->pushText($message_text, $replyToken);
                     }
-                    else if($message[0]->reType=='img'){Log::info("imgUrl".$message[0]->bImg);
-                        $txt = $this->pushImg($message[0]->bImg, $message[0]->sImg, $replyToken);
+                    else if($message[0]->reType=='img'){
+                        $bImgD = DB::table('botimgmaps')->where('imgName','=',$message[0]->bImg)->get();
+                        $sImgD = DB::table('botimgmaps')->where('imgName','=',$message[0]->sImg)->get();
+                        $txt = $this->pushImg($bImgD[0]->url.$bImgD[0]->imgName, $sImgD[0]->url.$sImgD[0]->imgName, $replyToken);
                     }
                     else{
                         $txt = $this->pushText($message_text, $replyToken);
