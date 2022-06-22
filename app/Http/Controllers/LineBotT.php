@@ -24,8 +24,8 @@ class LineBotT extends Controller
 {
     public function __construct()
     {
-        $this->pdoConn = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
-        $this->pdoConn->query("SET NAMES utf8");
+        // $this->pdoConn = new PDO('mysql:host=sql4.freemysqlhosting.net;dbname=sql4463017;', 'sql4463017', 'ZcRmWLMZ3s');
+        // $this->pdoConn->query("SET NAMES utf8");
     }
 
     private $sender;
@@ -118,7 +118,7 @@ class LineBotT extends Controller
         return 'hello.';
     }
     
-    public function postTest(Request $cc){ //正式站
+    public function postTest1(Request $cc){ //
         \Log::info('post --bot');
         $dates = date("Y-m-d H:i:s");
         if((!empty($cc->input('events')[0]['message']['text']))||
@@ -216,7 +216,7 @@ class LineBotT extends Controller
         return 'hello.';
     }
 
-    public function postTest1(Request $cc){ //
+    public function postTest(Request $cc){ //正式站
         \Log::info('post --bot');
         $dates = date("Y-m-d H:i:s");
         if((!empty($cc->input('events')[0]['message']['text']))||
@@ -248,8 +248,8 @@ class LineBotT extends Controller
                         $txt = $this->pushText($message_text, $replyToken);
                     }
                     else if($message[0]->reType=='img'){
-                        $bImgD = DB::table('botimgmaps')->where([['imgName','=',$message[0]->bImg],['oc','=',1]])->get();
-                        $sImgD = DB::table('botimgmaps')->where([['imgName','=',$message[0]->sImg],['oc','=',1]])->get();
+                        $bImgD = DB::table('botimgmaps')->where('imgNum','=',$message[0]->bImg)->get();
+                        $sImgD = DB::table('botimgmaps')->where('imgNum','=',$message[0]->sImg)->get();
                         $txt = $this->pushImg($bImgD[0]->url.$bImgD[0]->imgName, $sImgD[0]->url.$sImgD[0]->imgName, $replyToken);
                     }
                     else{
