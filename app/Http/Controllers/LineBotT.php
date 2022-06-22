@@ -118,7 +118,7 @@ class LineBotT extends Controller
         return 'hello.';
     }
     
-    public function postTest1(Request $cc){ //
+    public function postTest(Request $cc){ //正式站
         \Log::info('post --bot');
         $dates = date("Y-m-d H:i:s");
         if((!empty($cc->input('events')[0]['message']['text']))||
@@ -216,7 +216,7 @@ class LineBotT extends Controller
         return 'hello.';
     }
 
-    public function postTest(Request $cc){ //正式站
+    public function postTest1(Request $cc){ //
         \Log::info('post --bot');
         $dates = date("Y-m-d H:i:s");
         if((!empty($cc->input('events')[0]['message']['text']))||
@@ -248,8 +248,8 @@ class LineBotT extends Controller
                         $txt = $this->pushText($message_text, $replyToken);
                     }
                     else if($message[0]->reType=='img'){
-                        $bImgD = DB::table('botimgmaps')->where('imgName','=',$message[0]->bImg)->get();
-                        $sImgD = DB::table('botimgmaps')->where('imgName','=',$message[0]->sImg)->get();
+                        $bImgD = DB::table('botimgmaps')->where([['imgName','=',$message[0]->bImg],['oc','=',1]])->get();
+                        $sImgD = DB::table('botimgmaps')->where([['imgName','=',$message[0]->sImg],['oc','=',1]])->get();
                         $txt = $this->pushImg($bImgD[0]->url.$bImgD[0]->imgName, $sImgD[0]->url.$sImgD[0]->imgName, $replyToken);
                     }
                     else{
