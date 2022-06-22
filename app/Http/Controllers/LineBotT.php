@@ -18,6 +18,8 @@
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
+use Config;//20220622 add
+
 class LineBotT extends Controller
 {
     public function __construct()
@@ -212,8 +214,10 @@ class LineBotT extends Controller
     }
 
     public function pushImg($bImg, $sImg, $replyToken){
-        $httpClient = new CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
-        $bot = new LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
+        // $httpClient = new CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
+        // $bot = new LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
+        $httpClient = new CurlHTTPClient(config('LINE_BOT_CHANNEL_ACCESS_TOKEN'));
+        $bot = new LINEBot($httpClient, ['channelSecret' => config('LINE_BOT_CHANNEL_SECRET')]);
         // $replyToken = $request['events'][0]['replyToken'];
         
         // $imgUrl = 'https://3e8c-122-121-44-111.jp.ngrok.io/heroku_mytpl6/public';
@@ -233,8 +237,8 @@ class LineBotT extends Controller
         return 'ok';
     }
     public function pushText($text, $replyToken){
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
-        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(config('LINE_BOT_CHANNEL_ACCESS_TOKEN'));
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => config('LINE_BOT_CHANNEL_SECRET')]);
 
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text);
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
@@ -267,10 +271,8 @@ class LineBotT extends Controller
         $err = curl_error($ch);  //if you need
         curl_close ($ch);
 
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ym0T5CEd4bHEZMZiGPalBWAS/YgXNznsTAmI5v83bMHRIEdxA6MyQ7B7KG0jRPgfjitgebHz9PL0IaJym/7IrhoaPyOF+6gDTjuKB6mN+FuYncPrcW95Fe2vJKqskTWkfu3vVTV4GPWIyVNW3ZdGSgdB04t89/1O/w1cDnyilFU=');
-        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '4b91553e4c688509a050ba0f29208a90']);
-        // $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('ZAXjHse7bver+MoWz0iGYAVDK1B9wPKyelo5rx9vbPlP60qioUjYo4pTkHT7NbdAc1FLeWETIeMjfcY0Ea5K3fOpwjIAmBDWPSBRG6anovKjNR2Gk+hXETElk8T8u1xEjpx8a8zq2tz+oBgeU0/RYwdB04t89/1O/w1cDnyilFU=');
-        // $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '59ef59273f9010d4c6c4c8c372d33964']);
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(config('LINE_BOT_CHANNEL_ACCESS_TOKEN'));
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => config('LINE_BOT_CHANNEL_SECRET')]);
         $response = $bot->getProfile($source_userId);
         if ($response->isSucceeded()) {
             $profile = $response->getJSONDecodedBody();
@@ -292,9 +294,9 @@ class LineBotT extends Controller
             else{
                 $uTitleMessega = '---';
             }
-            Log::info("uName:".$uName);
-            Log::info("uImgURL:".$uImgURL);
-            Log::info("uTitleMessega:".$uTitleMessega);
+            // Log::info("uName:".$uName);
+            // Log::info("uImgURL:".$uImgURL);
+            // Log::info("uTitleMessega:".$uTitleMessega);
             /* curl 000webhost API */
             /*$conDB = curl_init();
             //curl_setopt可以設定curl參數
