@@ -240,7 +240,7 @@ class LineBotT extends Controller
                     ['u_text','=',$message_text],
                     ['oc','=',1]
                 ])->get();
-                if(count($message)>0){
+                if(count($message)>0 && $message[0]->u_text==$message_text){
                     if($message[0]->reType=='text'){
                         $txt = $this->pushText($message[0]->re_text, $replyToken);
                     } 
