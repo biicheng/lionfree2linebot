@@ -356,6 +356,7 @@ class LineBotT extends Controller
         $uTitleMessega = '';
         $dates = date("Y-m-d H:i:s");
 
+        \Log::info("uid:".$source_userId);
 
         $ch = curl_init();
         $url = "https://api.line.me/v2/bot/profile/".$source_userId;
@@ -416,7 +417,7 @@ class LineBotT extends Controller
             $connection->query('set names utf8;');
 
             $lineUser = DB::table('botudata')->where([['uid','=',$uId]])->get();
-            \Log::info("lineUser:".count($lineUser));
+            // \Log::info("lineUser:".count($lineUser));
             
 			// $uds = $connection->query('SELECT * FROM botudata WHERE uid="'.$uId.'"');
             // $udss = $uds->fetchAll(PDO::FETCH_ASSOC);
@@ -452,7 +453,62 @@ class LineBotT extends Controller
                 // ]);
                 // $this->pdoConn->exec('INSERT INTO botudata VALUES ("'.$uId.'","'.$uName.'", "'.$uImgURL.'","'.$uTitleMessega.'")');
             }
+            return 1;
         }
+    }
+
+    public function updateLineUser($uid){
+        #-----------------
+        #變數宣告
+        #-----------------
+        $uId = $uid;
+        $uName = '';
+        $uImgURL = '';
+        $uTitleMessega = '';
+        $dates = date("Y-m-d H:i:s");
+
+
+        $ch = curl_init();
+        $url = "https://api.line.me/v2/bot/profile/".$uId;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec ($ch);
+        $err = curl_error($ch);  //if you need
+        curl_close ($ch);
+
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(config('example.LINE_BOT_CHANNEL_ACCESS_TOKEN'));
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => config('example>LINE_BOT_CHANNEL_SECRET')]);
+        $response = $bot->getProfile($uId);
+        if ($response->isSucceeded()) {
+            $profile = $response->getJSONDecodedBody();
+            if(!empty($profile['displayName'])){
+                $uName = $profile['displayName'];
+            }
+            else{
+                $uName = '---';
+            }
+            if(!empty($profile['pictureUrl'])){
+                $uImgURL = $profile['pictureUrl'];
+            }
+            else{
+                $uImgURL = '---';
+            }
+            if(!empty($profile['statusMessage'])){
+                $uTitleMessega = $profile['statusMessage'];
+            }
+            else{
+                $uTitleMessega = '---';
+            }
+
+            $dateTime = date("Y-m-d H:i:s");
+            try{
+                DB::table('botudata')->where('uid', $uId)->update(['uName'=>$uName, 'uImgURL'=>$uImgURL, 'uTitleMessage'=>$uTitleMessega, 'updateTime'=>$dateTime]);
+            }
+            catch(\Exception $exception){}
+        }
+        return 1;
     }
 
     public function dbtest(){
