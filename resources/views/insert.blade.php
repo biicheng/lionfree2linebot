@@ -48,9 +48,6 @@
     </div>
 </div>
 @endsection
-<script>
-    let i = @json($bimg);
-</script>
 
 @section('content_css')
   <link href="{{ URL::asset('/css/dataInsert_css.css') }}" rel="stylesheet">
