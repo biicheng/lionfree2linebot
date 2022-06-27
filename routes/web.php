@@ -34,12 +34,13 @@ Route::get('/dbt', 'LineBotT@dbT')->name('dbt');
 Route::post('/fileText', 'Controller@fileText')->name('fileText');
 
 
-Route::get('/select', 'DataSelectController@index')->name('select');
+Route::get('/select', 'messageSeleController@index')->name('select');
 Route::get('/insert', 'DataInsertController@index')->name('insert');
 Route::post('/insert', 'DataInsertController@insertD')->name('insert');
-Route::get('/update/{utext?}', 'DataUpdateController@index');
-Route::post('/update', 'DataUpdateController@updateD')->name('update');
+Route::get('/edit/{utext?}', 'DataUpdateController@index');
+Route::post('/editMessage', 'DataUpdateController@updateD')->name('update');
 Route::post('/edit', 'DataUpdateController@editD')->name('edit');
-Route::get('/delet', 'DataDeletController@index')->name('delet');
+// Route::get('/delet', 'DataDeletController@index')->name('delet');
+Route::get('/messageDelete', 'DataDeletController@index')->name('messageDelete');
 Route::get('/lineUser', 'LineUserListController@LineUserList')->name('lineUser');
 

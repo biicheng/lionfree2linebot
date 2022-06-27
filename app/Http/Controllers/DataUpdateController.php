@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 // use lluminate\Http\RedirectResponse;
 
+use Session;
+
 class DataUpdateController extends Controller
 {
     /**
@@ -22,8 +24,56 @@ class DataUpdateController extends Controller
         $this->pdoConn->query("SET NAMES utf8");
     }
     
-    public function index($utext='')
-    {
+    public function index($id=NULL){
+        $bimg = '';
+        $simg = '';
+        if($id!=NULL){
+            try{
+                $messagesD = DB::table('botmessage2line')->where('mIndex', '=', $id)->get();
+            }
+            catch(\Exception $exception){
+                $text = $this->reSession("editErr", "資料庫異常.");
+                return redirect()->back();
+            }
+            if($messagesD->count()==1){
+                if($messagesD[0]->bImg!=NULL&&$messagesD[0]->sImg!=NULL){
+                    try{
+                        $botimgmaps = DB::table('botimgmaps')->where('op', '=', 1)->get();
+                        if(count($botimgmaps)>0){
+                            foreach($botimgmaps as $v){
+                                if($v->imgNum==$messagesD[0]->bImg){ $bimg = $v->url.$v->imgName; }
+                                if($v->imgNum==$messagesD[0]->sImg){ $simg = $v->url.$v->imgName; }
+                            }
+                        }
+                    }
+                    catch(\Exception $exception){}
+                }
+                return view('editMessage', [
+                    'i'=>$messagesD[0]->mIndex,
+                    'reType'=>$messagesD[0]->reType,
+                    'utext'=>$messagesD[0]->u_text,
+                    'retext'=>$messagesD[0]->re_text,
+                    'bimg'=>$bimg,
+                    'simg'=>$simg,
+                    'oc'=>$messagesD[0]->oc,
+                    'messageD'=>$messagesD,
+                ]);
+            }
+            else{
+                $text = $this->reSession("editErr", "無資料.");
+            }
+        }
+        else{
+            $text = $this->reSession("editErr", "使用錯誤.");
+        }
+    }
+
+    public function reSession($name, $txt){
+        Session::flash($name, $txt);
+        return 1;
+    }
+
+    public function index1($utext=''){
         if($utext!=''){
             if($this->pdoConn->errorCode()=='00000'){
                 $sql = "SELECT * FROM botmessage WHERE u_text='".$utext."'";
@@ -48,7 +98,7 @@ class DataUpdateController extends Controller
                 else{
                     $simg = $messages[0]['sImg'];
                 }
-                return view('update', [
+                return view('editMessage', [
                     'reType'=>$messages[0]['reType'],
                     'utext'=>$messages[0]['u_text'],
                     'retext'=>$messages[0]['re_text'],
@@ -87,8 +137,7 @@ class DataUpdateController extends Controller
         return  back();//redirect('/select');//view('update');
     }
 
-    public function updateD(Request $editD)
-    {
+    public function updateD(Request $editD){
         // try{} catch (\Exception $exception){}
         $imgAddr = 'https://mytpl6.herokuapp.com/img/linebot_img/';
         $editD=$editD->input();

@@ -1,0 +1,71 @@
+﻿.loadingUI{
+    width:100%;
+    height:100%;
+    background-color:#cececeba;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    opacity:1.9;
+    position:absolute;
+    left:0px;
+    top:0px;
+    display:none;/*flex;/*block;*/
+    z-index:888;
+    align-items:center;
+    position: absolute;
+}
+.loadingUIDiv{
+    margin-left:2%;
+    width:100%;
+}
+.loadingUIPinner-border{
+    color:#992db6;
+    width:5vh;height:5vh;
+}
+.loadingUIText{
+    color:#992db6;
+    padding-top:1vh;
+    font-size:2.5vh;
+}
+
+.uplo{
+    margin-top:2.5vh;
+}
+
+.imgD{
+    margin-top:2.5vh;
+}
+#bImgBtn{
+    display: inline;
+}
+#sImgBtn{}
+.imgFileDiv{
+    width:96%;
+    height:80%;
+    overflow-y:auto;
+}
+.botImgtyle{
+    width:30vh;
+}
+.colStyle{
+    margin-top:2vh;
+}
+.imgTitleStyle{
+    color:#9f2cc5;
+    display:inline-flex;
+}
+.imgTitleStyleC{
+    font-size:4.5vmin;
+}
+.imgTitleStyleR{
+    font-size:8.5vmin;
+    padding-right:-1vmin;
+}
+
+.re_img{
+    width:20vh;
+}
+
+.smitBtn{
+    width:80%;
+    margin-left:10%;
+}

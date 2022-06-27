@@ -1,3 +1,6 @@
+
+let loadingDom = '<div style="padding-left:50%;"><div class="spinner-border loadingUIPinner-border" role="status"></div><div class="loadingUIText">請稍後...</div></div>';
+let loadUI = '<div class="UIDivTitle"><span onclick="UIDivTitleClose()">X</span></div><div class="row justify-content-center uiStyle"><div class="loadingUIText" style="font-size: 3.5vh;color: #9400cb;">請稍後...</div></div>';
 function UIDivTitleClose(){
     allWindowDis('none');
 }
@@ -8,4 +11,12 @@ function allWindowUI(imgUrl,uName){
 }
 function allWindowDis(sta){
     $(".allWindowUI").css("display",sta);
+    if(sta=='none'){ $('.allWindowUI').empty(); }
+}
+
+function updateUser(str){
+    allWindowDis('block');
+    $('.allWindowUI').html(loadUI);
+    allWindowDis('none');
+    // alert(str)
 }
