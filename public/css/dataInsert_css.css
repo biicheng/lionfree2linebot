@@ -1,6 +1,6 @@
 ﻿.loadingUI{
-    width:100%;
-    height:100%;
+    width:100%;/*!important*/
+    height:111%;
     background-color:#cececeba;
     filter:alpha(opacity=50);
     -moz-opacity:0.5;
@@ -8,10 +8,11 @@
     position:absolute;
     left:0px;
     top:0px;
-    display:none;/*flex;/*block;*/
+    display:flex;/*flex;/*block;*//*none*/
     z-index:888;
-    align-items:center;
+    /* align-items:center; */
     position: absolute;
+    overflow-y:overlay;
 }
 .loadingUIDiv{
     margin-left:2%;
@@ -47,16 +48,26 @@
     width:30vh;
 }
 .colStyle{
-    margin-top:2vh;
+    /* margin-top:2vh; */
 }
 .imgTitleStyle{
     color:#9f2cc5;
-    display:inline-flex;
+    padding:1.5vh 0;
+    /* display:inline-flex; */
 }
 .imgTitleStyleC{
     font-size:4.5vmin;
+    text-align:center;
 }
 .imgTitleStyleR{
     font-size:8.5vmin;
-    padding-right:-1vmin;
+    /* padding-right:-1vmin; */
+    text-align:right;
+}
+
+
+.sumBtn{
+    width:90%;
+    margin-left:5%;
+    margin-top:3vh;
 }

@@ -34,7 +34,7 @@ Route::get('/dbt', 'LineBotT@dbT')->name('dbt');
 Route::post('/fileText', 'Controller@fileText')->name('fileText');
 
 
-Route::get('/select', 'messageSeleController@index')->name('select');
+Route::get('/selectText', 'messageSeleController@index')->name('selectText');
 Route::get('/insert', 'DataInsertController@index')->name('insert');
 Route::post('/insert', 'DataInsertController@insertD')->name('insert');
 Route::get('/edit/{utext?}', 'DataUpdateController@index');

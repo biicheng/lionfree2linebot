@@ -3,10 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center loadUI">
-        <div class="loadingUI">
-            <div class="loadingUIDiv"><div style="padding-left:50%;"><div class="spinner-border loadingUIPinner-border" role="status"></div><div class="loadingUIText">請稍後...</div></div></div>
+        <div class="myUI">
         </div>
-        <div class="card-body col-md-8">
+        <div class="card-body col-md-8" style="margin-top:3vh;">
             <div class="card">
                 <div class="card-header">新增回覆資訊.</div>
                 @if($postT)
@@ -16,7 +15,7 @@
                     </div>
                 @endif
                 <div class=myAlert></div>
-                <form method="POST" id="form" action="/insert" enctype="multipart/form-data" style="padding:0 1.5vh;">
+                <form method="POST" id="form" action="/insert" enctype="multipart/form-data" style="padding:0 3.5vh;">
                     @csrf
                     <div class="form-group row">
                         <label for="Utxt" class="col-md-12 col-form-label text-md-left">使用者訊息</label>
@@ -41,8 +40,8 @@
                         <div class="col-md-8 offset-md-4">
                         </div>
                     </div>
+                    <button type="button" class="btn btn-primary sumBtn" id="isChecked" onclick="cli()">送出</button>
                 </form>
-                <button type="button" class="btn btn-primary btn" id="isChecked" onclick="cli()">送出</button>
             </div>
         </div>
     </div>

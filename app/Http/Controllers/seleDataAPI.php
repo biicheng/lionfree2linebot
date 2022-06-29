@@ -17,8 +17,8 @@ class seleDataAPI extends Controller
     
     public function seleImgMap(Request $request){
         $imgArr = array();
-        $imgArr['bimg'] = $this->checkImgFile($this->slesData->seleImgMaps('b'));
-        $imgArr['simg'] = $this->checkImgFile($this->slesData->seleImgMaps('s'));
+        $imgArr['bimg'] = $this->slesData->seleImgMaps('b');//$this->checkImgFile($this->slesData->seleImgMaps('b'));
+        $imgArr['simg'] = $this->slesData->seleImgMaps('s');//$this->checkImgFile();
         return json_encode($imgArr);
     }
     public function checkImgFile($imgArr){

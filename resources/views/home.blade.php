@@ -7,7 +7,7 @@
             {{-- <div class="card"> --}}
             <div class="row justify-content-center">
                 <div class="col-md-5">
-                    <a class="listA" href="{{route('select')}}" >
+                    <a class="listA" href="{{route('selectText')}}" >
                         <div class="alert alert-success listDiv">
                             <img class="listImgStyle" src="{{asset('/img/textlist_128.png')}}" />
                             關鍵詞語列表.

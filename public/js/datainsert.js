@@ -1,15 +1,18 @@
 let imgFileD=null;
+// JSON.parse('{"bimg":[{"imgNum":1,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"ba-chi-niB.jpg"},{"imgNum":2,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"Come-clapB.jpg"},{"imgNum":3,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"Computer-analysisB.jpg"},{"imgNum":4,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"Crying-dad-sleepyB.jpg"},{"imgNum":5,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"How_About_The_TroopsB.jpg"},{"imgNum":7,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"KingZhonghuang-HahahaB.jpg"},{"imgNum":8,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"Mao-Bo-is-dry-and-stable-HeyB.jpg"},{"imgNum":9,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"NewCrownSpecialMedicineB.jpg"},{"imgNum":10,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"pig_bitchB.jpg"},{"imgNum":11,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"SimpleEpidemicPreventionB.jpg"},{"imgNum":12,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"SmokingRulesB.jpg"},{"imgNum":13,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"Soldiers_cant_tell_theTruthB.jpg"},{"imgNum":14,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"wang_Mask-shut-upB.jpg"},{"imgNum":15,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"wang_scared-sillyB.jpg"},{"imgNum":16,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"wang_soEasyB.jpg"},{"imgNum":17,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"wang_so-funnyB.jpg"},{"imgNum":18,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"wang_What-do-you-want-thatB.jpg"},{"imgNum":19,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"xu_I-knew-it-was-youB.jpg"},{"imgNum":20,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"you-say-chineseB.jpg"},{"imgNum":43,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"You-are-talking-about-three-smallB.jpg"},{"imgNum":44,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"You-are-talking-about-three-smallB.jpg"},{"imgNum":46,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"You-are-talking-about-three-smallB.jpg"},{"imgNum":47,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"You-are-talking-about-three-smallB.jpg"},{"imgNum":21,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"You-are-talking-about-three-smallB.jpg"}],"simg":[{"imgNum":22,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"ba-chi-niS.jpg"},{"imgNum":23,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"Come-clapS.jpg"},{"imgNum":24,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"Computer-analysisS.jpg"},{"imgNum":25,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"Crying-dad-sleepyS.jpg"},{"imgNum":26,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"How_About_The_TroopsS.jpg"},{"imgNum":27,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"I-want-it-allS.jpg"},{"imgNum":28,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"KingZhonghuang-HahahaS.jpg"},{"imgNum":29,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"Mao-Bo-is-dry-and-stable-HeyS.jpg"},{"imgNum":30,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"NewCrownSpecialMedicineS.jpg"},{"imgNum":31,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"pig_bitchS.jpg"},{"imgNum":32,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"SimpleEpidemicPreventionS.jpg"},{"imgNum":33,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"SmokingRulesS.jpg"},{"imgNum":34,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"Soldiers_cant_tell_theTruthS.jpg"},{"imgNum":35,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"wang_Mask-shut-upS.jpg"},{"imgNum":36,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"wang_scared-sillyS.jpg"},{"imgNum":37,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"wang_soEasyS.jpg"},{"imgNum":38,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"wang_so-funnyS.jpg"},{"imgNum":39,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"wang_What-do-you-want-thatS.jpg"},{"imgNum":40,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"xu_I-knew-it-was-youS.jpg"},{"imgNum":41,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"you-say-chineseS.jpg"},{"imgNum":42,"url":"https:\/\/mytpl6.herokuapp.com\/img\/linebot_img\/","imgName":"You-are-talking-about-three-smallS.jpg"}]}');
 let imgSameType=null;
 let imgType = null;
-let loadingDom = '<div style="padding-left:50%;"><div class="spinner-border loadingUIPinner-border" role="status"></div><div class="loadingUIText">請稍後...</div></div>';
+let loadingDom = '<div class="loadingUI">';//
+let loadingUIDom = '<div style="padding-left:45%;padding-top:40vh;"><div class="spinner-border loadingUIPinner-border" role="status"></div><div class="loadingUIText">請稍後...</div></div>';
+let divE = '</divE';
 function loadingUI(sta,uiDom){
-    $(".loadingUI").css("display","none");
-    if(sta=='none'){$(".loadingUI").empty();}
-    else{$(".loadingUI").css("display",sta);$(".loadingUI").html('<div class="loadingUIDiv">'+uiDom+'</div>');}
+    // $(".loadingUI").css("display","none");
+    if(sta=='none'){$(".myUI").empty();}
+    else{/*$(".loadingUI").css("display",sta);*/$(".myUI").html(loadingDom+uiDom+divE);}
 }
 
 function cli(){
-    loadingUI('flex', loadingDom);
+    loadingUI('flex', loadingUIDom);
     if($("select[id='reType']").val()!='...'&&$("input[id='Utxt']").val()!=''){ this.equ(); }
     else{
         loadingUI('none','');
@@ -151,13 +154,13 @@ function imgFileDom(Type){
     垂直    align-items-center
     */
    let imgFileTitleStr = imgSameType==2?"請選擇圖片":Type=='bimg'?"請選擇大圖":"請選擇小圖";
-    let rowDom = '<div class="row row-cols-sm-3 justify-content-center">';
-    let colDom = '<div class="col colStyle">';
+    let rowDom = '<div class="row justify-content-center align-items-center" style="width:100%;height:10%;">';
+    let colDom = '<div class="col imgTitleStyle">';
     let divD = '</div>';
     d = Type==1?imgFileD.bimg:imgFileD.simg;
-    imgFileDoms += '<div class="container">';
-    imgFileDoms +=rowDom+'<div class="col-3 imgTitleStyle"></div><div class="col-6 justify-content-center align-items-center imgTitleStyle imgTitleStyleC">'+imgFileTitleStr+'</div><div class="col-3 justify-content-end imgTitleStyle imgTitleStyleR"><span onclick="closeBox()">X</span></div>'+divD;
-    imgFileDoms += '<div class="container imgFileDiv">';
+
+    imgFileDoms += '<div class="row" style="width:100%;"><div class="row justify-content-center align-items-center" style="width:100%;height:10%;"><div class="col-3 imgTitleStyle"></div><div class="col-6  imgTitleStyle imgTitleStyleC">'+imgFileTitleStr+'</div><div class="col-3 imgTitleStyle imgTitleStyleR"><span onclick="closeBox()">X</span></div>';
+    imgFileDoms += '<div class="col-12" style="padding-bottom:5vh;">';
     d.forEach(function callback(value, index) {
         i++;
         if(i==1){imgFileDoms+=rowDom;}
@@ -166,7 +169,7 @@ function imgFileDom(Type){
     });
     if(i==1){imgFileDoms+=colDom+divD+colDom+divD+divD;}
     if(i==2){imgFileDoms+=colDom+divD+divD;}
-    imgFileDoms += divD+divD;
+    imgFileDoms += divD+divD+divD;
     i = 0;
     loadingUI('flex',imgFileDoms);
 }
@@ -194,7 +197,7 @@ function setImg(val, Type){
     closeBox();
 }
 function imgdataGet(val){
-    loadingUI('flex', loadingDom);
+    loadingUI('flex', loadingUIDom);
     $.ajax({
 		type: "POST",
 		charset:"utf-8",
@@ -206,6 +209,7 @@ function imgdataGet(val){
         processData:false,
         contentType:false,
 		success: function(response){
+            console.log(response)
             loadingUI('none','');
             imgFileD = response;
             imgFileDom(val);
