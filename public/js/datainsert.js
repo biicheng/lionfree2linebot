@@ -209,7 +209,6 @@ function imgdataGet(val){
         processData:false,
         contentType:false,
 		success: function(response){
-            console.log(response)
             loadingUI('none','');
             imgFileD = response;
             imgFileDom(val);
