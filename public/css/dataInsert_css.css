@@ -38,7 +38,6 @@
 #bImgBtn{
     display: inline;
 }
-#sImgBtn{}
 .imgFileDiv{
     width:96%;
     height:80%;
@@ -46,9 +45,6 @@
 }
 .botImgtyle{
     width:30vh;
-}
-.colStyle{
-    /* margin-top:2vh; */
 }
 .imgTitleStyle{
     color:#9f2cc5;
