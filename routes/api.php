@@ -26,4 +26,7 @@ Route::get('/messageDeleteAPI', 'DataDeletAPI@index')->name('messageDelete');
 // bot_cms_imgFileMapsSele
 Route::post('/imgMaps', 'seleDataAPI@seleImgMap');
 
+//create img
+Route::post('/creatImgAPI', 'insertDataAPI@inserImgData');
+
 //Route::get('/dbt', 'LineBotT@dbtest');

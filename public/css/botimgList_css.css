@@ -1,0 +1,9 @@
+﻿.single_ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    display: inline-grid;
+    /* overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box; */
+  }

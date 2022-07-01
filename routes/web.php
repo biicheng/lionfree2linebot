@@ -44,3 +44,5 @@ Route::post('/edit', 'DataUpdateController@editD')->name('edit');
 Route::get('/messageDelete', 'DataDeletController@index')->name('messageDelete');
 Route::get('/lineUser', 'LineUserListController@LineUserList')->name('lineUser');
 
+Route::get('/manageBotImg', 'manageBotImgController@imgList')->name('manageBotImg');
+
