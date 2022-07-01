@@ -15,7 +15,7 @@
                             上傳新增圖片
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class=myAlert></div>
                             <form method="POST" id="form" action="/insert" enctype="multipart/form-data" style="padding:0 2.5vh;">
