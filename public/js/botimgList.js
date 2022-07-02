@@ -69,7 +69,7 @@ function errCode(type,t){
     return 1;
 }
 function reSetForm(){
-    // $("#imgName").val("");
+    $("#imgName").val("");
     // $("#iUrl").val("");
     // $("#iDir").val("");
     // $("#imgType").val(0);
