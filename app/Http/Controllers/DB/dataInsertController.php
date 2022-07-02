@@ -34,4 +34,28 @@ class dataInsertController extends Controller
             return 0;
         }
     }
+
+    public function botImgData_insert($dataN, $iUrl, $imgDir, $fileName, $fileType, $getstatus, $op){
+        $insertArr = [];
+        $insertArr['imgNum'] = null;
+        $insertArr['url'] = $iUrl;
+        $insertArr['filedir'] = $imgDir;
+        $insertArr['imgName'] = $fileName;
+        $insertArr['getstatus'] = $getstatus;
+        $insertArr['op'] = $op;
+        if($fileType!=''){ $insertArr['imgType'] = $fileType; }
+        try{
+            DB::table($dataN)->insert(
+                $insertArr
+                // ['imgNum'=>null, 'url'=>$iUrl, 
+                //     'filedir'=>$imgDir, 'imgName'=>$fileName, 
+                //     'imgType'=>$fileType, 'getstatus'=>$getstatus, 'op'=>$op]
+            );
+            return 1;
+        }
+        catch(\Exception $exception){
+            \Log::info("inserBotImgMysqlErr:".$exception);
+            return 0;
+        }
+    }
 }

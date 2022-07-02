@@ -153,7 +153,7 @@ function imgFileDom(Type){
     水平    justify-content-center  
     垂直    align-items-center
     */
-   let imgFileTitleStr = imgSameType==2?"請選擇圖片":Type=='bimg'?"請選擇大圖":"請選擇小圖";
+   let imgFileTitleStr = imgSameType==2?"請選擇圖片":Type==1?"請選擇大圖":"請選擇小圖";
     let rowDom = '<div class="row justify-content-center align-items-center" style="width:100%;height:10%;">';
     let colDom = '<div class="col imgTitleStyle">';
     let divD = '</div>';
@@ -164,7 +164,7 @@ function imgFileDom(Type){
     d.forEach(function callback(value, index) {
         i++;
         if(i==1){imgFileDoms+=rowDom;}
-        imgFileDoms += colDom+'<img src="'+value.url+value.imgName+'" class="botImgtyle '+value.imgName+' rounded mx-auto d-block botimgF" onmouseover="bigImg(this)" onmouseout="normalImg(this)" onclick=setImg("'+value.imgName+'","'+Type+'") />'+divD;
+        imgFileDoms += colDom+'<img src="'+value.url+value.filedir+value.imgName+'" class="botImgtyle '+value.imgName+' rounded mx-auto d-block botimgF" onmouseover="bigImg(this)" onmouseout="normalImg(this)" onclick=setImg("'+value.imgName+'","'+Type+'") />'+divD;
         if(i==3){ i=0;imgFileDoms+=divD;}
     });
     if(i==1){imgFileDoms+=colDom+divD+colDom+divD+divD;}

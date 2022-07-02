@@ -19,6 +19,7 @@ function cli(){
         let formData = new FormData();
         formData.append('iUrl', $("input[id='iUrl']").val());
         formData.append('imgname', $("input[id='imgName']").val());
+        formData.append('imgDir', $("input[id='iDir']").val());
         formData.append('imgType', $("select[id='imgType']").val());
         requestAPI(formData, "api/creatImgAPI");
     }
@@ -70,6 +71,8 @@ function errCode(type,t){
 function reSetForm(){
     $("#imgName").val("");
     $("#iUrl").val("");
+    $("#iDir").val("");
+    $("#imgType").val(0);
 }
 function btnStatus(sta){
     $(".btn").attr("disabled", sta);

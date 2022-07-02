@@ -21,9 +21,15 @@
                             <form method="POST" id="form" action="/insert" enctype="multipart/form-data" style="padding:0 2.5vh;">
                                 @csrf
                                 <div class="form-group row">
-                                    <label for="imgUrl" class="col-md-12 col-form-label text-md-left">圖片路徑位置:</label>
+                                    <label for="imgUrl" class="col-md-12 col-form-label text-md-left">圖片路徑網址:</label>
                                     <div class="col-md-7">
-                                        <input id="iUrl" type="text" class="form-control" name="imgUrl" value="" required autofocus>
+                                        <input id="iUrl" type="text" class="form-control" name="iUrl" value="" required autofocus>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="imgDir" class="col-md-12 col-form-label text-md-left">圖片資料夾:</label>
+                                    <div class="col-md-7">
+                                        <input id="iDir" type="text" class="form-control" name="imgDir" value="" required autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -36,7 +42,7 @@
                                     <label for="imgType" class="col-md-12 col-form-label text-md-left">圖片副檔名</label>
                                     <div class="col-md-6">
                                         <select id="imgType" name="imgType" class="form-control" onchange="uType(this.options[this.options.selectedIndex].value)">
-                                            <option value="...">-- 請選擇回覆類型 --</option>
+                                            <option value="...">-- 請選副檔名 --</option>
                                             <option value="jpg">.jpg</option>
                                             <option value="png">.png</option>
                                         </select> 
@@ -60,7 +66,7 @@
                                     @foreach($allImg as $v)
                                         <div class="row" style="font-size:2.5vh;margin-top:4.5vh;">
                                             <div class="col-3">
-                                                <img src="{{asset($v->url.$v->imgName)}}" style="width:10vh;" />
+                                                <img src="{{asset($v->url.$v->filedir.$v->imgName)}}" style="width:10vh;" />
                                             </div>
                                             <div class="col-7" style="display:flex;padding-top:-3%;">
                                                 <div class="row">
