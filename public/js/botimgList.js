@@ -69,10 +69,10 @@ function errCode(type,t){
     return 1;
 }
 function reSetForm(){
-    $("#imgName").val("");
-    $("#iUrl").val("");
-    $("#iDir").val("");
-    $("#imgType").val(0);
+    // $("#imgName").val("");
+    // $("#iUrl").val("");
+    // $("#iDir").val("");
+    // $("#imgType").val(0);
 }
 function btnStatus(sta){
     $(".btn").attr("disabled", sta);
