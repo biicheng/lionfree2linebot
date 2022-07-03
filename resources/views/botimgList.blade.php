@@ -23,13 +23,15 @@
                                 <div class="form-group row">
                                     <label for="imgUrl" class="col-md-12 col-form-label text-md-left">圖片路徑網址:</label>
                                     <div class="col-md-7">
-                                        <input id="iUrl" type="text" class="form-control" name="iUrl" value="" required autofocus>
+                                        <label id="iUrl" type="text">https://mytpl6.herokuapp.com</label>
+                                        {{-- <input id="iUrl" type="text" class="form-control" name="iUrl" value="" required autofocus> --}}
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="imgDir" class="col-md-12 col-form-label text-md-left">圖片資料夾:</label>
                                     <div class="col-md-7">
-                                        <input id="iDir" type="text" class="form-control" name="imgDir" value="" required autofocus>
+                                        <label id="iDir" type="text">img/linebot_img</label>
+                                        {{-- <input id="iDir" type="text" class="form-control" name="imgDir" value="" required autofocus> --}}
                                     </div>
                                 </div>
                                 <div class="form-group row">

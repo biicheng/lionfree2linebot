@@ -57,6 +57,11 @@
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="card-body">
+                                <div class="row" style="font-size:2.5vh;">
+                                    <div class="col">刷新詞語
+                                        <img src="{{asset('/img/replay_121.png')}}" style="max-width:4.3vh;" onclick="reloadWeb()" />
+                                    </div>
+                                </div>
                                 @if($messageRow>0)
                                     @foreach($messageD as $v)
                                         <div class="row" style="font-size:2.5vh;margin-top:4.5vh;">

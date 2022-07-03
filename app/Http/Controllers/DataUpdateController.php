@@ -41,8 +41,8 @@ class DataUpdateController extends Controller
                         $botimgmaps = DB::table('botimgmaps')->where('op', '=', 1)->get();
                         if(count($botimgmaps)>0){
                             foreach($botimgmaps as $v){
-                                if($v->imgNum==$messagesD[0]->bImg){ $bimg = $v->url.$v->imgName; }
-                                if($v->imgNum==$messagesD[0]->sImg){ $simg = $v->url.$v->imgName; }
+                                if($v->imgNum==$messagesD[0]->bImg){ $bimg = $v->url.$v->filedir.$v->imgName; }
+                                if($v->imgNum==$messagesD[0]->sImg){ $simg = $v->url.$v->filedir.$v->imgName; }
                             }
                         }
                     }

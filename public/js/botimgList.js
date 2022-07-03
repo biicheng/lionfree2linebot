@@ -13,13 +13,13 @@ function loadingUI(sta,uiDom){
 
 function cli(){
     loadingUI('flex', loadingUIDom);
-    if($("select[id='imgType']").val()!='...'&&$("select[id='imgType']").val()!=''&&$("input[id='iUrl']").val()!=''&&$("input[id='imgName']").val()!=''){ 
+    if($("select[id='imgType']").val()!='...'&&$("select[id='imgType']").val()!=''&&$("input[id='imgName']").val()!=''){ 
         // this.equ(); 
         this.errCode('l','');
         let formData = new FormData();
-        formData.append('iUrl', $("input[id='iUrl']").val());
+        formData.append('iUrl', $("#iUrl").html());
         formData.append('imgname', $("input[id='imgName']").val());
-        formData.append('imgDir', $("input[id='iDir']").val());
+        formData.append('imgDir', $("#iDir").html());
         formData.append('imgType', $("select[id='imgType']").val());
         requestAPI(formData, "api/creatImgAPI");
     }
