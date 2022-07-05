@@ -46,7 +46,7 @@
                             系統回覆修改：
                         </div>
                     </div>
-                    <form method="POST" action="{{ route('update') }}">
+                    <form method="POST" action="{{ route('editMessage') }}">
                         @csrf
                         <div class="form-group row">
                             <label for="Utxt" class="col-md-4 col-form-label text-md-right">使用者訊息</label>

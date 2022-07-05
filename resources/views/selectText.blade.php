@@ -77,35 +77,43 @@
                                                     <label><label style="color:#ffc400;">●{{'停用'}}</label></label>
                                                 @endif
                                             </div>
-                                            <div class="col-md-3" style="display:flex;padding-top:-3%;">
-                                                <a href="edit/{{$v->mIndex}}">
-                                                    <img src="{{asset('/img/edit_icon.png')}}" style="width:4.3vh;" />
-                                                </a>
-                                                @if($v->oc==1)
-                                                    <form method="POST" action="{{route('edit')}}" style="margin:0 2.5vh;">
-                                                        @csrf
-                                                        <button type="submit" style="border:none;background:#0000;">
-                                                        <img src="{{ asset('/img/close_icon.png') }}" style="width:4.3vh;" />
-                                                        </button>
-                                                        <input type="hidden" value={{$v->oc}} name="oc" id="oc" />
-                                                        <input type="hidden" value={{$v->u_text}} name="utext" id="utext" />
-                                                    </form>
-                                                @else
-                                                <form method="POST" action="{{route('edit')}}" style="margin:0 2.5vh;">
-                                                    @csrf
-                                                    <button type="submit" style="border:none;background:#0000;">
-                                                    <img src="{{asset('/img/open_icon.png')}}" style="max-width:4.3vh;" />
-                                                    </button>
-                                                    <input type="hidden" value={{$v->oc}} name="oc" id="oc" />
-                                                    <input type="hidden" value={{$v->u_text}} name="utext" id="utext" />
-                                                </form>
-                                                @endif
-                                                @if(Auth::id()==1)
+                                            @if(Auth::id()==1)
+                                                <div class="col-md-3" style="display:flex;padding-top:-3%;">
                                                     <a href="edit/{{$v->mIndex}}">
-                                                        <img src="{{asset('/img/delect_icon.png')}}" style="width:4.3vh;" />
+                                                        <img src="{{asset('/img/edit_icon.png')}}" style="width:4.3vh;" />
                                                     </a>
-                                                @endif
-                                            </div>
+                                                    @if($v->oc==1)
+                                                        <form method="POST" action="{{route('edit')}}" style="margin:0 2.5vh;">
+                                                            @csrf
+                                                            <button type="submit" style="border:none;background:#0000;">
+                                                            <img src="{{ asset('/img/close_icon.png') }}" style="width:4.3vh;" />
+                                                            </button>
+                                                            <input type="hidden" value={{$v->oc}} name="oc" id="oc" />
+                                                            <input type="hidden" value={{$v->u_text}} name="utext" id="utext" />
+                                                        </form>
+                                                    @else
+                                                        <form method="POST" action="{{route('edit')}}" style="margin:0 2.5vh;">
+                                                            @csrf
+                                                            <button type="submit" style="border:none;background:#0000;">
+                                                            <img src="{{asset('/img/open_icon.png')}}" style="max-width:4.3vh;" />
+                                                            </button>
+                                                            <input type="hidden" value={{$v->oc}} name="oc" id="oc" />
+                                                            <input type="hidden" value={{$v->u_text}} name="utext" id="utext" />
+                                                        </form>
+                                                    @endif
+                                                    @if(Auth::id()==1)
+                                                        <a href="edit/{{$v->mIndex}}">
+                                                            <img src="{{asset('/img/delect_icon.png')}}" style="width:4.3vh;" />
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            @else
+                                                <div class="col-md-3" style="display:flex;padding-top:-3%;">
+                                                    <a href="mesaageView/{{$v->mIndex}}">
+                                                        <img src="{{asset('/img/info1.png')}}" style="width:4.3vh;" />
+                                                    </a>
+                                                </div>
+                                            @endif
                                         </div>
                                     @endforeach
                                 @endif
