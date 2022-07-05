@@ -7,7 +7,7 @@
             {{-- <div class="card"> --}}
             <div class="row justify-content-center">
                 <div class="col-md-5">
-                    <a class="listA" href="{{route('selectText')}}" >
+                    <a href="{{route('selectText')}}" style="text-decoration:none;">
                         <div class="alert alert-success listDiv">
                             <img class="listImgStyle" src="{{asset('/img/textlist_128.png')}}" />
                             關鍵詞語列表.
@@ -15,7 +15,7 @@
                     </a>
                 </div>
                 <div class="col-md-5">
-                    <a class="listA" href="{{route('insert')}}" >
+                    <a href="{{route('insert')}}" style="text-decoration:none;">
                         <div class="alert alert-success listDiv">
                             <img class="listImgStyle" src="{{asset('/img/add_icon.png')}}" />
                             新增關鍵詞語.
@@ -26,7 +26,7 @@
             @if(Auth::id()==1)
                 <div class="row justify-content-center ">
                     <div class="col-md-5">
-                        <a class="listA" href="{{route('lineUser')}}" >
+                        <a href="{{route('lineUser')}}" style="text-decoration:none;">
                             <div class="alert alert-primary listDiv">{{-- background:#d78af2; --}}
                                 <img class="listImgStyle" src="{{asset('/img/users_128.png')}}" />
                                 LineBot User.
@@ -34,7 +34,7 @@
                         </a>
                     </div>
                     <div class="col-md-5">
-                        <a class="listA" href="{{route('manageBotImg')}}" >
+                        <a href="{{route('manageBotImg')}}" style="text-decoration:none;">
                             <div class="alert alert-primary listDiv">{{-- background:#d78af2; --}}
                                 <img class="listImgStyle" src="{{asset('/img/requesImg_noback.png')}}" />
                                 Bot回覆圖片管理
