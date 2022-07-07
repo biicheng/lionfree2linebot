@@ -231,7 +231,3 @@ function normalImg(x){
     x.style.width="30vh";
 }
 
-
-function reloadWeb(){
-    location.reload(true);
-}

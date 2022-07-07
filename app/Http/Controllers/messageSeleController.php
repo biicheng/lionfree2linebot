@@ -45,8 +45,8 @@ class messageSeleController extends Controller
         //     $messages .= json_encode($d);
         // }
         return  view('selectText', [
-                    'messageRow'=>$messagesD->count(),//0,//count($messages),
-                    'messageD'=>$messagesD,//1//$messages,//
+                    'messageRow'=>$messagesD->count(),
+                    'messageD'=>$messagesD,
         ]);
     }
     public function seleD1(){

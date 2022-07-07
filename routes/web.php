@@ -14,7 +14,7 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@lineBotHome')->name('home');
 
 Route::get('/infoGet', 'Controller@infoD');
 
@@ -26,11 +26,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/dbt', 'LineBotT@dbT')->name('dbt');
-// Route::get('/fileText', function(){
-//     return view('fileText',[
-//         'postT'=>false
-//     ]);
-// });
 Route::post('/fileText', 'Controller@fileText')->name('fileText');
 
 

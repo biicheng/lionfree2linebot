@@ -8,7 +8,7 @@
             @if(Session::has('editErr'))
                 <div class="alert alert-danger">{{ Session::get('Err') }}</div>
             @endif
-            <div class="accordion marginTit" id="accordionExample">
+            <div class="accordion marginTit" id="{{Auth::id()==1?'accordionExample':'accordionPanelsStayOpenExample'}}">
                 @if(Auth::id()==1)
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
@@ -59,13 +59,18 @@
                 @endif
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <button class="accordion-button {{Auth::id()==1?'collapsed':''}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="{{Auth::id()==1?'false':'true'}}" aria-controls="collapseTwo">
                             圖片列表
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse {{Auth::id()==1?'':'show'}}" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="card-body">
+                                <div class="row" style="font-size:2.5vh;">
+                                    <div class="col">刷新詞語
+                                        <img src="{{asset('/img/replay_121.png')}}" style="max-width:4.3vh;" onclick="reloadWeb()" />
+                                    </div>
+                                </div>
                                 @if(count($allImg)>0)
                                     @foreach($allImg as $v)
                                         <div class="row" style="font-size:2.5vh;margin-top:4.5vh;">
@@ -74,9 +79,11 @@
                                             </div>
                                             <div class="col-7" style="display:flex;padding-top:-3%;">
                                                 <div class="row">
-                                                    <div class="col-12 single_ellipsis">
-                                                        <label class="single_ellipsis">圖片位置: <br>{{$v->url}}</label>
-                                                    </div>
+                                                    @if(Auth::id()==1)
+                                                        <div class="col-12 single_ellipsis">
+                                                            <label class="single_ellipsis">圖片位置: <br>{{$v->url}}</label>
+                                                        </div>
+                                                    @endif
                                                     <div class="col-12 single_ellipsis">
                                                         <label class="single_ellipsis">圖片名稱: <br>{{$v->imgName}}</label>
                                                     </div>
@@ -96,13 +103,13 @@
                                                         <div class="col-md-4" style="margin-top:1.5vh;">
                                                             <img src="{{asset('/img/edit_icon.png')}}" style="width:4vh;" />
                                                         </div>
+                                                        <div class="col-md-4" style="margin-top:1.5vh;">
+                                                            <img src="{{asset('/img/replay_121.png')}}" style="width:4vh;" />
+                                                        </div>
+                                                        <div class="col-md-{{Auth::id()==1?'4':'12'}}" style="margin-top:1.5vh;">
+                                                            <img src={{asset($v->op==1?"/img/close_icon.png":"/img/open_icon.png")}} id="statusImg" style="width:4vh;" onclick="changeStatus('{{$v->imgName}}')" disabled />
+                                                        </div>
                                                     @endif
-                                                    <div class="col-md-{{Auth::id()==1?'4':'6'}}" style="margin-top:1.5vh;">
-                                                        <img src="{{asset('/img/replay_121.png')}}" style="width:4vh;" />
-                                                    </div>
-                                                    <div class="col-md-{{Auth::id()==1?'4':'6'}}" style="margin-top:1.5vh;">
-                                                        <img src={{asset($v->op==1?"/img/close_icon.png":"/img/open_icon.png")}} id="statusImg" style="width:4vh;" onclick="changeStatus('{{$v->imgName}}')" disabled />
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
