@@ -14,7 +14,7 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', 'HomeController@lineBotHome')->name('home');
+Route::get('/', 'HomeController@lineBotHome');
 
 Route::get('/infoGet', 'Controller@infoD');
 
