@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use DB; //20220707 add
-
 class HomeController extends Controller
 {
     /**
@@ -15,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -28,12 +26,4 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function lineBotHome(){
-        $messagesD = DB::table('botmessage2line')->get();
-
-        return view('lineBotHome', [
-            'messageRow'=>$messagesD->count(),
-            'messageD'=>$messagesD,
-        ]);
-    }
 }

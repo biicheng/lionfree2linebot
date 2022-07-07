@@ -208,3 +208,107 @@
 #48 C:\\xampp\\htdocs\\heroku_mytpl6\\server.php(21): require_once('C:\\\\xampp\\\\htdocs...')
 #49 {main}
 "} 
+[2022-07-07 13:20:23] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:25] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:25] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:26] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:26] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:26] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:27] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:28] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:28] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:29] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:29] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:30] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:30] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:31] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:31] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:31] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:32] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:33] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:34] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:34] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:35] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:35] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:36] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:36] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:36] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 
+[2022-07-07 13:20:37] local.ERROR: Cannot use DB as DB because the name is already in use {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use DB as DB because the name is already in use at C:\\xampp\\htdocs\\heroku_mytpl6\\app\\Http\\Controllers\\Controller.php:20)
+[stacktrace]
+#0 {main}
+"} 

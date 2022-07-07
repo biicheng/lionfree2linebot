@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use Intervention\Image\ImageManagerStatic; 
 
+// use DB; //20220707 add
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -41,5 +43,14 @@ class Controller extends BaseController
         // File::copy(storage_path().'\\app\\'.$path, './images/'.$path);
         // Storage::delete('./'.$path);
         return $path;
+    }
+    
+    public function lineBotHome(){
+        $messagesD = DB::table('botmessage2line')->get();
+
+        return view('lineBotHome', [
+            'messageRow'=>$messagesD->count(),
+            'messageD'=>$messagesD,
+        ]);
     }
 }
