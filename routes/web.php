@@ -15,6 +15,7 @@
 //     return view('welcome');
 // });
 Route::get('/', 'HomeController@lineBotHome');
+Route::get('/List', 'HomeController@lineBotHome');
 
 Route::get('/infoGet', 'Controller@infoD');
 
