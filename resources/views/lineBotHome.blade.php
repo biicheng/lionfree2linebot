@@ -1,6 +1,11 @@
 @extends('layouts.appHome')
 
 @section('content')
+<div class="goTop">
+    <a class="goTopBtn jq-goTop" onclick="gotop()">
+        <img src="{{asset('/img/gotop.png')}}" style="width:6vh;">
+    </a>
+</div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -33,4 +38,9 @@
 
 @section('content_css')
   <link href="{{ URL::asset('/css/home_css.css') }}" rel="stylesheet">
+  <link href="{{ URL::asset('/css/gotop.css') }}" rel="stylesheet">
+@endsection
+
+@section('content_js')
+    <script src="{{URL::asset('/js/lineBotgotop.js')}}"></script>
 @endsection

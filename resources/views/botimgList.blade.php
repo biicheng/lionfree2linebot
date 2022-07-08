@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="goTop">
+    <a class="goTopBtn jq-goTop" onclick="gotop()">
+        <img src="{{asset('/img/gotop.png')}}" style="width:6vh;">
+    </a>
+</div>
 <div class="container" style="margin-top:3vh;">
     <div class="myUI"></div>
     <div class="row justify-content-center">
@@ -128,6 +133,7 @@
 @section('content_css')
     <link href="{{ URL::asset('/css/botimgList_css.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('/css/dataInsert_css.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/css/gotop.css') }}" rel="stylesheet">
 @endsection
 
 @section('content_js')
@@ -135,5 +141,6 @@
         <script src="{{URL::asset('/js/botimgList.js')}}"></script>
     @endif
     <script src="{{URL::asset('/js/botimgStatus.js')}}"></script>
+    <script src="{{URL::asset('/js/lineBotgotop.js')}}"></script>
     <script src="/js/3.6.0.jquery.js" defer></script>
 @endsection

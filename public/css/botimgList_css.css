@@ -7,3 +7,19 @@
     text-overflow: ellipsis;
     display: -webkit-box; */
   }
+
+.goTop {
+  position: fixed;
+  right: 1.5vh;
+  bottom: 10vh;
+  z-index:99999;
+  /* .goTopBtn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    .fa-arrow-alt-circle-up {
+      color: $primary;
+    }
+  } */
+}
