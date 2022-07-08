@@ -248,8 +248,8 @@ class LineBotT extends Controller
                         $txt = $this->pushText($message_text, $replyToken);
                     }
                     else if($message[0]->reType=='img'){
-                        $bImgD = DB::table('botimgmaps')->where([['imgNum','=',$message[0]->bImg],['getstatus','=',1]])->get();
-                        $sImgD = DB::table('botimgmaps')->where([['imgNum','=',$message[0]->sImg],['getstatus','=',1]])->get();
+                        $bImgD = DB::table('botimgmaps')->where([['imgNum','=',$message[0]->bImg]])->get();
+                        $sImgD = DB::table('botimgmaps')->where([['imgNum','=',$message[0]->sImg]])->get();
                         if(count($bImgD)>0&&count($sImgD)>0){ $txt = $this->pushImg($bImgD[0]->url.$bImgD[0]->filedir.$bImgD[0]->imgName, $sImgD[0]->url.$sImgD[0]->filedir.$sImgD[0]->imgName, $replyToken); }
                         else{ $txt = $this->pushText($message_text, $replyToken); }
                     }

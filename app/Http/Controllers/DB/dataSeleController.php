@@ -52,7 +52,6 @@ class dataSeleController extends Controller
         $DBtype = $type;
         $whereArr = [];
         $whereArr[0] = ['imgName','!=',''];
-        $whereArr[0] = ['getstatus','=',1];
         if(($DBtype=='all' || $DBtype=='b' || $DBtype=='s')&&
             ($DBop=='all' || $DBop==0 || $DBop==1)
         ){

@@ -35,13 +35,12 @@ class dataInsertController extends Controller
         }
     }
 
-    public function botImgData_insert($dataN, $iUrl, $imgDir, $fileName, $fileType, $getstatus, $op){
+    public function botImgData_insert($dataN, $iUrl, $imgDir, $fileName, $fileType, $op){
         $insertArr = [];
         $insertArr['imgNum'] = null;
         $insertArr['url'] = $iUrl;
         $insertArr['filedir'] = $imgDir;
         $insertArr['imgName'] = $fileName;
-        $insertArr['getstatus'] = $getstatus;
         $insertArr['op'] = $op;
         if($fileType!=''){ $insertArr['imgType'] = $fileType; }
         try{
@@ -49,7 +48,7 @@ class dataInsertController extends Controller
                 $insertArr
                 // ['imgNum'=>null, 'url'=>$iUrl, 
                 //     'filedir'=>$imgDir, 'imgName'=>$fileName, 
-                //     'imgType'=>$fileType, 'getstatus'=>$getstatus, 'op'=>$op]
+                //     'imgType'=>$fileType, 'op'=>$op]
             );
             return 1;
         }

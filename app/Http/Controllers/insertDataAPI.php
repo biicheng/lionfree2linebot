@@ -33,10 +33,10 @@ class insertDataAPI extends Controller
             $simgC = $this->imgUploadEdit->checkImgFile($imgname.'S.'.$imgType, $iUrl.$fileDir);
 
             if($bimgC==1&&$simgC==1){
-                $bImgM_insert = $this->insertData->botImgData_insert('botimgmaps', $iUrl, $fileDir, $imgname.'B.'.$imgType, 'b', $bimgC, 1);
-                $sImgM_insert = $this->insertData->botImgData_insert('botimgmaps', $iUrl, $fileDir, $imgname.'S.'.$imgType, 's', $simgC, 1);
-                $bImg_insert =  $this->insertData->botImgData_insert('botbimgmaps', $iUrl, $fileDir, $imgname.'B.'.$imgType, '', $bimgC, 1);
-                $sImg_insert =  $this->insertData->botImgData_insert('botsimgmaps', $iUrl, $fileDir, $imgname.'S.'.$imgType, '', $simgC, 1);
+                $sImgM_insert = $this->insertData->botImgData_insert('botimgmaps', $iUrl, $fileDir, $imgname.'S.'.$imgType, 's', 1);
+                $bImgM_insert = $this->insertData->botImgData_insert('botimgmaps', $iUrl, $fileDir, $imgname.'B.'.$imgType, 'b', 1);
+                $bImg_insert =  $this->insertData->botImgData_insert('botbimgmaps', $iUrl, $fileDir, $imgname.'B.'.$imgType, '', 1);
+                $sImg_insert =  $this->insertData->botImgData_insert('botsimgmaps', $iUrl, $fileDir, $imgname.'S.'.$imgType, '', 1);
                 if($bImgM_insert==1&&$sImgM_insert==1){ return $this->insertD_API_returnD('s','ok.','200'); }
                 else{ return $this->insertD_API_returnD('e','資料庫異常，新增失敗.','404.1'); }
             }

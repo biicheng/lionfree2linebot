@@ -109,8 +109,8 @@ class DataInsert_API extends Controller
                     if($imgSameType==1){ //usame
                         $sImg = $repqesti['sImg'];
                         $seleSImg = $this->slesData->seleCheckImg($sImg);
-                        if(count($seleBImg)== 1&& $seleBImg[0]->getstatus==1 && $seleBImg[0]->op==1 &&
-                            count($seleSImg)==1 && $seleSImg[0]->getstatus==1 && $seleSImg[0]->op==1){
+                        if(count($seleBImg)== 1&& $seleBImg[0]->op==1 &&
+                            count($seleSImg)==1 && $seleSImg[0]->op==1){
                             $bImgCheck = $this->imgUploadEdit->checkImgFile($bImg, $seleBImg[0]->url.$seleSImg[0]->filedir);
                             $sImgCheck = $this->imgUploadEdit->checkImgFile($sImg, $seleSImg[0]->url.$seleSImg[0]->filedir);
                             if($bImgCheck==1&&$sImgCheck==1){
@@ -128,8 +128,8 @@ class DataInsert_API extends Controller
                         $sImg_mb_split = explode('B.', $bImg);
                         $sImg = $sImg_mb_split[0].'S.'.$sImg_mb_split[1];
                         $seleSImg = $this->slesData->seleCheckImg($sImg);
-                        if(count($seleBImg)==1 && $seleBImg[0]->getstatus==1 && $seleBImg[0]->op==1 &&
-                            count($seleSImg)==1 && $seleSImg[0]->getstatus==1 && $seleSImg[0]->op==1){
+                        if(count($seleBImg)==1 && $seleBImg[0]->op==1 &&
+                            count($seleSImg)==1 && $seleSImg[0]->op==1){
                             $bImgCheck = $this->imgUploadEdit->checkImgFile($bImg, $seleBImg[0]->url.$seleSImg[0]->filedir);
                             $sImgCheck = $this->imgUploadEdit->checkImgFile($sImg, $seleSImg[0]->url.$seleSImg[0]->filedir);
                             if($bImgCheck==1&&$sImgCheck==1){
