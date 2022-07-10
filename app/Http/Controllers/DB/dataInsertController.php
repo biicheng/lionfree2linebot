@@ -11,7 +11,7 @@ class dataInsertController extends Controller
     public function botMessage_Text_Insert($reType, $u_text, $retext){
         try{
             DB::table('botmessage2line')->insert([
-                'mIndex'=>null, 'reType'=>$reType, 
+                'mIndex'=>0, 'reType'=>$reType, 
                 'u_text'=>$u_text, 're_text'=>$retext, 'oc'=>1
             ]);
             return 1;
