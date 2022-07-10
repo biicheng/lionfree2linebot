@@ -13,6 +13,7 @@
     /* align-items:center; */
     position: absolute;
     overflow-y:overlay;
+    z-index:99999;
 }
 .loadingUIDiv{
     margin-left:2%;
