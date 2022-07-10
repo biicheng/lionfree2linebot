@@ -20,6 +20,16 @@ use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 
 class dataSeleController extends Controller
 {
+    // sele message 20220710 add.
+    function messageGet($oc){
+        $messages = [];
+        try{
+            $messages = DB::table('botmessage2line')->where([['oc','=',$oc]])->get();
+        }
+        catch(\Exception $exception){}
+        return $messages;
+    }
+
     // join sele mesage
     function mesageSele(){
         DB::table('botmessage2line')

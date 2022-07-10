@@ -19,7 +19,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar fixed-top navbar-light bg-light shadow-sm">
+        <nav class="navbar navbar-expand-md navbar fixed-top navbar-light bg-light shadow-md" style="background:#aa38ff!important;color:#fff;">
             <div class="container">
                 <div class="row">
                     <div class="dol" style="margin-left:1vh;font-size:4vh;">胡說八道的世界</div>

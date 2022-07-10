@@ -18,6 +18,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Intervention\Image\ImageManagerStatic; 
 
 // use DB; //20220707 add
+use App\Http\Controllers\DB\dataSeleController;
 
 class Controller extends BaseController
 {
@@ -46,11 +47,14 @@ class Controller extends BaseController
     }
     
     public function lineBotHome(){
-        $messagesD = DB::table('botmessage2line')->get();
+        $dataSeleController = new dataSeleController;
+        // $messagesD = DB::table('botmessage2line')->get();
 
         return view('lineBotHome', [
-            'messageRow'=>$messagesD->count(),
-            'messageD'=>$messagesD,
+            // 'messageRow'=>$messagesD->count(),
+            // 'messageD'=>$messagesD,
+            'message0'=>$dataSeleController->messageGet(0),
+            'message1'=>$dataSeleController->messageGet(1),
         ]);
     }
 }
