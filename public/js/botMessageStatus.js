@@ -16,8 +16,8 @@ function editMessageStatus(code, str){
         contentType:false,
 		success: function(response){
             errCode(response.result,response.errCode+' '+response.resultT);
-            cdCss('.statusImgS','display','flex');
 			if(response.result=='s'){ location.reload(); }
+            cdCss('.statusImgS','display','flex');
 		},
 		error: function(xhr, ajaxOptions, thrownError){
             let e = errCode("e","伺服器異常...");
