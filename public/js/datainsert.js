@@ -75,16 +75,6 @@ function requestAPI(formData, url){
 	});
 }
 
-function errCode(type,t){
-    let successAlert = '<div class="div-group row alert alert-success" role="alert" id="alert" style="margin:0;"><label class="col-form-label text-md-left" style="width:95%;" id="alertT">';
-    let dangerAlert = '<div class="div-group row alert alert-danger" role="alert" id="alert" style="margin:0;"><label class="col-form-label text-md-left" style="width:95%;" id="alertT">';
-    let lightAlert = '<div class="div-group row alert alert-light" role="alert" id="alert" style="margin:0;"><label class="col-form-label text-md-left" style="width:95%;" id="alertT">';
-    let DomEnd = '</label><label class="col-form-label text-md-right" style="width:5%;" onclick="winClose()"><a>X</a></label></div>';
-    if(type=='e'){$(".myAlert").html(dangerAlert+t+DomEnd);}
-    else if(type=='s'){$(".myAlert").html(successAlert+t+DomEnd);}
-    else if(type=='l'){$(".myAlert").empty();}
-    return 1;
-}
 function reSetForm(){
     $("#Utxt").val("");
     $("#BotText").val("");

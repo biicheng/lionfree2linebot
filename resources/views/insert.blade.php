@@ -49,9 +49,10 @@
 @endsection
 
 @section('content_css')
-  <link href="{{ URL::asset('/css/dataInsert_css.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/css/dataInsert_css.css') }}" rel="stylesheet">
 @endsection
 
 @section('content_js')
-  <script src="{{URL::asset('/js/datainsert.js')}}"></script>
+    <script src="{{URL::asset('/js/datainsert.js')}}"></script>
+    <script src="{{URL::asset('/js/errCodeUI.js')}}"></script>
 @endsection

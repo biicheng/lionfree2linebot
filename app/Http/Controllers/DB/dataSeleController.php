@@ -21,10 +21,10 @@ use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 class dataSeleController extends Controller
 {
     // sele message 20220710 add.
-    function messageGet($oc){
+    function messageGet($whereK,$whereV){
         $messages = [];
         try{
-            $messages = DB::table('botmessage2line')->where([['oc','=',$oc]])->get();
+            $messages = DB::table('botmessage2line')->where([[$whereK,'=',$whereV]])->get();
         }
         catch(\Exception $exception){}
         return $messages;

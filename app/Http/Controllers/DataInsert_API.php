@@ -17,6 +17,7 @@ use FTP;
 use App\Http\Controllers\shared\imgUploadEditController;
 use App\Http\Controllers\DB\dataSeleController;//20220620 add
 use App\Http\Controllers\DB\dataInsertController;//20220620 add
+use App\Http\Controllers\apiRequestMapController;//20220711 add
 
 class DataInsert_API extends Controller
 {
@@ -25,11 +26,11 @@ class DataInsert_API extends Controller
     * @param Request $request
     * @return array
     */
-    public function __construct()
-    {
+    public function __construct(){
         $this->imgUploadEdit = new imgUploadEditController;
         $this->slesData = new dataSeleController;
         $this->insertData = new dataInsertController;
+        $this->reqStr = new apiRequestMapController;
     }
     
     public function insertD_API(Request $request)
@@ -60,7 +61,7 @@ class DataInsert_API extends Controller
             if($reType=='img'){
                 $imgType = $repqesti['imgType'];
                 if($imgType==1){ //upload File
-                    $reText = $this->insertD_API_returnD('e','表單錯誤.','400');
+                    $reText = $this->reqStr->insertD_API_returnD('e','表單錯誤.','400');
                     // $bImg = array_key_exists('bImg',$repuestf)==1&&$requesta['bImg']!='undefined'?1:0;;
                     // $sImg = array_key_exists('sImg',$repuestf)==1&&$requesta['sImg']!='undefined'?1:0;;
                     // if($bImg==1&&$sImg==1){
@@ -70,34 +71,34 @@ class DataInsert_API extends Controller
                     //         if($sImgName->ImgNewName!=''&&$sImgName!='upImg_err'){
                     //             $insertData = $this->insertData();
                     //             if($insertData==1){
-                    //                 // $reText = $this->insertD_API_returnD('s',$bImgName->ImgNewName,'200');
-                    //                 $reText = $this->insertD_API_returnD('s','新增成功.','200');
+                    //                 // $reText = $this->reqStr->insertD_API_returnD('s',$bImgName->ImgNewName,'200');
+                    //                 $reText = $this->reqStr->insertD_API_returnD('s','新增成功.','200');
                     //             }
                     //             else{
-                    //                 $reText = $this->insertD_API_returnD('e','新增失敗.','404.1');
+                    //                 $reText = $this->reqStr->insertD_API_returnD('e','新增失敗.','404.1');
                     //             }
                     //         }
                     //         else{
                     //             //小圖上傳失敗
                     //             $this->imgUploadEdit->delectImg($bImgName->ImgNewName, 'updateImg', 'img');
-                    //             $reText = $this->insertD_API_returnD('e','檔案上傳失敗.','401.5');
+                    //             $reText = $this->reqStr->insertD_API_returnD('e','檔案上傳失敗.','401.5');
                     //         }
                     //     }
                     //     else{
                     //         //大圖上傳失敗
-                    //         $reText = $this->insertD_API_returnD('e','檔案上傳失敗.','401.4');
+                    //         $reText = $this->reqStr->insertD_API_returnD('e','檔案上傳失敗.','401.4');
                     //     }
                     // }
                     // else{
                     //     if($bImg==0&&$sImg==0){
-                    //         $reText = $this->insertD_API_returnD('e','請上傳Bot回覆大圖&小圖.','401.1');
+                    //         $reText = $this->reqStr->insertD_API_returnD('e','請上傳Bot回覆大圖&小圖.','401.1');
                     //     }
                     //     else{
                     //         if($bImg==0){
-                    //             $reText = $this->insertD_API_returnD('e','沒有Bot回覆大圖.','401.2');
+                    //             $reText = $this->reqStr->insertD_API_returnD('e','沒有Bot回覆大圖.','401.2');
                     //         }
                     //         else{
-                    //             $reText = $this->insertD_API_returnD('e','沒有Bot回覆小圖.','401.3');
+                    //             $reText = $this->reqStr->insertD_API_returnD('e','沒有Bot回覆小圖.','401.3');
                     //         }
                     //     }
                     // }
@@ -117,11 +118,11 @@ class DataInsert_API extends Controller
                                 $reText = $this->insertImgData($reType, $Utxt, $seleBImg[0]->imgNum, $seleSImg[0]->imgNum);
                             }
                             else{
-                                $reText = $this->insertD_API_returnD('e','請重新整理畫面再新增.','402.11');
+                                $reText = $this->reqStr->insertD_API_returnD('e','請重新整理畫面再新增.','402.11');
                             }
                         }
                         else{
-                            $reText = $this->insertD_API_returnD('e','請重新整理畫面再新增.','402.12');
+                            $reText = $this->reqStr->insertD_API_returnD('e','請重新整理畫面再新增.','402.12');
                         }
                     }
                     else if($imgSameType==2){ //same
@@ -136,19 +137,19 @@ class DataInsert_API extends Controller
                                 $reText = $this->insertImgData($reType, $Utxt, $seleBImg[0]->imgNum, $seleSImg[0]->imgNum);
                             }
                             else{
-                                $reText = $this->insertD_API_returnD('e','請重新整理畫面再新增.','402.21');
+                                $reText = $this->reqStr->insertD_API_returnD('e','請重新整理畫面再新增.','402.21');
                             }
                         }
                         else{
-                            $reText = $this->insertD_API_returnD('e','請重新整理畫面再新增.','402.22');
+                            $reText = $this->reqStr->insertD_API_returnD('e','請重新整理畫面再新增.','402.22');
                         }
                     }
                     else{
-                        $reText = $this->insertD_API_returnD('e','表單錯誤.','402.3');
+                        $reText = $this->reqStr->insertD_API_returnD('e','表單錯誤.','402.3');
                     }
                 }
                 else{
-                    $reText = $this->insertD_API_returnD('e','表單錯誤.','402.5');
+                    $reText = $this->reqStr->insertD_API_returnD('e','表單錯誤.','402.5');
                 }
             }
             else if($reType=='text'){
@@ -156,15 +157,15 @@ class DataInsert_API extends Controller
                     $reText = $this->insertTextData($reType, $Utxt, $repqesti['BotText']);
                 }
                 else{
-                    $reText = $this->insertD_API_returnD('e','請輸入Bot回覆訊息.','401.1');
+                    $reText = $this->reqStr->insertD_API_returnD('e','請輸入Bot回覆訊息.','401.1');
                 }
             }
             else{
-                $reText = $this->insertD_API_returnD('e','回復類別錯誤.','403');
+                $reText = $this->reqStr->insertD_API_returnD('e','回復類別錯誤.','403');
             }
         }
         else{
-            $reText = $this->insertD_API_returnD('e','表單錯誤.','400');
+            $reText = $this->reqStr->insertD_API_returnD('e','表單錯誤.','400');
         }
         
         return json_encode($reText);
@@ -186,24 +187,15 @@ class DataInsert_API extends Controller
     }
     function insertImgData($reType, $Utxt, $bImg, $sImg){
         $insertData = $this->insertData->botMessage_Img_Insert($reType, $Utxt, $bImg, $sImg);
-        if($insertData==1){return $this->insertD_API_returnD('s','新增成功.','200');;}
-        else if($insertData==2){return $this->insertD_API_returnD('e','新增失敗.','402.4');;}
-        else{return $this->insertD_API_returnD('e','資料庫異常.','444.2');;}
+        if($insertData==1){return $this->reqStr->insertD_API_returnD('s','新增成功.','200');;}
+        else if($insertData==2){return $this->reqStr->insertD_API_returnD('e','新增失敗.','402.4');;}
+        else{return $this->reqStr->insertD_API_returnD('e','資料庫異常.','444.2');;}
     }
     function insertTextData($reType, $u_text, $retext){
         $insertData = $this->insertData->botMessage_Text_Insert($reType, $u_text, $retext);
-        if($insertData==1){return $this->insertD_API_returnD('s','新增成功.','200');;}
-        else if($insertData==2){return $this->insertD_API_returnD('e','新增失敗.','401.2');;}
-        else{return $this->insertD_API_returnD('e','資料庫異常.','444.1');;}
-    }
-    public function insertD_API_returnD($result,$resultT,$errCode)
-    {
-        $reText = [];
-        $reText['result'] = $result;
-        $reText['resultT'] = $resultT;
-        $reText['errCode'] = $errCode;
-
-        return $reText;
+        if($insertData==1){return $this->reqStr->insertD_API_returnD('s','新增成功.','200');;}
+        else if($insertData==2){return $this->reqStr->insertD_API_returnD('e','新增失敗.','401.2');;}
+        else{return $this->reqStr->insertD_API_returnD('e','資料庫異常.','444.1');;}
     }
     
 }

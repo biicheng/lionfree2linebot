@@ -137,5 +137,8 @@
 @endsection
 
 @section('content_js')
+    @if(Autj::id()==1)
+        <script src="{{URL::asset('/js/errCodeUI.js')}}"></script>
+    @endif
   {{-- <script src="{{URL::asset('/js/datainsert.js')}}"></script> --}}
 @endsection

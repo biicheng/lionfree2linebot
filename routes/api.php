@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/linebot', 'LineBotT@postTest');
 
 Route::post('/insertAPI', 'DataInsert_API@insertD_API');
+Route::post('/messageStatusE', 'DataUpdateAPI@editMessageStatus');
 Route::get('/messageDeleteAPI', 'DataDeletAPI@index')->name('messageDelete');
 
 // bot_cms_imgFileMapsSele

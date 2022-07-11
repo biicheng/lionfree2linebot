@@ -53,8 +53,8 @@ class Controller extends BaseController
         return view('lineBotHome', [
             // 'messageRow'=>$messagesD->count(),
             // 'messageD'=>$messagesD,
-            'message0'=>$dataSeleController->messageGet(0),
-            'message1'=>$dataSeleController->messageGet(1),
+            'message0'=>$dataSeleController->messageGet('oc',0),
+            'message1'=>$dataSeleController->messageGet('oc',1),
         ]);
     }
 }

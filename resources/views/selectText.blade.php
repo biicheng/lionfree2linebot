@@ -8,6 +8,7 @@
             @if(Session::has('editErr'))
                 <div class="alert alert-danger">{{ Session::get('editErr') }}</div>
             @endif
+            <div class="myAlert" style="margin-top:2vh;"></div>
             <div class="accordion marginTit" id="accordionExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
@@ -17,7 +18,6 @@
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <div class=myAlert></div>
                             <form method="POST" id="form" action="/insert" enctype="multipart/form-data" style="padding:0 2.5vh;">
                                 @csrf
                                 <div class="form-group row">
@@ -70,34 +70,17 @@
                                             </div>
                                             <div class="col-md-3" style="display:flex;">
                                                 狀態：
-                                                @if($v->oc==1)
-                                                    <label style="color:#0F0;">●</label>{{'啟用'}}
-                                                    
-                                                @else
-                                                    <label><label style="color:#ffc400;">●{{'停用'}}</label></label>
-                                                @endif
+                                                    <label style="{{$v->oc==1?'color:#0F0;':'color:#ffc400;'}}">●</label>{{'啟用'}}
                                             </div>
                                             <div class="col-md-2" style="display:flex;padding-top:-3%;">
                                                 @if(Auth::id()==1)
-                                                        <a href="edit/{{$v->mIndex}}">
-                                                            <img src="{{asset('/img/edit_icon.png')}}" style="width:4.3vh;" />
-                                                        </a>
-                                                        {{-- <a href="edit/{{$v->mIndex}}">
-                                                            <img src="{{asset('/img/delect_icon.png')}}" style="width:4.3vh;" />
-                                                        </a> --}}
+                                                    <a href="edit/{{$v->mIndex}}"><img src="{{asset('/img/edit_icon.png')}}" style="width:4.3vh;" /></a>
+                                                    <img class="statusImgS" src="{{asset($v->oc==1?'/img/close_icon.png':'/img/open_icon.png')}}" style="height:4.3vh;width:4.3vh;margin-left:3vh;" onclick="editMessageStatus({{$v->oc}},'{{$v->u_text}}')" />
                                                 @else
                                                     <a href="mesaageView/{{$v->mIndex}}">
                                                         <img src="{{asset('/img/info1.png')}}" style="width:4.3vh;" />
                                                     </a>
                                                 @endif
-                                                <form method="POST" action="{{route('edit')}}" style="margin:0 2.5vh;">
-                                                    @csrf
-                                                    <button type="submit" style="border:none;background:#0000;">
-                                                    <img src="{{ asset($v->oc==1?'/img/close_icon.png':'/img/open_icon.png') }}" style="width:4.3vh;" />
-                                                    </button>
-                                                    <input type="hidden" value={{$v->oc}} name="oc" id="oc" />
-                                                    <input type="hidden" value={{$v->u_text}} name="utext" id="utext" />
-                                                </form>
                                             </div>
                                         </div>
                                     @endforeach
@@ -118,6 +101,10 @@
 @endsection
 
 @section('content_js')
-  <script src="{{URL::asset('/js/datainsert.js')}}"></script>
-  <script src="{{URL::asset('/js/datainsert.js')}}"></script>
+    <script src="{{URL::asset('/js/datainsert.js')}}"></script>
+    @if(Auth::id()==1)
+        <script src="{{URL::asset('/js/botMessageStatus.js')}}"></script>
+        <script src="{{URL::asset('/js/errCodeUI.js')}}"></script>
+        <script src="{{URL::asset('/js/publicJs.js')}}"></script>
+    @endif
 @endsection
