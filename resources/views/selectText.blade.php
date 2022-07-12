@@ -157,7 +157,7 @@
 
 @section('content_css')
   <link href="{{ URL::asset('/css/selectText_css.css') }}" rel="stylesheet">
-  {{-- <link href="{{ URL::asset('/css/dataInsert_css.css') }}" rel="stylesheet"> --}}
+  <link href="{{ URL::asset('/css/dataInsert_css.css') }}" rel="stylesheet">
   <link href="{{ URL::asset('/css/gotop.css') }}" rel="stylesheet">
 @endsection
 
