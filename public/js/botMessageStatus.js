@@ -16,8 +16,8 @@ function editMessageStatus(code, str){
         processData:false,
         contentType:false,
 		success: function(response){
+			if(response.result=='s'){ location.reload(); $('.colorLabel').css('color',code==0?'#0F0':'#ffc400'); }
             errCode(response.result,response.errCode+' '+response.resultT);
-			if(response.result=='s'){ location.reload(); }
             cdCss('.statusImgS','display','flex');
 		},
 		error: function(xhr, ajaxOptions, thrownError){

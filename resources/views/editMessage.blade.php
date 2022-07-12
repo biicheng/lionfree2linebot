@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <div class="myUI"></div>
     @if($errors->any())
         <div class="div-group row alert alert-success" role="alert" id="alert" style="margin:0;"><label class="col-form-label text-md-left" style="width:95%;" id="alertT">
             {{$errors->first()}}
@@ -16,7 +17,7 @@
                     <div class="row">
                         <div class="col-md-12" style="margin-bottom:2.5%;display:flex;font-size:120%;">
                             狀態：
-                            <label style="color:{{$oc==1?'#0F0':'#ffc400'}};">●</label>{{'啟用'}}</label>
+                            <label class="colorLabel" style="color:{{$oc==1?'#0F0':'#ffc400'}};">●</label>{{'啟用'}}</label>
                             @if(Auth::id()==1)
                                 <img class="statusImgS" src="{{asset($oc==1?'/img/close_icon.png':'/img/open_icon.png')}}" style="height:4.3vh;width:4.3vh;margin-left:3vh;" onclick="editMessageStatus({{$oc}},'{{$utext}}')" />
                             @endif
