@@ -25,7 +25,6 @@
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                             可使用的關鍵字.
-                            {{-- {{count($message1)>0?'success':'secondary'}} --}}
                             <span class="badge bg-success" style="margin-left:1vh;">{{count($message1)}}</span>
                         </button>
                     </h2>
@@ -89,26 +88,6 @@
                     </div>
                 </div>
             </div>
-            
-            {{-- @if($messageRow>0)
-                @foreach($messageD as $v)
-                    <div class="row" style="font-size:2.5vh;margin-bottom:4.5vh;">
-                        <div class="col-md-2" style="display:flex;">
-                            狀態：
-                            <img src="{{ asset($v->oc==1?'/img/open_icon.png':'/img/close_icon.png') }}" style="width:4.3vh;" /> --}}
-                            {{-- @if($v->oc==1)
-                                <label style="color:#0F0;">●</label>{{'啟用'}}
-                                
-                            @else
-                                <label><label style="color:#ffc400;">●{{'停用'}}</label></label>
-                            @endif --}}
-                        {{-- </div>
-                        <div class="col-md-9">
-                            字串：{{$v->u_text}}
-                        </div>
-                    </div>
-                @endforeach
-            @endif --}}
         </div>
     </div>
 </div>

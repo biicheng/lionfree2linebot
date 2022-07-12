@@ -16,9 +16,13 @@ class DataUpdateAPI extends Controller
     }
 
     public function editMessageStatus(Request $request){
+        \Log::info("message");
         $req = $request->input();
         $oc = $req['oc'];
         $ut = $req['ut'];
+        \Log::info("req:".json_encode($req));
+        \Log::info("oc:".$oc);
+        \Log::info("ut:".$ut);
         if($request->has('ut')&&$request->has('oc')&&($req['oc']!=''&&$req['ut']!='')){
             $dataSele = new dataSeleController;
             $messageT = $dataSele->messageGet('u_text',$req['ut']);

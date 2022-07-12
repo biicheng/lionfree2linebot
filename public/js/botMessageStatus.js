@@ -1,4 +1,5 @@
 function editMessageStatus(code, str){
+    let url = '/api/messageStatusE';
     let formData = new FormData();
     formData.append('oc', code);
     formData.append('ut', str);
@@ -10,7 +11,7 @@ function editMessageStatus(code, str){
 		cache:"true",
 		dataType: "json",
 		async:true,
-		url: 'api/messageStatusE',
+		url: url,
         data: formData,
         processData:false,
         contentType:false,

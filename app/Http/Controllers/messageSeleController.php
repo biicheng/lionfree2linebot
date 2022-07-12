@@ -27,8 +27,9 @@ class messageSeleController extends Controller
     public function seleD(){
         $d = [];
         $messages = null;
-        $botimgmaps = DB::table('botimgmaps')->get();
-        $messagesD = DB::table('botmessage2line')->get();
+        // $botimgmaps = DB::table('botimgmaps')->get();
+        $disableMessagesD = DB::table('botmessage2line')->where('oc','=',0)->get();
+        $enableMessagesD = DB::table('botmessage2line') ->where('oc','=',1)->get();
         // foreach($messagesD as $k=>$v){
         //     $d['reType'] = $v->reType;
         //     $d['u_text'] = $v->u_text;
@@ -45,8 +46,10 @@ class messageSeleController extends Controller
         //     $messages .= json_encode($d);
         // }
         return  view('selectText', [
-                    'messageRow'=>$messagesD->count(),
-                    'messageD'=>$messagesD,
+                    'disableMessagesDRow'=>$disableMessagesD->count(),
+                    'disableMessagesD'=>$disableMessagesD,
+                    'enableMessagesDRow'=>$enableMessagesD->count(),
+                    'enableMessagesD'=>$enableMessagesD,
         ]);
     }
     public function seleD1(){
